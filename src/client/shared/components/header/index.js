@@ -83,7 +83,7 @@ export default function Header({
   // }, [getUserDetails]);
 
   return (
-    <AppBar position={position} color="transparent" elevation={0}>
+    <AppBar position={position} color="transparent" elevation={6}>
       <Toolbar
         sx={
           !!elements

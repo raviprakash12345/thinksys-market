@@ -9,14 +9,21 @@ import Tooltip from "@mui/material/Tooltip";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Drawer from "@mui/material/Drawer";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
-
+import MenuSharpIcon from "@mui/icons-material/MenuSharp";
 import styles from "./styles";
+import LeftSideHeader from "../../left-side-header";
+import Typography from "@mui/material/Typography";
 const defaultState = {
   isDrawerOpen: false,
   isTakeoverDialogOpen: false,
 };
 
-export default function SidebarHeader({ drawerList = [], children = <></> }) {
+export default function SidebarHeader({
+  drawerList = [],
+  children = <></>,
+  isSideDrawerOpen = false,
+  isOpen = false,
+}) {
   const [state, setState] = useState(defaultState);
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,8 +35,8 @@ export default function SidebarHeader({ drawerList = [], children = <></> }) {
     }
     return isActive;
   };
-
-  const logo = state.isDrawerOpen ? "users-white.svg" : "users-white.svg";
+  // console.log(`isDrawerOpen`, isDrawerOpen);
+  // const logo = state.isDrawerOpen ? "users-white.svg" : "users-white.svg";
   return (
     <>
       <ClickAwayListener
@@ -42,99 +49,84 @@ export default function SidebarHeader({ drawerList = [], children = <></> }) {
       >
         <Drawer
           PaperProps={{
-            sx: state.isDrawerOpen ? styles.drawerOpen : styles.drawerClose,
+            sx:
+              isSideDrawerOpen || state.isDrawerOpen
+                ? styles.drawerOpen
+                : styles.drawerClose,
           }}
           variant="permanent"
-          elevation={0}
-          onClick={() =>
-            setState((prevState) => ({
-              ...prevState,
-              isDrawerOpen: !drawerList.length
-                ? false
-                : !prevState.isDrawerOpen,
-            }))
-          }
+          elevation={5}
         >
           <Box sx={styles.container}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: state.isDrawerOpen
-                  ? "common.white"
-                  : "primary.dark",
-                minHeight: state.isDrawerOpen ? "80px" : "64px",
-                width: "100%",
-              }}
-            >
-              <img
-                src={`/assets/${logo}`}
-                alt="Brand Logo"
-                style={state.isDrawerOpen ? styles.logoOpen : styles.logo}
-              />
-            </Box>
-            <Box sx={styles.drawerList}>
+            <Box></Box>
+            <Box>
               {drawerList.map((item, index) => {
-                return state.isDrawerOpen ? (
-                  <Box sx={styles.btnContainer} key={index}>
-                    <Button
-                      startIcon={
-                        <IconButton sx={{ mr: 1 }}>
-                          {isActiveItem(item.to) ? item.activeIcon : item.icon}
-                        </IconButton>
-                      }
-                      sx={{
-                        ...(isActiveItem(item.to)
-                          ? styles.drawerButtonActive
-                          : styles.drawerButtonInActive),
-                      }}
-                      onClick={() => navigate(`${item.to}`)}
+                console.log(`item`, item);
+                return (
+                  <Box sx={{ p: "8px" }}>
+                    <Typography
+                      sx={{ marginRight: "110px", color: "#E32D46" }}
+                      variant="body1"
                     >
-                      {item.label}
-                    </Button>
+                      {item.heading}
+                    </Typography>
+                    <Box>
+                      <IconButton>{item.subHeading1.icon}</IconButton>
+                      <Button
+                        sx={
+                          isActiveItem(item.subHeading1.to)
+                            ? {
+                                color: "grey",
+                                backgroundColor: "pink",
+                              }
+                            : { color: "grey" }
+                        }
+                        variant="text"
+                        onClick={(e) => {
+                          navigate(`${item.subHeading1.to}`);
+                          e.preventDefault();
+                          e.stopPropagation();
+                        }}
+                      >
+                        {item.subHeading1.subHeading}
+                      </Button>
+                    </Box>
+                    <Box>
+                      <IconButton>{item.subHeading2.icon}</IconButton>
+                      <Button
+                        sx={{ color: "grey" }}
+                        variant="text"
+                        onClick={(e) => {
+                          navigate(`${item.subHeading2.to}`);
+                          e.preventDefault();
+                          e.stopPropagation();
+                        }}
+                      >
+                        {item.subHeading2.subHeading}
+                      </Button>
+                    </Box>
+                    <Box>
+                      <IconButton>{item.subHeading3.icon}</IconButton>
+                      <Button
+                        sx={{ color: "grey" }}
+                        variant="text"
+                        onClick={(e) => {
+                          navigate(`${item.subHeading3.to}`);
+                          e.preventDefault();
+                          e.stopPropagation();
+                        }}
+                      >
+                        {item.subHeading3.subHeading}
+                      </Button>
+                    </Box>
                   </Box>
-                ) : (
-                  <Tooltip
-                    title={item.tooltipLabel}
-                    placement="right"
-                    key={index}
-                  >
-                    <Button
-                      onClick={(e) => {
-                        navigate(`${item.to}`);
-                        e.preventDefault();
-                        e.stopPropagation();
-                      }}
-                      sx={{
-                        ...(isActiveItem(item.to)
-                          ? styles.drawerButtonClose
-                          : styles.drawerButton),
-                      }}
-                    >
-                      {isActiveItem(item.to) ? item.activeIcon : item.icon}
-                    </Button>
-                  </Tooltip>
                 );
               })}
             </Box>
           </Box>
         </Drawer>
       </ClickAwayListener>
-      <Box sx={styles.content}>
-        <Header
-          elements={
-            currentPath != "/subaccounts" && currentPath != "/users" ? (
-              <IconButton sx={{ mt: 2 }} onClick={() => navigate(-1)}>
-                <ArrowBackIcon />
-              </IconButton>
-            ) : (
-              false
-            )
-          }
-        />
-        {children}
-      </Box>
+      <Box sx={styles.content}>{children}</Box>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={state.isDrawerOpen}

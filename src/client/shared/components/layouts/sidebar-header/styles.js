@@ -3,21 +3,27 @@ const { display, background, flex, text } = globalStyles;
 
 const styles = {
   drawerClose: {
-    ...background.color.primary.dark,
+    // ...background.color.primary.dark,
+    backgroundColor: "#FCF9FC",
     ...flex.justify.between,
-    maxWidth: "68px",
-    minWidth: "56px",
+    maxWidth: "100px",
     cursor: "pointer",
+    marginLeft: "100px",
+    marginTop: "64px",
+    visibility: "hidden",
   },
   content: {
     marginLeft: "75px",
   },
   drawerOpen: {
     width: "248px",
-    ...background.color.primary.dark,
+    // ...background.color.primary.dark,
+    backgroundColor: "#FCF9FC",
     ...flex.justify.between,
     zIndex: (theme) => theme.zIndex.drawer + 2,
     cursor: "pointer",
+    marginLeft: "90px",
+    marginTop: "64px",
   },
   iconContainer: {
     width: "100%",
