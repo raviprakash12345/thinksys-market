@@ -13,6 +13,14 @@ import MenuList from "@mui/material/MenuList";
 import Typography from "@mui/material/Typography";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import InvertColorsIcon from "@mui/icons-material/InvertColors";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import InputBase from "@mui/material/InputBase";
+import { styled, alpha } from "@mui/material/styles";
+import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { About } from "@client/shared/components";
 import { decodeToken, getToken, removeToken } from "@client/utils";
@@ -25,12 +33,29 @@ import {
 } from "@client/shared/constants";
 
 import style from "./style";
+import { TextField } from "@mui/material";
+import InputAdornment from "@mui/material/InputAdornment";
+import Autocomplete from "@mui/material/Autocomplete";
+import Button from "@mui/material/Button";
+import PaletteIcon from "@mui/icons-material/Palette";
+import FactCheckIcon from "@mui/icons-material/FactCheck";
+import { pink } from "@mui/material/colors";
+import Switch from "@mui/material/Switch";
+import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
+
+
+
+
 
 const defaultState = {
   open: false,
   version: {},
   role: {},
   licenseExpiresOn: "",
+  fullScreen: false,
+  type: "",
+  checked: false,
+  checked1: false,
 };
 
 export default function Header({
@@ -54,6 +79,26 @@ export default function Header({
       open: false,
     }));
   };
+
+  const handleChange = (event) => {
+    setState((prevState) => ({
+      ...prevState,
+      checked: event.target.checked,
+    }));
+  };
+  const handleChange1 = (event) => {
+    setState((prevState) => ({
+      ...prevState,
+      checked1: event.target.checked,
+    }));
+  };
+  const top100Films = [
+    { label: "English" },
+    { label: "Hindi" },
+    { label: "Telugu" },
+    { label: "Kannada" },
+  ];
+
   const handleLogout = async () => {
     // const { error } = await AppService.logoutUser(getToken());
     // if (!error) {
@@ -83,7 +128,7 @@ export default function Header({
   // }, [getUserDetails]);
 
   return (
-    <AppBar position={position} color="transparent" elevation={0}>
+    <AppBar position={position} color="transparent" elevation={1}>
       <Toolbar
         sx={
           !!elements
@@ -91,8 +136,23 @@ export default function Header({
             : globalStyles.flex.justify.end
         }
       >
-        {elements}
         <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Typography sx={{ mr: 5, width: "150px" }}>Thinksys Prime</Typography>
+          <IconButton
+            onClick={() =>
+              setState((prevState) => ({
+                ...prevState,
+                fullScreen: !state.fullScreen,
+              }))
+            }
+          >
+            {!state.fullScreen ? (
+              <FullscreenIcon fontSize="medium"></FullscreenIcon>
+            ) : (
+              <FullscreenExitIcon fontSize="medium"></FullscreenExitIcon>
+            )}
+          </IconButton>
+
           <IconButton
             onClick={() => {
               const newThemeType =
@@ -101,49 +161,237 @@ export default function Header({
                   : THEME_VARIANT.LIGHT;
               setThemeVariant(newThemeType);
             }}
-            sx={{ mr: 2 }}
           >
             {themeVariant === THEME_VARIANT.LIGHT ? (
-              <DarkModeIcon fontSize="large" sx={{ color: "primary.dark" }} />
+              <InvertColorsIcon
+                fontSize="medium"
+                sx={{ color: "primary.dark" }}
+              />
             ) : (
-              <LightModeIcon fontSize="large" />
+              <InvertColorsIcon fontSize="medium" />
             )}
           </IconButton>
-          <Avatar
+          <HelpOutlineIcon
+            fontSize="medium"
+            sx={{ color: "grey", mr: 120 }}
+          ></HelpOutlineIcon>
+          {/* <Box
+          
+           sx={{
+            width: 150,
+           maxWidth: '100%',
+           backgroundColor:"white",
+           display: "flex",
+           borderRadius: "10px",
+           border:"1px solid white",
+           }}
+              > 
+                 <SearchIcon  
+                 sx={{ marginTop :  "12px",}} />
+               <TextField 
+               size="small"
+               placeholder="search..."
+               sx={{width : "150px" ,
+               border:"1px solid white",
+                   "& .MuiOutlinedInput-root": {
+                    backgroundColor: "white",
+                    
+                    "&:hover": {
+                      border:"1px solid white",
+                      width:"280px"
+                    },
+                  },
+                }} 
+              />
+                
+        </Box> */}
+          <TextField
+            variant="outlined"
+            size="small"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+            placeholder="search..."
+            sx={{
+              width: "150px",
+              mr: "20px",
+              border: "1px solid white",
+              "& .MuiOutlinedInput-root": {
+                backgroundColor: "white",
+
+                //  "&:hover": {
+                //    borderColor:"1px solid red",
+                //    width:"280px",
+
+                //  },
+              },
+            }}
+          />
+
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={top100Films}
+            size="small"
+            sx={{ width: 150, mr: "20px" }}
+            defaultValue="English"
+            disableClearable="true"
+            renderInput={(params) => <TextField {...params} />}
+          />
+
+          <Button
+            variant="contained"
+            sx={{ backgroundColor: "#3f51b5", width: "110px" }}
+          >
+            Login
+          </Button>
+
+          {/* <Avatar
             src={profileImageUri}
-            sx={globalStyles.cursor.pointer}
+            sx={{...globalStyles.cursor.pointer,top : 300}}
             onClick={() => {
               setState((prevState) => ({
                 ...prevState,
                 open: !prevState.open,
               }));
             }}
-          />
+          /> */}
+
+          <PaletteIcon
+            fontSize="large"
+            sx={{
+              bottom: 50,
+              color: "#3f51b5",
+              position: "relative",
+              top: "400px",
+            }}
+            onClick={() => {
+              setState((prevState) => ({
+                ...prevState,
+                open: !prevState.open,
+              }));
+            }}
+          ></PaletteIcon>
         </Box>
         <Drawer open={state.open} onClose={handleDrawerClose} anchor="right">
           <Box sx={style.drawerPaper}>
-            <Box sx={style.nameWrapper}>
-              <Avatar src={profileImageUri} />
-              <Box sx={style.userData}>
-                <Typography variant="body2" sx={{ fontWeight: "medium" }}>
-                  {/* {firstName + " " + lastName} */}
-                  Oscar Wilde
-                </Typography>
-                <Typography sx={style.role}>
-                  {/* {state.role?.roleName} */}
-                  Admin
-                </Typography>
+            <Box sx={{ backgroundColor: "#fafafa" }}>
+              <Typography
+                sx={{ paddingTop: 3, paddingLeft: 9, paddingBottom: 3 }}
+              >
+                TEMPLATE SETTINGS
+              </Typography>
+            </Box>
+            <Box sx={{ backgroundColor: "#ffffff" }}>
+              <Box sx={{ ...style.themeColor, ml: "30px" }}>
+                <PaletteIcon sx={{ color: "#757575", mr: "6px" }}></PaletteIcon>
+                <Typography sx={{ color: "#757575" }}>Theme Colour</Typography>
+              </Box>
+              <Box sx={style.themeColor}>
+                <Box sx={{ ...style.themeBox, backgroundColor: "#f14f6f" }}>
+                  {" "}
+                </Box>
+                <Box
+                  sx={{ ...style.themeBox, backgroundColor: "#40a291" }}
+                ></Box>
+                <Box
+                  sx={{ ...style.themeBox, backgroundColor: "#3d53c8" }}
+                ></Box>
+                <Box
+                  sx={{ ...style.themeBox, backgroundColor: "#a45ac5" }}
+                ></Box>
+                <Box
+                  sx={{ ...style.themeBox, backgroundColor: "#f24724" }}
+                ></Box>
+                <Box
+                  sx={{ ...style.themeBox, backgroundColor: "#607c89" }}
+                ></Box>
+                <Box
+                  sx={{ ...style.themeBox, backgroundColor: "#70cb34" }}
+                ></Box>
+                <Box
+                  sx={{ ...style.themeBox, backgroundColor: "#00a2f1" }}
+                ></Box>
+                <Box
+                  sx={{ ...style.themeBox, backgroundColor: "#795048" }}
+                ></Box>
               </Box>
             </Box>
-            <MenuList>
-              <About version={state.version} />
-              <MenuItem onClick={handleLogout}>
-                <ListItemText primary="Sign Out" />
-                <ListItemIcon sx={style.icon}>
-                  <ArrowForwardIcon fontSize="small" />
-                </ListItemIcon>
-              </MenuItem>
-            </MenuList>
+
+            <Box sx={{ backgroundColor: "#ffffff" }}>
+              <Box sx={{ ...style.themeColor, ml: "30px" }}>
+                <FactCheckIcon
+                  sx={{ color: "#757575", mr: "6px" }}
+                ></FactCheckIcon>
+                <Typography sx={{ color: "#757575" }}>
+                  NAVIGATION LAYOUT
+                </Typography>
+              </Box>
+              <Box sx={style.themeColor}>
+                <Box sx={{ ...style.themeBox, backgroundColor: "#f14f6f" }}>
+                  {" "}
+                </Box>
+                <Box
+                  sx={{ ...style.themeBox, backgroundColor: "#40a291" }}
+                ></Box>
+                <Box
+                  sx={{ ...style.themeBox, backgroundColor: "#3d53c8" }}
+                ></Box>
+                <Box
+                  sx={{ ...style.themeBox, backgroundColor: "#a45ac5" }}
+                ></Box>
+                <Box
+                  sx={{ ...style.themeBox, backgroundColor: "#f24724" }}
+                ></Box>
+                <Box
+                  sx={{ ...style.themeBox, backgroundColor: "#607c89" }}
+                ></Box>
+              </Box>
+            </Box>
+
+            <Box sx={{ backgroundColor: "#ffffff" }}>
+              <Box sx={{ ...style.themeColor, ml: "30px" }}>
+                <InvertColorsIcon
+                  fontSize="small"
+                  sx={{ color: "#757575", mr: "6px" }}
+                />
+                <Typography sx={{ color: "#757575" }}>Theme Mode</Typography>
+              </Box>
+              <Box sx={{ ...style.themeColor, ml: "30px" }}>
+                <Typography sx={{ mr: "10px" }}>Light Mode</Typography>
+                <Switch
+                  size="large"
+                  checked={state.checked}
+                  onChange={handleChange}
+                  inputProps={{ "aria-label": "controlled" }}
+                />
+                <Typography sx={{ ml: "10px" }}>Dark Mode</Typography>
+              </Box>
+            </Box>
+
+            <Box sx={{ backgroundColor: "#ffffff" }}>
+              <Box sx={{ ...style.themeColor, ml: "30px" }}>
+                <FormatTextdirectionLToRIcon
+                  fontSize="small"
+                  sx={{ color: "#757575", mr: "6px" }}
+                />
+                <Typography sx={{ color: "#757575" }}>LAYOUT DIRECTION</Typography>
+              </Box>
+              <Box sx={{ ...style.themeColor, ml: "30px" }}>
+                <Typography sx={{ mr: "10px" }}>LTR</Typography>
+                <Switch
+                  size="large"
+                  checked={state.checked1}
+                  onChange={handleChange1}
+                  inputProps={{ "aria-label": "controlled" }}
+                />
+                <Typography sx={{ ml: "10px" }}>RTL</Typography>
+              </Box>
+            </Box>
           </Box>
         </Drawer>
       </Toolbar>
