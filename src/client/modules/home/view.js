@@ -116,7 +116,9 @@ const HomeView = () => {
             </Box>
           </Box>
         </Box>
-        <ChartArea />
+        <Box sx={{ marginTop: "48px" }}>
+          <ChartArea />
+        </Box>
       </Box>
     </>
   );

@@ -11,7 +11,13 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { IconButton } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import DvrIcon from "@mui/icons-material/Dvr";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import HealingIcon from "@mui/icons-material/Healing";
+import LocalActivityIcon from "@mui/icons-material/LocalActivity";
+import LinearProgress from "@mui/material/LinearProgress";
+import FilterCenterFocusIcon from "@mui/icons-material/FilterCenterFocus";
 
 const data = [
   {
@@ -62,7 +68,7 @@ const AreaChartView = () => {
   return (
     <>
       {/* <ResponsiveContainer width="100%" height="100%"> */}
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", alignItems: "center", gap: "5px" }}>
         <IconButton>
           <TimelineIcon sx={{ color: "pink", fontSize: "40px" }} />
         </IconButton>
@@ -70,44 +76,157 @@ const AreaChartView = () => {
           Performance Indicator
         </Typography>
       </Box>
-      <AreaChart
-        width={800}
-        height={300}
-        data={data}
-        margin={{
-          top: 10,
-          right: 30,
-          left: 0,
-          bottom: 0,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Area
-          type="monotone"
-          dataKey="uv"
-          stackId="1"
-          stroke="#5b96e5"
-          fill="#5b96e5"
-        />
-        <Area
-          type="monotone"
-          dataKey="pv"
-          stackId="1"
-          stroke="#bf83cf"
-          fill="#bf83cf"
-        />
-        <Area
-          type="monotone"
-          dataKey="amt"
-          stackId="1"
-          stroke="#8273eb"
-          fill="#8273eb"
-        />
-      </AreaChart>
-      {/* </ResponsiveContainer> */}
+
+      <Box sx={{ display: "flex", gap: 10, alignItems: "center" }}>
+        <Box>
+          <Box sx={{ display: "flex", alignItems: "center", gap: "150px" }}>
+            <Box
+              sx={{ display: "flex", alignItems: "center", marginTop: "30px" }}
+            >
+              <Box sx={{ border: "1px solid purple", borderRadius: "30px" }}>
+                <IconButton>
+                  <DvrIcon sx={{ fontSize: "35px", color: "#e35981" }} />
+                </IconButton>
+              </Box>
+              <Box sx={{ marginLeft: "8px" }}>
+                <Typography
+                  sx={{ fontWeight: "bold", color: "purple" }}
+                  variant="body1"
+                >
+                  40
+                </Typography>
+                <Typography variant="body1">Attends</Typography>
+              </Box>
+            </Box>
+            <Box
+              sx={{ display: "flex", alignItems: "center", marginTop: "30px" }}
+            >
+              <Box sx={{ border: "1px solid #7cb342", borderRadius: "30px" }}>
+                <IconButton>
+                  <CheckCircleIcon
+                    sx={{ fontSize: "35px", color: "#e35981" }}
+                  />
+                </IconButton>
+              </Box>
+              <Box sx={{ marginLeft: "8px" }}>
+                <Typography
+                  sx={{ fontWeight: "bold", color: "#7cb342" }}
+                  variant="body1"
+                >
+                  125
+                </Typography>
+                <Typography variant="body1">Attends</Typography>
+              </Box>
+            </Box>
+            <Box
+              sx={{ display: "flex", alignItems: "center", marginTop: "30px" }}
+            >
+              <Box sx={{ border: "1px solid #e35981", borderRadius: "30px" }}>
+                <IconButton>
+                  <HealingIcon sx={{ fontSize: "35px", color: "#e35981" }} />
+                </IconButton>
+              </Box>
+              <Box sx={{ marginLeft: "8px" }}>
+                <Typography
+                  sx={{ fontWeight: "bold", color: "#e35981" }}
+                  variant="body1"
+                >
+                  17
+                </Typography>
+                <Typography variant="body1">Attends</Typography>
+              </Box>
+            </Box>
+            <Box
+              sx={{ display: "flex", alignItems: "center", marginTop: "30px" }}
+            >
+              <Box sx={{ border: "1px solid #536dfe", borderRadius: "30px" }}>
+                <IconButton>
+                  <LocalActivityIcon
+                    sx={{ fontSize: "35px", color: "#e35981" }}
+                  />
+                </IconButton>
+              </Box>
+              <Box sx={{ marginLeft: "8px" }}>
+                <Typography
+                  sx={{ fontWeight: "bold", color: "#536dfe" }}
+                  variant="body1"
+                >
+                  18
+                </Typography>
+                <Typography variant="body1">Referrals</Typography>
+              </Box>
+            </Box>
+          </Box>
+          <AreaChart
+            width={800}
+            height={300}
+            data={data}
+            margin={{
+              top: 20,
+              right: 30,
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Area
+              type="monotone"
+              dataKey="uv"
+              stackId="1"
+              stroke="#5b96e5"
+              fill="#5b96e5"
+            />
+            <Area
+              type="monotone"
+              dataKey="pv"
+              stackId="1"
+              stroke="#bf83cf"
+              fill="#bf83cf"
+            />
+            <Area
+              type="monotone"
+              dataKey="amt"
+              stackId="1"
+              stroke="#8273eb"
+              fill="#8273eb"
+            />
+          </AreaChart>
+        </Box>
+        <Box sx={{ width: "100%", paddingRight: "16px" }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <IconButton>
+              <FilterCenterFocusIcon />
+            </IconButton>
+            <Typography variant="body2">ACHIEVEMENT TARGET</Typography>
+          </Box>
+
+          <hr />
+          <Typography sx={{ paddingTop: "32px" }} variant="body1">
+            Finish 100 Tasks
+          </Typography>
+          <LinearProgress variant="determinate" value={20} color="error" />
+          <Typography sx={{ paddingTop: "32px" }} variant="body1">
+            Get 10 attending
+          </Typography>
+
+          <LinearProgress variant="determinate" value={30} color="primary" />
+          <Typography sx={{ paddingTop: "32px" }} variant="body1">
+            Get less than 10 complaint
+          </Typography>
+          <LinearProgress variant="determinate" value={80} color="inherit" />
+          <Typography sx={{ paddingTop: "32px" }} variant="body1">
+            Upload 5 videos or articles
+          </Typography>
+          <LinearProgress variant="determinate" value={60} color="info" />
+          <Typography sx={{ paddingTop: "32px" }} variant="body1">
+            Completing profile
+          </Typography>
+          <LinearProgress variant="determinate" value={10} color="success" />
+        </Box>
+      </Box>
     </>
   );
 };
