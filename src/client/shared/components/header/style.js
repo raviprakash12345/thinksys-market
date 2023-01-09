@@ -4,7 +4,8 @@ const { display, flex } = globalStyles;
 const style = {
   drawerPaper: {
     height: "100%",
-    width: "250px",
+    width: "350px",
+    backgroundColor : "#fafafa",
   },
   nameWrapper: {
     padding: "12px 14px",
@@ -23,6 +24,22 @@ const style = {
     marginLeft: "18px",
     color: "white",
   },
+  themeColor : { 
+    display: "flex",
+    flexDirection: "row",
+    flexWrap : "wrap",
+    borderRadius: "15px",
+    width : "85%",
+    marginLeft:"20px",
+    alignItems : "centre",
+    marginBottom : "15px"
+  },
+  themeBox:{
+    height:"90px",
+    width : "80px",
+    margin : "7px",
+    borderRadius : "15px",
+  }
 };
 
 export default style;
