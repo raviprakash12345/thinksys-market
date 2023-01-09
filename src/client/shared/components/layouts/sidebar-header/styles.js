@@ -22,7 +22,7 @@ const styles = {
     ...flex.justify.between,
     zIndex: (theme) => theme.zIndex.drawer + 2,
     cursor: "pointer",
-    marginLeft: "90px",
+    marginLeft: "80px",
     marginTop: "64px",
   },
   iconContainer: {

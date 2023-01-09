@@ -1,22 +1,36 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { Header } from "@client/shared/components";
+import * as React from "react";
+import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Backdrop from "@mui/material/Backdrop";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Drawer from "@mui/material/Drawer";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import MenuSharpIcon from "@mui/icons-material/MenuSharp";
-import styles from "./styles";
-import LeftSideHeader from "../../left-side-header";
+import CssBaseline from "@mui/material/CssBaseline";
+import MuiAppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-const defaultState = {
-  isDrawerOpen: false,
-  isTakeoverDialogOpen: false,
-};
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+import { Button } from "@mui/material";
+import { useLocation, useNavigate } from "react-router-dom";
+
+const drawerWidth = 240;
+
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: "flex-end",
+}));
 
 export default function SidebarHeader({
   drawerList = [],
@@ -24,7 +38,6 @@ export default function SidebarHeader({
   isSideDrawerOpen = false,
   isOpen = false,
 }) {
-  const [state, setState] = useState(defaultState);
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
@@ -35,108 +48,85 @@ export default function SidebarHeader({
     }
     return isActive;
   };
-  // console.log(`isDrawerOpen`, isDrawerOpen);
-  // const logo = state.isDrawerOpen ? "users-white.svg" : "users-white.svg";
   return (
-    <>
-      <ClickAwayListener
-        onClickAway={() =>
-          setState((prevState) => ({
-            ...prevState,
-            isDrawerOpen: false,
-          }))
-        }
+    <Box sx={{ display: "flex" }}>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
+            width: drawerWidth,
+            boxSizing: "border-box",
+            left: "80px",
+            top: "65px",
+          },
+        }}
+        variant="persistent"
+        anchor="left"
+        open={isSideDrawerOpen}
       >
-        <Drawer
-          PaperProps={{
-            sx:
-              isSideDrawerOpen || state.isDrawerOpen
-                ? styles.drawerOpen
-                : styles.drawerClose,
-          }}
-          variant="permanent"
-          elevation={5}
-        >
-          <Box sx={styles.container}>
-            <Box></Box>
-            <Box>
-              {drawerList.map((item, index) => {
-                console.log(`item`, item);
-                return (
-                  <Box sx={{ p: "8px" }}>
-                    <Typography
-                      sx={{ marginRight: "110px", color: "#E32D46" }}
-                      variant="body1"
-                    >
-                      {item.heading}
-                    </Typography>
-                    <Box>
-                      <IconButton>{item.subHeading1.icon}</IconButton>
-                      <Button
-                        sx={
-                          isActiveItem(item.subHeading1.to)
-                            ? {
-                                color: "grey",
-                                backgroundColor: "pink",
-                              }
-                            : { color: "grey" }
+        {drawerList.map((item, index) => {
+          return (
+            <Box sx={{ p: "8px" }}>
+              <Typography
+                sx={{ marginRight: "110px", color: "#E32D46", width: "100%" }}
+                variant="body1"
+              >
+                {item.heading}
+              </Typography>
+              <Box>
+                <IconButton>{item.subHeading1.icon}</IconButton>
+                <Button
+                  sx={
+                    isActiveItem(item.subHeading1.to)
+                      ? {
+                          color: "grey",
+                          backgroundColor: "pink",
                         }
-                        variant="text"
-                        onClick={(e) => {
-                          navigate(`${item.subHeading1.to}`);
-                          e.preventDefault();
-                          e.stopPropagation();
-                        }}
-                      >
-                        {item.subHeading1.subHeading}
-                      </Button>
-                    </Box>
-                    <Box>
-                      <IconButton>{item.subHeading2.icon}</IconButton>
-                      <Button
-                        sx={{ color: "grey" }}
-                        variant="text"
-                        onClick={(e) => {
-                          navigate(`${item.subHeading2.to}`);
-                          e.preventDefault();
-                          e.stopPropagation();
-                        }}
-                      >
-                        {item.subHeading2.subHeading}
-                      </Button>
-                    </Box>
-                    <Box>
-                      <IconButton>{item.subHeading3.icon}</IconButton>
-                      <Button
-                        sx={{ color: "grey" }}
-                        variant="text"
-                        onClick={(e) => {
-                          navigate(`${item.subHeading3.to}`);
-                          e.preventDefault();
-                          e.stopPropagation();
-                        }}
-                      >
-                        {item.subHeading3.subHeading}
-                      </Button>
-                    </Box>
-                  </Box>
-                );
-              })}
+                      : { color: "grey" }
+                  }
+                  variant="text"
+                  onClick={(e) => {
+                    navigate(`${item.subHeading1.to}`);
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                >
+                  {item.subHeading1.subHeading}
+                </Button>
+              </Box>
+              <Box>
+                <IconButton>{item.subHeading2.icon}</IconButton>
+                <Button
+                  sx={{ color: "grey" }}
+                  variant="text"
+                  onClick={(e) => {
+                    navigate(`${item.subHeading2.to}`);
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                >
+                  {item.subHeading2.subHeading}
+                </Button>
+              </Box>
+              <Box>
+                <IconButton>{item.subHeading3.icon}</IconButton>
+                <Button
+                  sx={{ color: "grey" }}
+                  variant="text"
+                  onClick={(e) => {
+                    navigate(`${item.subHeading3.to}`);
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                >
+                  {item.subHeading3.subHeading}
+                </Button>
+              </Box>
             </Box>
-          </Box>
-        </Drawer>
-      </ClickAwayListener>
-      <Box sx={styles.content}>{children}</Box>
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={state.isDrawerOpen}
-        onClick={() =>
-          setState((prevState) => ({
-            ...prevState,
-            isDrawerOpen: false,
-          }))
-        }
-      />
-    </>
+          );
+        })}
+      </Drawer>
+    </Box>
   );
 }

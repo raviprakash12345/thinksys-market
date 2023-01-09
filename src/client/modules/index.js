@@ -130,12 +130,16 @@ const App = ({ isSideBarOpen = false }) => {
 
   return (
     <>
-      <LeftSideHeader sidebarList={sidebarList} drawerList={drawerList} />
+      <LeftSideHeader sidebarList={sidebarList} drawerList={drawerList}>
+        <Routes>
+          <Route path="/analytics" element={<Home />} />
+        </Routes>
+      </LeftSideHeader>
       {isSideBarOpen && (
         <DefaultLayout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
+          {/* <Routes>
+            <Route path="/analytics" element={<Home />} />
+          </Routes> */}
         </DefaultLayout>
       )}
     </>
