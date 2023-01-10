@@ -23,6 +23,7 @@ const LeftSideHeader = ({
   sidebarList = [],
   children = <></>,
   drawerList = [],
+  handlThemeChange = () => {},
 }) => {
   const [state, setState] = useState(defaultState);
   const navigate = useNavigate();
@@ -128,6 +129,7 @@ const LeftSideHeader = ({
               false
             )
           }
+          handlThemeChange={handlThemeChange}
         />
         {children}
       </Box>

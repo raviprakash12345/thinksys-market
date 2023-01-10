@@ -41,11 +41,7 @@ import PaletteIcon from "@mui/icons-material/Palette";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import { pink } from "@mui/material/colors";
 import Switch from "@mui/material/Switch";
-import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
-
-
-
-
+import FormatTextdirectionLToRIcon from "@mui/icons-material/FormatTextdirectionLToR";
 
 const defaultState = {
   open: false,
@@ -63,6 +59,7 @@ export default function Header({
   position = "sticky",
   responsive = true,
   isDrawerOpen = false,
+  handlThemeChange = () => {},
 }) {
   const navigate = useNavigate();
   const { themeVariant, setThemeVariant } = useContext(AppContext);
@@ -128,7 +125,7 @@ export default function Header({
   // }, [getUserDetails]);
 
   return (
-    <AppBar position={position} color="transparent" elevation={6}>
+    <AppBar position={position} color="default" elevation={5}>
       <Toolbar
         sx={
           !!elements
@@ -292,31 +289,42 @@ export default function Header({
                 <Typography sx={{ color: "#757575" }}>Theme Colour</Typography>
               </Box>
               <Box sx={style.themeColor}>
-                <Box sx={{ ...style.themeBox, backgroundColor: "#f14f6f" }}>
+                <Box
+                  onClick={() => handlThemeChange("#f14f6f")}
+                  sx={{ ...style.themeBox, backgroundColor: "#f14f6f" }}
+                >
                   {" "}
                 </Box>
                 <Box
+                  onClick={() => handlThemeChange("#40a291")}
                   sx={{ ...style.themeBox, backgroundColor: "#40a291" }}
                 ></Box>
                 <Box
+                  onClick={() => handlThemeChange("#3d53c8")}
                   sx={{ ...style.themeBox, backgroundColor: "#3d53c8" }}
                 ></Box>
                 <Box
+                  onClick={() => handlThemeChange("#a45ac5")}
                   sx={{ ...style.themeBox, backgroundColor: "#a45ac5" }}
                 ></Box>
                 <Box
+                  onClick={() => handlThemeChange("#f24724")}
                   sx={{ ...style.themeBox, backgroundColor: "#f24724" }}
                 ></Box>
                 <Box
+                  onClick={() => handlThemeChange("#607c89")}
                   sx={{ ...style.themeBox, backgroundColor: "#607c89" }}
                 ></Box>
                 <Box
+                  onClick={() => handlThemeChange("#70cb34")}
                   sx={{ ...style.themeBox, backgroundColor: "#70cb34" }}
                 ></Box>
                 <Box
+                  onClick={() => handlThemeChange("#00a2f1")}
                   sx={{ ...style.themeBox, backgroundColor: "#00a2f1" }}
                 ></Box>
                 <Box
+                  onClick={() => handlThemeChange("#795048")}
                   sx={{ ...style.themeBox, backgroundColor: "#795048" }}
                 ></Box>
               </Box>
@@ -379,7 +387,9 @@ export default function Header({
                   fontSize="small"
                   sx={{ color: "#757575", mr: "6px" }}
                 />
-                <Typography sx={{ color: "#757575" }}>LAYOUT DIRECTION</Typography>
+                <Typography sx={{ color: "#757575" }}>
+                  LAYOUT DIRECTION
+                </Typography>
               </Box>
               <Box sx={{ ...style.themeColor, ml: "30px" }}>
                 <Typography sx={{ mr: "10px" }}>LTR</Typography>

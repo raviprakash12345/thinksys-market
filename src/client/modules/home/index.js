@@ -1,14 +1,14 @@
 import { useState } from "react";
-import HomeView from "./view"; 
+import HomeView from "./view";
 
 const defaultState = {};
 
-const Home = () => {
+const Home = ({ themeColor = "#e35981" }) => {
   const [state, setState] = useState(defaultState);
 
   return (
     <>
-      <HomeView />
+      <HomeView themeColor={themeColor} />
     </>
   );
 };

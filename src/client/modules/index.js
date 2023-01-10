@@ -18,7 +18,11 @@ import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import TimelapseIcon from "@mui/icons-material/Timelapse";
 import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
 import AssessmentIcon from "@mui/icons-material/Assessment";
+import { useState } from "react";
 const App = ({ isSideBarOpen = false }) => {
+  const [state, setState] = useState({
+    themeColor: "",
+  });
   let sidebarList = [
     {
       icon: <HomeSharpIcon sx={{ color: "#7B7E7E" }} />,
@@ -128,11 +132,25 @@ const App = ({ isSideBarOpen = false }) => {
     },
   ];
 
+  const handlThemeChange = (color = "#e35981") => {
+    setState((prevState) => ({
+      ...prevState,
+      themeColor: color || "#e35981",
+    }));
+  };
+
   return (
     <>
-      <LeftSideHeader sidebarList={sidebarList} drawerList={drawerList}>
+      <LeftSideHeader
+        handlThemeChange={handlThemeChange}
+        sidebarList={sidebarList}
+        drawerList={drawerList}
+      >
         <Routes>
-          <Route path="/analytics" element={<Home />} />
+          <Route
+            path="/analytics"
+            element={<Home themeColor={state.themeColor} />}
+          />
         </Routes>
       </LeftSideHeader>
       {isSideBarOpen && (

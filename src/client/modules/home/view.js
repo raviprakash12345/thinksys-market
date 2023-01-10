@@ -6,19 +6,22 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import CreateIcon from "@mui/icons-material/Create";
 import FilterIcon from "@mui/icons-material/Filter";
 import ChartArea from "./area-chart";
-
-const HomeView = () => {
+import HomeTable from "./home-table";
+import { useEffect } from "react";
+import MyTaskTable from "./my-task-table";
+let defaultColor = "#e35981";
+const HomeView = ({ themeColor = "#e35981" }) => {
   return (
     <>
-      <Box sx={{ marginLeft: "250px" }}>
+      <Box sx={{ marginLeft: "250px"}}>
         <Box sx={{ display: "flex", gap: "8px" }}>
           <Box
             sx={{
-              border: "1px solid #e35981",
+              border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
               width: "350px",
               borderRadius: "10px",
-              backgroundColor: "#e35981",
+              backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
               color: "white",
               marginTop: "8px",
               padding: "4px",
@@ -34,7 +37,10 @@ const HomeView = () => {
               <Box sx={{ marginTop: "28px" }}>
                 <IconButton>
                   <OndemandVideoIcon
-                    sx={{ color: "#e575a7", fontSize: "80px" }}
+                    sx={{
+                      color: `${!!themeColor ? themeColor : defaultColor}`,
+                      fontSize: "80px",
+                    }}
                   />
                 </IconButton>
               </Box>
@@ -42,11 +48,11 @@ const HomeView = () => {
           </Box>
           <Box
             sx={{
-              border: "1px solid #e35981",
+              border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
               width: "350px",
               borderRadius: "10px",
-              color: "#e35981",
+              color: `${!!themeColor ? themeColor : defaultColor}`,
               marginTop: "8px",
               padding: "4px",
             }}
@@ -60,18 +66,23 @@ const HomeView = () => {
               </Box>
               <Box sx={{ marginTop: "28px" }}>
                 <IconButton>
-                  <CreateIcon sx={{ color: "#e575a7", fontSize: "80px" }} />
+                  <CreateIcon
+                    sx={{
+                      color: `${!!themeColor ? themeColor : defaultColor}`,
+                      fontSize: "80px",
+                    }}
+                  />
                 </IconButton>
               </Box>
             </Box>
           </Box>
           <Box
             sx={{
-              border: "1px solid #e35981",
+              border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
               width: "350px",
               borderRadius: "10px",
-              color: "#e35981",
+              color: `${!!themeColor ? themeColor : defaultColor}`,
               marginTop: "8px",
               padding: "4px",
             }}
@@ -85,18 +96,23 @@ const HomeView = () => {
               </Box>
               <Box sx={{ marginTop: "28px" }}>
                 <IconButton>
-                  <PeopleAltIcon sx={{ color: "#e575a7", fontSize: "80px" }} />
+                  <PeopleAltIcon
+                    sx={{
+                      color: `${!!themeColor ? themeColor : defaultColor}`,
+                      fontSize: "80px",
+                    }}
+                  />
                 </IconButton>
               </Box>
             </Box>
           </Box>
           <Box
             sx={{
-              border: "1px solid #e35981",
+              border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
               width: "350px",
               borderRadius: "10px",
-              color: "#e35981",
+              color: `${!!themeColor ? themeColor : defaultColor}`,
               marginTop: "8px",
               padding: "4px",
             }}
@@ -110,7 +126,12 @@ const HomeView = () => {
               </Box>
               <Box sx={{ marginTop: "24px" }}>
                 <IconButton>
-                  <FilterIcon sx={{ color: "#e575a7", fontSize: "80px" }} />
+                  <FilterIcon
+                    sx={{
+                      color: `${!!themeColor ? themeColor : defaultColor}`,
+                      fontSize: "80px",
+                    }}
+                  />
                 </IconButton>
               </Box>
             </Box>
@@ -118,6 +139,17 @@ const HomeView = () => {
         </Box>
         <Box sx={{ marginTop: "48px" }}>
           <ChartArea />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            marginLeft: "16px",
+            alignItems: "center",
+            marginTop: "48px",
+          }}
+        >
+          <HomeTable />
+          <MyTaskTable />
         </Box>
       </Box>
     </>
