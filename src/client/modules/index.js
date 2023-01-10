@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { DefaultLayout } from "@client/shared/components";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import Home from "./home";
+import Marketing from "./marketing";
 import { Box } from "@mui/system";
 import { LeftSideHeader } from "../shared/components";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
@@ -151,6 +152,9 @@ const App = ({ isSideBarOpen = false }) => {
             path="/analytics"
             element={<Home themeColor={state.themeColor} />}
           />
+        </Routes>
+        <Routes>
+          <Route path="/marketing" element={<Marketing />} />
         </Routes>
       </LeftSideHeader>
       {isSideBarOpen && (
