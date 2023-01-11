@@ -42,7 +42,7 @@ import FactCheckIcon from "@mui/icons-material/FactCheck";
 import { pink } from "@mui/material/colors";
 import Switch from "@mui/material/Switch";
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
-
+import { NavLink } from "react-router-dom";
 
 
 
@@ -92,13 +92,16 @@ export default function Header({
       checked1: event.target.checked,
     }));
   };
-  const top100Films = [
+  const Lanuages = [
     { label: "English" },
     { label: "Hindi" },
     { label: "Telugu" },
     { label: "Kannada" },
   ];
-
+  
+  const handleNavigation = ()=>{
+    navigate("/login");
+  }
   const handleLogout = async () => {
     // const { error } = await AppService.logoutUser(getToken());
     // if (!error) {
@@ -235,21 +238,22 @@ export default function Header({
           <Autocomplete
             disablePortal
             id="combo-box-demo"
-            options={top100Films}
+            options={Lanuages}
             size="small"
             sx={{ width: 150, mr: "20px" }}
             defaultValue="English"
             disableClearable="true"
             renderInput={(params) => <TextField {...params} />}
           />
-
+         
           <Button
             variant="contained"
             sx={{ backgroundColor: "#3f51b5", width: "110px" }}
+            onClick = {handleNavigation}
           >
             Login
           </Button>
-
+       
           {/* <Avatar
             src={profileImageUri}
             sx={{...globalStyles.cursor.pointer,top : 300}}

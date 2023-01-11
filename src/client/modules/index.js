@@ -3,6 +3,8 @@ import { DefaultLayout } from "@client/shared/components";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import Home from "./home";
 import Marketing from "./marketing";
+import Login from "./login";
+import Register from "./register";
 import { Box } from "@mui/system";
 import { LeftSideHeader } from "../shared/components";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
@@ -19,6 +21,14 @@ import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import TimelapseIcon from "@mui/icons-material/Timelapse";
 import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
 import AssessmentIcon from "@mui/icons-material/Assessment";
+
+
+
+
+
+
+
+
 const App = ({ isSideBarOpen = false }) => {
   let sidebarList = [
     {
@@ -134,10 +144,13 @@ const App = ({ isSideBarOpen = false }) => {
       <LeftSideHeader sidebarList={sidebarList} drawerList={drawerList}>
         <Routes>
           <Route path="/analytics" element={<Home />} />
-        </Routes>
-        <Routes>
           <Route path="/marketing" element={<Marketing />} />
+          <Route path="/login" element={<Login />} />
+          <Route  path="/register" element={<Register />}/>
         </Routes>
+       
+         
+        
       </LeftSideHeader>
       {isSideBarOpen && (
         <DefaultLayout>
