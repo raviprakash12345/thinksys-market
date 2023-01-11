@@ -227,7 +227,7 @@ const drawerList3 = [
 const App = ({ isSideBarOpen = false }) => {
   const [state, setState] = useState({
     themeColor: "",
-    listIndex: 1,
+    listIndex: 0,
     drawerList: [],
   });
   let sidebarList = [
@@ -275,46 +275,21 @@ const App = ({ isSideBarOpen = false }) => {
     },
   ];
 
-  const handlePanelChange = (label = "Home") => {
-    switch (label) {
-      case "Home":
-        index = 1;
-        break;
-      case "Applications":
-        index = 2;
-        break;
-      case "Pages":
-        index = 3;
-        break;
-      case "Table Chart":
-        index = 4;
-        break;
-      case "Form Button":
-        index = 5;
-        break;
-      case "UI Collection":
-        index = 6;
-        break;
-      case "One Level":
-        index = 7;
-        break;
-      default:
-    }
-
+  const handlePanelChange = (index = 0) => {
     setState((prevState) => ({
       ...prevState,
       listIndex: index,
     }));
   };
-  const fetchList = (listIndex = 1) => {
+  const fetchList = (listIndex = 0) => {
     setState((prevState) => ({
       ...prevState,
       drawerList:
-        listIndex == 1
+        listIndex == 0
           ? drawerList1
-          : listIndex == 2
+          : listIndex == 1
           ? drawerList2
-          : listIndex == 3
+          : listIndex == 2
           ? drawerList3
           : [],
     }));
@@ -330,8 +305,6 @@ const App = ({ isSideBarOpen = false }) => {
   useEffect(() => {
     fetchList(state.listIndex);
   }, [state.listIndex]);
-
-  // console.log(`state.drawerList`, state.drawerList);
 
   return (
     <>
