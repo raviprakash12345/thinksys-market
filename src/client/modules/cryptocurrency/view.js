@@ -10,6 +10,10 @@ import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import MovingIcon from "@mui/icons-material/Moving";
 import MuseumIcon from "@mui/icons-material/Museum";
 import MarketPlaceGrid from "./marketplace-grid";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import TextField from "@mui/material/TextField";
+const noop = () => {};
 let defaultColor = "#e35981";
 const data = [
   {
@@ -44,7 +48,12 @@ const data = [
   },
 ];
 
-const CryptocurrencyView = ({ themeColor = "#e35981" }) => {
+const CryptocurrencyView = ({
+  themeColor = "#e35981",
+  handleSearch = noop,
+  isSearchBox = false,
+}) => {
+  console.log(`isSearchBox`, isSearchBox);
   return (
     <>
       <Box sx={{ marginLeft: "250px" }}>
@@ -424,7 +433,86 @@ const CryptocurrencyView = ({ themeColor = "#e35981" }) => {
             </Box>
           </Box>
         </Box>
-        <MarketPlaceGrid />
+        <Box sx={{ marginTop: "20px" }}>
+          <Paper
+            sx={{
+              height: "600px",
+              "& .MuiPaper-root": {
+                position: "absolute",
+                top: "790px",
+                width: "82%",
+              },
+            }}
+            elevation={2}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                p: "6px",
+              }}
+            >
+              <Box>
+                <IconButton>
+                  <MonetizationOnIcon
+                    sx={{ color: "#fba630", fontSize: "40px" }}
+                  />
+                </IconButton>
+              </Box>
+              <Box sx={{ marginTop: "12px" }}>
+                <Typography variant="h6">Marketplace</Typography>
+                <Typography variant="body1">
+                  Explore more than 10 crytocurrency markets.
+                </Typography>
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                border: "1px solid #f8e4ec",
+                background: "#f8e4ec",
+                marginLeft: "10px",
+                marginRight: "10px",
+                borderRadius: "10px",
+                height: "50px",
+                marginTop: "40px",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  margin: "4px",
+                }}
+              >
+                <Typography
+                  sx={{ fontWeight: "bold", color: "#8c3246" }}
+                  variant="h6"
+                >
+                  USD Market
+                </Typography>
+                {isSearchBox && (
+                  <TextField
+                    placeholder="Search coin"
+                    sx={{
+                      marginLeft: 90,
+                      width: "30%",
+                      "& .MuiOutlinedInput-root": {
+                        height: "32px",
+                        backgroundColor: "#f8e4ec",
+                      },
+                    }}
+                  />
+                )}
+                <IconButton onClick={handleSearch}>
+                  <FilterListIcon />
+                </IconButton>
+              </Box>
+            </Box>
+            <MarketPlaceGrid />
+          </Paper>
+        </Box>
       </Box>
     </>
   );

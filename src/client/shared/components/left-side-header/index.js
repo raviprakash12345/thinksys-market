@@ -93,7 +93,7 @@ const LeftSideHeader = ({
                         navigate(`${item.to}`);
                         e.preventDefault();
                         e.stopPropagation();
-                        handlePanelChange(item.label);
+                        handlePanelChange(index);
                       }}
                       sx={{
                         ...(isActiveItem(item.to)
