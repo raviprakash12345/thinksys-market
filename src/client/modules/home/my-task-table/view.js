@@ -2,8 +2,12 @@ import Box from "@mui/system/Box";
 import { Grid } from "@client/shared/components";
 import { IconButton, Typography } from "@mui/material";
 import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
-const MyTaskTableView = ({ columnConfigs = [], entries = [] }) => {
-  console.log(`entries`, entries);
+let defaultColor = "#e35981";
+const MyTaskTableView = ({
+  columnConfigs = [],
+  entries = [],
+  themeColor = "e35981",
+}) => {
   return (
     <>
       <Box sx={{ marginLeft: "16px", marginTop: "64px" }}>
@@ -11,8 +15,8 @@ const MyTaskTableView = ({ columnConfigs = [], entries = [] }) => {
           sx={{
             width: "650px",
             height: "600px",
-            border: "1px solid red",
-            backgroundColor: "#e45464",
+            border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
+            backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
             borderRadius: "8px",
           }}
         >
@@ -50,8 +54,8 @@ const MyTaskTableView = ({ columnConfigs = [], entries = [] }) => {
               backgroundColor: "white",
               width: "95%",
               height: "430px",
-              marginTop: "58px",
-              marginBottom: "32px",
+              marginTop: "32px",
+            //   marginBottom: "16px",
               marginLeft: "16px",
             }}
           >

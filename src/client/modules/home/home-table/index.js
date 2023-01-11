@@ -5,7 +5,7 @@ const defaultState = {
   isMessage: false,
   isNotifications: false,
 };
-const HomeTable = () => {
+const HomeTable = ({themeColor = "#e35981"}) => {
   const [state, setState] = useState(defaultState);
   const handleOpenContacts = () => {
     setState((prevState) => ({
@@ -42,6 +42,7 @@ const HomeTable = () => {
         handleOpenContacts={handleOpenContacts}
         handleOpenMessage={handleOpenMessage}
         handleOpenNotifications={handleOpenNotifications}
+        themeColor={themeColor}
       />
     </>
   );

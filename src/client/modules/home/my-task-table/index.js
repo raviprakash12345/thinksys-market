@@ -19,7 +19,7 @@ const dummyData = [
     subName: "task description 1",
   },
 ];
-const MyTaskTable = () => {
+const MyTaskTable = ({ themeColor = "e35981" }) => {
   const columnConfigs = [
     {
       id: "name",
@@ -40,7 +40,11 @@ const MyTaskTable = () => {
   ];
   return (
     <>
-      <MyTaskTableView columnConfigs={columnConfigs} entries={dummyData} />
+      <MyTaskTableView
+        columnConfigs={columnConfigs}
+        entries={dummyData}
+        themeColor={themeColor}
+      />
     </>
   );
 };

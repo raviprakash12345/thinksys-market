@@ -24,6 +24,7 @@ const LeftSideHeader = ({
   children = <></>,
   drawerList = [],
   handlThemeChange = () => {},
+  handlePanelChange = () => {},
 }) => {
   const [state, setState] = useState(defaultState);
   const navigate = useNavigate();
@@ -92,6 +93,7 @@ const LeftSideHeader = ({
                         navigate(`${item.to}`);
                         e.preventDefault();
                         e.stopPropagation();
+                        handlePanelChange(item.label);
                       }}
                       sx={{
                         ...(isActiveItem(item.to)

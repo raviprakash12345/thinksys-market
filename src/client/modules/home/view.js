@@ -148,8 +148,8 @@ const HomeView = ({ themeColor = "#e35981" }) => {
             marginTop: "48px",
           }}
         >
-          <HomeTable />
-          <MyTaskTable />
+          <HomeTable themeColor={themeColor} />
+          <MyTaskTable themeColor={themeColor} />
         </Box>
       </Box>
     </>

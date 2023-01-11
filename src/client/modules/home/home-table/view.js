@@ -80,6 +80,7 @@ const HomeTableView = ({
   isNotifications = false,
   handleOpenMessage = noop,
   handleOpenNotifications = noop,
+  themeColor = "#e35981"
 }) => {
   const defaultContact = isMessage || isNotifications ? false : true;
   return (
