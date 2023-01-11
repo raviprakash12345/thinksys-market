@@ -341,14 +341,11 @@ const App = ({ isSideBarOpen = false }) => {
           />
         </Routes>
         <Routes>
-          <Route path="/analytics" element={<Home />} />
-          <Route path="/marketing" element={<Marketing />} />
+          <Route path="/home/cryptocurrency" element={<Cryptocurrency />} />
+          <Route path="/home/marketing" element={<Marketing />} />
           <Route path="/login" element={<Login />} />
-          <Route  path="/register" element={<Register />}/>
+          <Route path="/register" element={<Register />} />
         </Routes>
-       
-         
-        
       </LeftSideHeader>
       {isSideBarOpen && (
         <DefaultLayout>
