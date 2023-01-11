@@ -2,6 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import { DefaultLayout } from "@client/shared/components";
 import Home from "./home";
 import Marketing from "./marketing";
+import Login from "./login";
+import Register from "./register";
+import { Box } from "@mui/system";
 import { LeftSideHeader } from "../shared/components";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
 import WidgetsSharpIcon from "@mui/icons-material/WidgetsSharp";
@@ -338,11 +341,14 @@ const App = ({ isSideBarOpen = false }) => {
           />
         </Routes>
         <Routes>
-          <Route path="/home/marketing" element={<Marketing />} />
+          <Route path="/analytics" element={<Home />} />
+          <Route path="/marketing" element={<Marketing />} />
+          <Route path="/login" element={<Login />} />
+          <Route  path="/register" element={<Register />}/>
         </Routes>
-        <Routes>
-          <Route path="/home/cryptocurrency" element={<Cryptocurrency themeColor={state.themeColor}  />} />
-        </Routes>
+       
+         
+        
       </LeftSideHeader>
       {isSideBarOpen && (
         <DefaultLayout>
