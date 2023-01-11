@@ -34,6 +34,14 @@ const MarketingView = () => {
   return (
     <>
       <Box sx={{ marginLeft: "250px", }}>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Typography sx={{ color: "#b22362" }} variant="h4">
+            Marketing
+          </Typography>
+          <Typography sx={{ marginLeft: "16px" }} variant="body1">
+            App / Dashboard / Marketing
+          </Typography>
+        </Box>
         <Box sx={{ display: "flex", gap: "8px" }}>
           <Box
             sx={{
