@@ -25,6 +25,13 @@ import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import MailIcon from "@mui/icons-material/Mail";
 import { useEffect, useState } from "react";
 import Cryptocurrency from "./cryptocurrency";
+import Todo from './todo'
+
+
+
+
+
+
 let index = 1;
 const drawerList1 = [
   {
@@ -318,6 +325,7 @@ const App = ({ isSideBarOpen = false }) => {
           <Route path="/home/marketing" element={<Marketing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path = "/applications/todo" element = {<Todo/>}/>
         </Routes>
       </LeftSideHeader>
       {isSideBarOpen && (
