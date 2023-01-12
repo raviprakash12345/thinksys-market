@@ -36,7 +36,7 @@ const LoginView = ()=>{
     }
 
     return (
-        <Box  sx={{display : "flex"}}>
+        <Box  sx={{display : "flex",height : "100%"}}>
 
             <Box  sx={style.leftBox}>
               
