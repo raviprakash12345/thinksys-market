@@ -49,84 +49,86 @@ export default function SidebarHeader({
     return isActive;
   };
   return (
-    <Box sx={{ display: "flex" }}>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
+    <>
+      <Box sx={{ display: "flex" }}>
+        <Drawer
+          sx={{
             width: drawerWidth,
-            boxSizing: "border-box",
-            left: "80px",
-            top: "65px",
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={isSideDrawerOpen}
-      >
-        {drawerList.map((item, index) => {
-          return (
-            <Box sx={{ p: "8px" }}>
-              <Typography
-                sx={{ marginRight: "110px", color: "#E32D46", width: "100%" }}
-                variant="body1"
-              >
-                {item.heading}
-              </Typography>
-              <Box>
-                <IconButton>{item.subHeading1.icon}</IconButton>
-                <Button
-                  sx={
-                    isActiveItem(item.subHeading1.to)
-                      ? {
-                          color: "grey",
-                          backgroundColor: "pink",
-                        }
-                      : { color: "grey" }
-                  }
-                  variant="text"
-                  onClick={(e) => {
-                    navigate(`${item.subHeading1.to}`);
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }}
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+              left: "80px",
+              top: "65px",
+            },
+          }}
+          variant="persistent"
+          anchor="left"
+          open={JSON.parse(localStorage.getItem("isDrawer"))}
+        >
+          {drawerList.map((item, index) => {
+            return (
+              <Box sx={{ p: "8px" }}>
+                <Typography
+                  sx={{ marginRight: "110px", color: "#E32D46", width: "100%" }}
+                  variant="body1"
                 >
-                  {item.subHeading1.subHeading}
-                </Button>
+                  {item.heading}
+                </Typography>
+                <Box>
+                  <IconButton>{item.subHeading1.icon}</IconButton>
+                  <Button
+                    sx={
+                      isActiveItem(item.subHeading1.to)
+                        ? {
+                            color: "grey",
+                            backgroundColor: "pink",
+                          }
+                        : { color: "grey" }
+                    }
+                    variant="text"
+                    onClick={(e) => {
+                      navigate(`${item.subHeading1.to}`);
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                  >
+                    {item.subHeading1.subHeading}
+                  </Button>
+                </Box>
+                <Box>
+                  <IconButton>{item.subHeading2.icon}</IconButton>
+                  <Button
+                    sx={{ color: "grey" }}
+                    variant="text"
+                    onClick={(e) => {
+                      navigate(`${item.subHeading2.to}`);
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                  >
+                    {item.subHeading2.subHeading}
+                  </Button>
+                </Box>
+                <Box>
+                  <IconButton>{item.subHeading3.icon}</IconButton>
+                  <Button
+                    sx={{ color: "grey" }}
+                    variant="text"
+                    onClick={(e) => {
+                      navigate(`${item.subHeading3.to}`);
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                  >
+                    {item.subHeading3.subHeading}
+                  </Button>
+                </Box>
               </Box>
-              <Box>
-                <IconButton>{item.subHeading2.icon}</IconButton>
-                <Button
-                  sx={{ color: "grey" }}
-                  variant="text"
-                  onClick={(e) => {
-                    navigate(`${item.subHeading2.to}`);
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }}
-                >
-                  {item.subHeading2.subHeading}
-                </Button>
-              </Box>
-              <Box>
-                <IconButton>{item.subHeading3.icon}</IconButton>
-                <Button
-                  sx={{ color: "grey" }}
-                  variant="text"
-                  onClick={(e) => {
-                    navigate(`${item.subHeading3.to}`);
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }}
-                >
-                  {item.subHeading3.subHeading}
-                </Button>
-              </Box>
-            </Box>
-          );
-        })}
-      </Drawer>
-    </Box>
+            );
+          })}
+        </Drawer>
+      </Box>
+    </>
   );
 }

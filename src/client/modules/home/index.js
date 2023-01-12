@@ -3,12 +3,12 @@ import HomeView from "./view";
 
 const defaultState = {};
 
-const Home = ({ themeColor = "#e35981" }) => {
+const Home = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
   const [state, setState] = useState(defaultState);
 
   return (
     <>
-      <HomeView themeColor={themeColor} />
+      <HomeView themeColor={themeColor} isDrawerMargin={isDrawerMargin} />
     </>
   );
 };

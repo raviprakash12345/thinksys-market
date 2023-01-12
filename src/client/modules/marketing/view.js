@@ -5,36 +5,31 @@ import IconButton from "@mui/material/IconButton";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import CreateIcon from "@mui/icons-material/Create";
 import FilterIcon from "@mui/icons-material/Filter";
-import ChartBar from "./bar-chart";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-
-
-
+import ChartBar from "../shared/bar-chart";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
+  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+  createData("Eclair", 262, 16.0, 24, 6.0),
 ];
 
-
-
-const MarketingView = () => {
+const MarketingView = ({ isDrawerMargin = true }) => {
   return (
     <>
-      <Box sx={{ marginLeft: "250px", }}>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
+      <Box sx={!isDrawerMargin && { marginLeft: "255px" }}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography sx={{ color: "#b22362" }} variant="h4">
             Marketing
           </Typography>
@@ -148,61 +143,95 @@ const MarketingView = () => {
           </Box>
         </Box>
         <Box sx={{ marginTop: "48px" }}>
-          <ChartBar/>
-            
+          <ChartBar />
 
-          <TableContainer component={Paper} >
-      <Table sx={{ minWidth: 650 }}aria-label="caption table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Products</TableCell>
-            <TableCell >Buyer</TableCell>
-            <TableCell >Total</TableCell>
-            <TableCell >Status</TableCell>
-            <TableCell >Stock</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-              
-                 <Box sx={{display : "flex",flexDirection : "row" ,gap:4}}>
-                      <img style={{width : "80px",}} src="https://res.cloudinary.com/walden-global-services/image/upload/v1544584556/dandelion/21.jpg"/>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="caption table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Products</TableCell>
+                  <TableCell>Buyer</TableCell>
+                  <TableCell>Total</TableCell>
+                  <TableCell>Status</TableCell>
+                  <TableCell>Stock</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow key={row.name}>
+                    <TableCell component="th" scope="row">
+                      <Box
+                        sx={{ display: "flex", flexDirection: "row", gap: 4 }}
+                      >
+                        <img
+                          style={{ width: "80px" }}
+                          src="https://res.cloudinary.com/walden-global-services/image/upload/v1544584556/dandelion/21.jpg"
+                        />
 
-                     <Box sx={{display : "flex",flexDirection : "column" }}>
-                     <Box>QWE123</Box>
-                      <Box> Women Bag</Box>
-                      <Box sx={{color : "#d38daa",display : "flex",flexDirection : "row"}}>
-                          <ArrowDownwardIcon fontSize="5px" />
-                        <Typography fontSize="10px" > Invoice_QWE123</Typography> 
-                         </Box>
-                      </Box> 
-                 </Box>
-              </TableCell>
-              <TableCell >
-              <Box sx={{display : "flex",flexDirection : "row" ,gap:4}}>
-                      <img style={{width : "40px",height:"30px",borderRadius : "50%"}} src="https://randomuser.me/api/portraits/men/75.jpg"/>
+                        <Box sx={{ display: "flex", flexDirection: "column" }}>
+                          <Box>QWE123</Box>
+                          <Box> Women Bag</Box>
+                          <Box
+                            sx={{
+                              color: "#d38daa",
+                              display: "flex",
+                              flexDirection: "row",
+                            }}
+                          >
+                            <ArrowDownwardIcon fontSize="5px" />
+                            <Typography fontSize="10px">
+                              {" "}
+                              Invoice_QWE123
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </TableCell>
+                    <TableCell>
+                      <Box
+                        sx={{ display: "flex", flexDirection: "row", gap: 4 }}
+                      >
+                        <img
+                          style={{
+                            width: "40px",
+                            height: "30px",
+                            borderRadius: "50%",
+                          }}
+                          src="https://randomuser.me/api/portraits/men/75.jpg"
+                        />
 
-                     <Box sx={{display : "flex",flexDirection : "column", }}>
+                        <Box sx={{ display: "flex", flexDirection: "column" }}>
                           <Box>John Doe</Box>
-                     
-                        <Typography fontSize="10px" > Purchased date: 23 Oct 2018</Typography> 
-                       
-                      </Box> 
-                 </Box>
-                </TableCell>
-              <TableCell >$300,00</TableCell>
-              <TableCell > <button style={{backgroundColor  : "#e57373",color : "white",borderRadius : "15px",
-                border : "none",width :"80px",height : "30px" }}>Cancelled</button></TableCell>
-              <TableCell >{row.protein}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
 
-
+                          <Typography fontSize="10px">
+                            {" "}
+                            Purchased date: 23 Oct 2018
+                          </Typography>
+                        </Box>
+                      </Box>
+                    </TableCell>
+                    <TableCell>$300,00</TableCell>
+                    <TableCell>
+                      {" "}
+                      <button
+                        style={{
+                          backgroundColor: "#e57373",
+                          color: "white",
+                          borderRadius: "15px",
+                          border: "none",
+                          width: "80px",
+                          height: "30px",
+                        }}
+                      >
+                        Cancelled
+                      </button>
+                    </TableCell>
+                    <TableCell>{row.protein}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Box>
       </Box>
     </>

@@ -5,15 +5,17 @@ import IconButton from "@mui/material/IconButton";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import CreateIcon from "@mui/icons-material/Create";
 import FilterIcon from "@mui/icons-material/Filter";
-import ChartArea from "./area-chart";
-import HomeTable from "./home-table";
+import ChartArea from "../shared/area-chart";
+import HomeTable from "../shared/home-table";
 import { useEffect } from "react";
-import MyTaskTable from "./my-task-table";
+import MyTaskTable from "../shared/my-task-table";
 let defaultColor = "#e35981";
-const HomeView = ({ themeColor = "#e35981" }) => {
+let defaultMargin = true;
+const HomeView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
+  // console.log(`isDrawerMargin`, !isDrawerMargin && defaultMargin);
   return (
     <>
-      <Box sx={{ marginLeft: "250px"}}>
+      <Box sx={!isDrawerMargin && defaultMargin && { marginLeft: "255px" }}>
         <Box sx={{ display: "flex", gap: "8px" }}>
           <Box
             sx={{

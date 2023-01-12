@@ -3,12 +3,12 @@ import TodoView from "./view";
 
 const defaultState = {};
 
-const Todo = () => {
+const Todo = ({isDrawerMargin=true}) => {
   const [state, setState] = useState(defaultState);
 
   return (
     <>
-      <TodoView />
+      <TodoView isDrawerMargin={isDrawerMargin} />
     </>
   );
 };

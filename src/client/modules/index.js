@@ -219,12 +219,13 @@ const drawerList3 = [
     heading: "SOCIAL PAGES",
   },
 ];
-const App = ({ isSideBarOpen = false }) => {
+const App = ({ isSideDrawerOpen = false }) => {
   const [state, setState] = useState({
     themeColor: "",
     listIndex: 0,
     drawerList: [],
     isLoginPageOpen: false,
+    isDrawerMargin: true,
   });
   let sidebarList = [
     {
@@ -305,10 +306,16 @@ const App = ({ isSideBarOpen = false }) => {
     }));
   };
 
+  const handleMargin = (isDrawerOpen = false) => {
+    setState((prevState) => ({
+      ...prevState,
+      isDrawerMargin: isDrawerOpen,
+    }));
+  };
+
   useEffect(() => {
     fetchList(state.listIndex);
   }, [state.listIndex]);
-
   return (
     <>
       {!state.isLoginPageOpen && (
@@ -318,17 +325,47 @@ const App = ({ isSideBarOpen = false }) => {
           drawerList={state.drawerList}
           handlePanelChange={handlePanelChange}
           handleLoginPage={handleLoginPage}
+          handleMargin={handleMargin}
         >
           <Routes>
             <Route
               path="/home/analytics"
-              element={<Home themeColor={state.themeColor} />}
+              element={
+                <Home
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                />
+              }
             />
           </Routes>
           <Routes>
-            <Route path="/home/cryptocurrency" element={<Cryptocurrency />} />
-            <Route path="/home/marketing" element={<Marketing />} />
-            <Route path="/applications/todo" element={<Todo />} />
+            <Route
+              path="/home/cryptocurrency"
+              element={
+                <Cryptocurrency
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                />
+              }
+            />
+            <Route
+              path="/home/marketing"
+              element={
+                <Marketing
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                />
+              }
+            />
+            <Route
+              path="/applications/todo"
+              element={
+                <Todo
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                />
+              }
+            />
           </Routes>
         </LeftSideHeader>
       )}
@@ -336,13 +373,6 @@ const App = ({ isSideBarOpen = false }) => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-      {isSideBarOpen && (
-        <DefaultLayout>
-          {/* <Routes>
-            <Route path="/analytics" element={<Home />} />
-          </Routes> */}
-        </DefaultLayout>
-      )}
     </>
   );
 };

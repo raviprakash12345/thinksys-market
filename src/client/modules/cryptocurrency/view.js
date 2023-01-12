@@ -9,7 +9,7 @@ import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import MovingIcon from "@mui/icons-material/Moving";
 import MuseumIcon from "@mui/icons-material/Museum";
-import MarketPlaceGrid from "./marketplace-grid";
+import MarketPlaceGrid from "../shared/marketplace-grid";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import TextField from "@mui/material/TextField";
@@ -52,11 +52,11 @@ const CryptocurrencyView = ({
   themeColor = "#e35981",
   handleSearch = noop,
   isSearchBox = false,
+  isDrawerMargin = true,
 }) => {
-  console.log(`isSearchBox`, isSearchBox);
   return (
     <>
-      <Box sx={{ marginLeft: "250px" }}>
+      <Box sx={!isDrawerMargin && { marginLeft: "250px" }}>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography sx={{ color: "#b22362" }} variant="h4">
             Crypto

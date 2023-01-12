@@ -3,12 +3,12 @@ import MarketingView from "./view";
 
 const defaultState = {};
 
-const Marketing = () => {
+const Marketing = ({isDrawerMargin = true}) => {
   const [state, setState] = useState(defaultState);
 
   return (
     <>
-      <MarketingView />
+      <MarketingView isDrawerMargin={isDrawerMargin} />
     </>
   );
 };

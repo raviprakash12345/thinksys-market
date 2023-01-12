@@ -26,6 +26,7 @@ const LeftSideHeader = ({
   handlThemeChange = () => {},
   handlePanelChange = () => {},
   handleLoginPage = () => {},
+  handleMargin = () => {},
 }) => {
   const [state, setState] = useState(defaultState);
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const LeftSideHeader = ({
     }
     return isActive;
   };
-
+  localStorage.setItem("isDrawer", state.isDrawerOpen);
   return (
     <>
       <Drawer
@@ -67,13 +68,14 @@ const LeftSideHeader = ({
               width: "100%",
               marginRight: "32px",
             }}
-            onClick={() =>
+            onClick={() => {
               setState((prevState) => ({
                 ...prevState,
                 isDrawerOpen: prevState.isDrawerOpen ? false : true,
                 isOpen: true,
-              }))
-            }
+              }));
+              handleMargin(state.isDrawerOpen);
+            }}
           >
             <MenuSharpIcon />
           </Box>

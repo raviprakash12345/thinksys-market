@@ -3,7 +3,7 @@ import CryptocurrencyView from "./view";
 const defaultState = {
   isSearchBox: false,
 };
-const Cryptocurrency = ({ themeColor = "#e35981" }) => {
+const Cryptocurrency = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
   const [state, setState] = useState(defaultState);
   const handleSearch = () => {
     setState((prevState) => ({
@@ -17,6 +17,7 @@ const Cryptocurrency = ({ themeColor = "#e35981" }) => {
         themeColor={themeColor}
         handleSearch={handleSearch}
         isSearchBox={state.isSearchBox}
+        isDrawerMargin={isDrawerMargin}
       />
     </>
   );
