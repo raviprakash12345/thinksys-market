@@ -216,8 +216,8 @@ const CryptocurrencyView = ({
                   <Box>
                     <IconButton
                       sx={{
-                        border: "1px solid #fba630",
-                        background: "#fba630",
+                        border: "1px solid #536dfe",
+                        background: "#536dfe",
                       }}
                     >
                       <CurrencyBitcoinIcon
@@ -226,7 +226,7 @@ const CryptocurrencyView = ({
                     </IconButton>
                   </Box>
                   <Box sx={{ marginTop: "12px" }}>
-                    <Typography variant="h6">Bitcoin</Typography>
+                    <Typography variant="h6">Ripple</Typography>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                       <IconButton>
                         <MovingIcon sx={{ color: "#56b35a" }} />
@@ -249,7 +249,7 @@ const CryptocurrencyView = ({
                   sx={{
                     width: "500px",
                     height: "100px",
-                    backgroundColor: "#ffb300",
+                    backgroundColor: "#536dfe",
                     position: "relative",
                     top: 10,
                     borderBottomLeftRadius: "12px",
@@ -286,8 +286,8 @@ const CryptocurrencyView = ({
                   <Box>
                     <IconButton
                       sx={{
-                        border: "1px solid #fba630",
-                        background: "#fba630",
+                        border: "1px solid #a152b0",
+                        background: "#a152b0",
                       }}
                     >
                       <CurrencyBitcoinIcon
@@ -296,7 +296,7 @@ const CryptocurrencyView = ({
                     </IconButton>
                   </Box>
                   <Box sx={{ marginTop: "12px" }}>
-                    <Typography variant="h6">Bitcoin</Typography>
+                    <Typography variant="h6">Lota</Typography>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                       <IconButton>
                         <MovingIcon sx={{ color: "#56b35a" }} />
@@ -319,7 +319,7 @@ const CryptocurrencyView = ({
                   sx={{
                     width: "500px",
                     height: "100px",
-                    backgroundColor: "#fb8c00",
+                    backgroundColor: "#a152b0",
                     position: "relative",
                     top: 10,
                     borderBottomLeftRadius: "12px",

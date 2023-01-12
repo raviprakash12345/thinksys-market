@@ -93,7 +93,7 @@ const LeftSideHeader = ({
                   >
                     <Button
                       onClick={(e) => {
-                        navigate(`${item.to}`);
+                        // navigate(`${item.to}`);
                         e.preventDefault();
                         e.stopPropagation();
                         handlePanelChange(index);
@@ -104,7 +104,7 @@ const LeftSideHeader = ({
                           : styles.drawerButton),
                       }}
                     >
-                      {isActiveItem(item.to) ? item.activeIcon : item.icon}
+                      {item.icon}
                     </Button>
                   </Tooltip>
                   <Typography

@@ -12,7 +12,6 @@ import MyTaskTable from "../shared/my-task-table";
 let defaultColor = "#e35981";
 let defaultMargin = true;
 const HomeView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
-  // console.log(`isDrawerMargin`, !isDrawerMargin && defaultMargin);
   return (
     <>
       <Box sx={!isDrawerMargin && defaultMargin && { marginLeft: "255px" }}>
@@ -21,7 +20,7 @@ const HomeView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
             sx={{
               border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
-              width: "350px",
+              width: `${!isDrawerMargin ? "350px" : "400px"}`,
               borderRadius: "10px",
               backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
               color: "white",
@@ -52,7 +51,7 @@ const HomeView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
             sx={{
               border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
-              width: "350px",
+              width: `${!isDrawerMargin ? "350px" : "400px"}`,
               borderRadius: "10px",
               color: `${!!themeColor ? themeColor : defaultColor}`,
               marginTop: "8px",
@@ -82,7 +81,7 @@ const HomeView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
             sx={{
               border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
-              width: "350px",
+              width: `${!isDrawerMargin ? "350px" : "400px"}`,
               borderRadius: "10px",
               color: `${!!themeColor ? themeColor : defaultColor}`,
               marginTop: "8px",
@@ -112,7 +111,7 @@ const HomeView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
             sx={{
               border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
-              width: "350px",
+              width: `${!isDrawerMargin ? "350px" : "400px"}`,
               borderRadius: "10px",
               color: `${!!themeColor ? themeColor : defaultColor}`,
               marginTop: "8px",

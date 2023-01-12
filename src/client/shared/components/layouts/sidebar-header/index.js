@@ -99,7 +99,14 @@ export default function SidebarHeader({
                 <Box>
                   <IconButton>{item.subHeading2.icon}</IconButton>
                   <Button
-                    sx={{ color: "grey" }}
+                    sx={
+                      isActiveItem(item.subHeading2.to)
+                        ? {
+                            color: "grey",
+                            backgroundColor: "pink",
+                          }
+                        : { color: "grey" }
+                    }
                     variant="text"
                     onClick={(e) => {
                       navigate(`${item.subHeading2.to}`);
@@ -113,7 +120,14 @@ export default function SidebarHeader({
                 <Box>
                   <IconButton>{item.subHeading3.icon}</IconButton>
                   <Button
-                    sx={{ color: "grey" }}
+                    sx={
+                      isActiveItem(item.subHeading3.to)
+                        ? {
+                            color: "grey",
+                            backgroundColor: "pink",
+                          }
+                        : { color: "grey" }
+                    }
                     variant="text"
                     onClick={(e) => {
                       navigate(`${item.subHeading3.to}`);

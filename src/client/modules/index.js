@@ -26,6 +26,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import { useEffect, useState } from "react";
 import Cryptocurrency from "./cryptocurrency";
 import Todo from "./todo";
+import Infographics from "./infographics";
 
 let index = 1;
 const drawerList1 = [
@@ -316,8 +317,25 @@ const App = ({ isSideDrawerOpen = false }) => {
   useEffect(() => {
     fetchList(state.listIndex);
   }, [state.listIndex]);
+
+  useEffect(() => {
+    window.addEventListener("popstate", (event) => {
+      window.location.reload();
+      setState((prevState) => ({
+        ...prevState,
+        isLoginPageOpen: true,
+      }));
+    });
+  }, []);
+
+  console.log(`isLoginPageOpen`, state.isLoginPageOpen);
+
   return (
     <>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
       {!state.isLoginPageOpen && (
         <LeftSideHeader
           handlThemeChange={handlThemeChange}
@@ -366,13 +384,18 @@ const App = ({ isSideDrawerOpen = false }) => {
                 />
               }
             />
+            <Route
+              path="/home/infographics"
+              element={
+                <Infographics
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                />
+              }
+            />
           </Routes>
         </LeftSideHeader>
       )}
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
     </>
   );
 };
