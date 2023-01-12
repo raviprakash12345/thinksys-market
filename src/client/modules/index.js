@@ -25,12 +25,7 @@ import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import MailIcon from "@mui/icons-material/Mail";
 import { useEffect, useState } from "react";
 import Cryptocurrency from "./cryptocurrency";
-import Todo from './todo'
-
-
-
-
-
+import Todo from "./todo";
 
 let index = 1;
 const drawerList1 = [
@@ -229,6 +224,7 @@ const App = ({ isSideBarOpen = false }) => {
     themeColor: "",
     listIndex: 0,
     drawerList: [],
+    isLoginPageOpen: false,
   });
   let sidebarList = [
     {
@@ -302,32 +298,44 @@ const App = ({ isSideBarOpen = false }) => {
     }));
   };
 
+  const handleLoginPage = () => {
+    setState((prevState) => ({
+      ...prevState,
+      isLoginPageOpen: true,
+    }));
+  };
+
   useEffect(() => {
     fetchList(state.listIndex);
   }, [state.listIndex]);
 
   return (
     <>
-      <LeftSideHeader
-        handlThemeChange={handlThemeChange}
-        sidebarList={sidebarList}
-        drawerList={state.drawerList}
-        handlePanelChange={handlePanelChange}
-      >
-        <Routes>
-          <Route
-            path="/home/analytics"
-            element={<Home themeColor={state.themeColor} />}
-          />
-        </Routes>
-        <Routes>
-          <Route path="/home/cryptocurrency" element={<Cryptocurrency />} />
-          <Route path="/home/marketing" element={<Marketing />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path = "/applications/todo" element = {<Todo/>}/>
-        </Routes>
-      </LeftSideHeader>
+      {!state.isLoginPageOpen && (
+        <LeftSideHeader
+          handlThemeChange={handlThemeChange}
+          sidebarList={sidebarList}
+          drawerList={state.drawerList}
+          handlePanelChange={handlePanelChange}
+          handleLoginPage={handleLoginPage}
+        >
+          <Routes>
+            <Route
+              path="/home/analytics"
+              element={<Home themeColor={state.themeColor} />}
+            />
+          </Routes>
+          <Routes>
+            <Route path="/home/cryptocurrency" element={<Cryptocurrency />} />
+            <Route path="/home/marketing" element={<Marketing />} />
+            <Route path="/applications/todo" element={<Todo />} />
+          </Routes>
+        </LeftSideHeader>
+      )}
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
       {isSideBarOpen && (
         <DefaultLayout>
           {/* <Routes>
