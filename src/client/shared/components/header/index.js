@@ -41,11 +41,8 @@ import PaletteIcon from "@mui/icons-material/Palette";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import { pink } from "@mui/material/colors";
 import Switch from "@mui/material/Switch";
-import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
+import FormatTextdirectionLToRIcon from "@mui/icons-material/FormatTextdirectionLToR";
 import { NavLink } from "react-router-dom";
-
-
-
 
 const defaultState = {
   open: false,
@@ -64,6 +61,7 @@ export default function Header({
   responsive = true,
   isDrawerOpen = false,
   handlThemeChange = () => {},
+  handleLoginPage = ()=>{}
 }) {
   const navigate = useNavigate();
   const { themeVariant, setThemeVariant } = useContext(AppContext);
@@ -99,10 +97,11 @@ export default function Header({
     { label: "Telugu" },
     { label: "Kannada" },
   ];
-  
-  const handleNavigation = ()=>{
+
+  const handleNavigation = () => {
     navigate("/login");
-  }
+    handleLoginPage()
+  };
   const handleLogout = async () => {
     // const { error } = await AppService.logoutUser(getToken());
     // if (!error) {
@@ -246,15 +245,15 @@ export default function Header({
             disableClearable="true"
             renderInput={(params) => <TextField {...params} />}
           />
-         
+
           <Button
             variant="contained"
             sx={{ backgroundColor: "#3f51b5", width: "110px" }}
-            onClick = {handleNavigation}
+            onClick={handleNavigation}
           >
             Login
           </Button>
-       
+
           {/* <Avatar
             src={profileImageUri}
             sx={{...globalStyles.cursor.pointer,top : 300}}
