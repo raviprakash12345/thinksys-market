@@ -413,6 +413,15 @@ const App = ({ isSideDrawerOpen = false }) => {
                 />
               }
             />
+            <Route
+              path="/applications/email"
+              element={
+                <Email
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                />
+              }
+            />
           </Routes>
         </LeftSideHeader>
       )}
