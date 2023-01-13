@@ -29,6 +29,7 @@ import Todo from "./todo";
 import Infographics from "./infographics";
 import Status from "./status";
 import Analytics from "./analytics";
+import Email from "./email";
 
 let index = 1;
 const drawerList1 = [
