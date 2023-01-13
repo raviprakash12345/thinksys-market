@@ -10,9 +10,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import DoneIcon from '@mui/icons-material/Done';
-
-const TodoView = ({ isDrawerMargin = true }) => {
+import DoneIcon from "@mui/icons-material/Done";
+let defaultColor = "#e35981";
+const TodoView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
   function createData(name) {
     return { name };
   }
@@ -34,7 +34,10 @@ const TodoView = ({ isDrawerMargin = true }) => {
   return (
     <Box sx={!isDrawerMargin && { marginLeft: "250px" }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Typography sx={{ color: "#b22362" }} variant="h4">
+        <Typography
+          sx={{ color: `${!!themeColor ? themeColor : defaultColor}` }}
+          variant="h4"
+        >
           Todo
         </Typography>
         <Typography sx={{ marginLeft: "16px" }} variant="body1">
@@ -44,7 +47,7 @@ const TodoView = ({ isDrawerMargin = true }) => {
       <Box
         sx={{
           width: "100%",
-          backgroundColor: "#fbe4ec",
+          backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
           padding: 3,
           borderRadius: "12px",
         }}
@@ -63,7 +66,7 @@ const TodoView = ({ isDrawerMargin = true }) => {
             <Box sx={{ display: "flex", flexDirection: "column", ml: 2 }}>
               <Typography
                 variant="caption"
-                sx={{ fontSize: "20px", color: "#ae3958" }}
+                sx={{ fontSize: "20px", color: "#b04158" }}
               >
                 To Do Apps
               </Typography>
@@ -121,7 +124,7 @@ const TodoView = ({ isDrawerMargin = true }) => {
         </Box>
 
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Button sx={{ color: "gray" }}>VIEW ALL</Button>/
+          <Button sx={{ color: "#b04158" }}>VIEW ALL</Button>/
           <Button sx={{ color: "gray" }}>ACTIVE</Button>/
           <Button sx={{ color: "gray" }}>COMPLETED</Button>
         </Box>
@@ -144,7 +147,7 @@ const TodoView = ({ isDrawerMargin = true }) => {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                  <Button
+                    <Button
                       size="small"
                       sx={{
                         color: "gray",
@@ -154,7 +157,7 @@ const TodoView = ({ isDrawerMargin = true }) => {
                         mr: 2,
                       }}
                     >
-                      <DoneIcon/>
+                      <DoneIcon />
                     </Button>
                     {row.name}
                   </TableCell>

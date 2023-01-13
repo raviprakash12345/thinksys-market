@@ -5,7 +5,7 @@ import Marketing from "./marketing";
 import Login from "./login";
 import Register from "./register";
 import { Box } from "@mui/system";
-import { LeftSideHeader } from "../shared/components";
+import { LeftSideHeader } from "@client/shared/components";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
 import WidgetsSharpIcon from "@mui/icons-material/WidgetsSharp";
 import ImportantDevicesSharpIcon from "@mui/icons-material/ImportantDevicesSharp";
@@ -27,6 +27,8 @@ import { useEffect, useState } from "react";
 import Cryptocurrency from "./cryptocurrency";
 import Todo from "./todo";
 import Infographics from "./infographics";
+import Status from "./status";
+import Analytics from "./analytics";
 
 let index = 1;
 const drawerList1 = [
@@ -232,13 +234,13 @@ const App = ({ isSideDrawerOpen = false }) => {
     {
       icon: <HomeSharpIcon sx={{ color: "#7B7E7E" }} />,
       activeIcon: <HomeSharpIcon sx={{ color: "#7B7E7E" }} />,
-      to: "/home",
+      to: "/home/analytics",
       label: "Home",
     },
     {
       icon: <WidgetsSharpIcon sx={{ color: "#7B7E7E" }} />,
       activeIcon: <WidgetsSharpIcon sx={{ color: "#7B7E7E" }} />,
-      to: "/applications",
+      to: "/applications/todo",
       label: "Applications",
     },
     {
@@ -328,8 +330,6 @@ const App = ({ isSideDrawerOpen = false }) => {
     });
   }, []);
 
-  console.log(`isLoginPageOpen`, state.isLoginPageOpen);
-
   return (
     <>
       <Routes>
@@ -389,6 +389,24 @@ const App = ({ isSideDrawerOpen = false }) => {
               path="/home/infographics"
               element={
                 <Infographics
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                />
+              }
+            />
+            <Route
+              path="/home/status"
+              element={
+                <Status
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                />
+              }
+            />
+            <Route
+              path="/home/analytic"
+              element={
+                <Analytics
                   themeColor={state.themeColor}
                   isDrawerMargin={state.isDrawerMargin}
                 />

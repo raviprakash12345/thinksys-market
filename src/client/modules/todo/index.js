@@ -3,12 +3,12 @@ import TodoView from "./view";
 
 const defaultState = {};
 
-const Todo = ({ isDrawerMargin = true }) => {
+const Todo = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
   const [state, setState] = useState(defaultState);
 
   return (
     <>
-      <TodoView isDrawerMargin={isDrawerMargin} />
+      <TodoView isDrawerMargin={isDrawerMargin} themeColor={themeColor} />
     </>
   );
 };

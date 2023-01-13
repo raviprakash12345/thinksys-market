@@ -13,12 +13,14 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import styles from "./style";
 import Typography from "@mui/material/Typography";
 import MenuSharpIcon from "@mui/icons-material/MenuSharp";
+import { THEME_VARIANT } from "@client/shared/constants";
 import { DefaultLayout } from "../layouts";
 const defaultState = {
   isDrawerOpen: false,
   isTakeoverDialogOpen: false,
   isOpen: false,
 };
+let defaultColor = "#e35981";
 const LeftSideHeader = ({
   sidebarList = [],
   children = <></>,
@@ -27,15 +29,16 @@ const LeftSideHeader = ({
   handlePanelChange = () => {},
   handleLoginPage = () => {},
   handleMargin = () => {},
-  themeColor="#e35981"
+  themeColor = "#e35981",
 }) => {
+  console.log(`THEME_VARIANT`, THEME_VARIANT);
   const [state, setState] = useState(defaultState);
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
   const isActiveItem = (itemRoute) => {
     let isActive = false;
-    if (currentPath === itemRoute || currentPath === `${itemRoute}/`) {
+    if (currentPath.split("/")[1] === itemRoute.split("/")[1]) {
       isActive = true;
     }
     return isActive;
@@ -49,16 +52,8 @@ const LeftSideHeader = ({
         }}
         variant="permanent"
         elevation={5}
-        //   onClick={() =>
-        //     setState((prevState) => ({
-        //       ...prevState,
-        //       isDrawerOpen: !sidebarList.length
-        //         ? false
-        //         : !prevState.isDrawerOpen,
-        //     }))
-        //   }
       >
-        <Box sx={styles.container}>
+        <Box sx={{ ...styles.container }}>
           <Box
             sx={{
               display: "flex",
@@ -86,7 +81,7 @@ const LeftSideHeader = ({
             </IconButton>
             {sidebarList.map((item, index) => {
               return (
-                <Box>
+                <Box sx={{ textAlign: "center" }}>
                   <Tooltip
                     title={item.tooltipLabel}
                     placement="right"
@@ -94,15 +89,25 @@ const LeftSideHeader = ({
                   >
                     <Button
                       onClick={(e) => {
-                        // navigate(`${item.to}`);
+                        navigate(`${item.to}`);
                         e.preventDefault();
                         e.stopPropagation();
                         handlePanelChange(index);
                       }}
                       sx={{
                         ...(isActiveItem(item.to)
-                          ? styles.drawerButtonClose
-                          : styles.drawerButton),
+                          ? {
+                              backgroundColor: `${
+                                !!themeColor ? themeColor : defaultColor
+                              }`,
+                              minWidth: "40px",
+                              minHeight: "40px",
+                              margin: "10px",
+                            }
+                          : {
+                              marginTop: "12px",
+                              color: "white",
+                            }),
                       }}
                     >
                       {item.icon}
@@ -111,7 +116,12 @@ const LeftSideHeader = ({
                   <Typography
                     sx={
                       isActiveItem(item.to)
-                        ? { color: "red", width: "100%" }
+                        ? {
+                            color: `${
+                              !!themeColor ? themeColor : defaultColor
+                            }`,
+                            width: "100%",
+                          }
                         : { color: "grey", width: "100%" }
                     }
                     variant="body2"
