@@ -86,7 +86,7 @@ const drawerList1 = [
     },
     subHeading3: {
       subHeading: "Analytics",
-      to: "/home/analytics",
+      to: "/home/analytic",
       icon: <AssessmentIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
     },
     heading: "Widgets",
@@ -344,6 +344,7 @@ const App = ({ isSideDrawerOpen = false }) => {
           handlePanelChange={handlePanelChange}
           handleLoginPage={handleLoginPage}
           handleMargin={handleMargin}
+          themeColor={state.themeColor}
         >
           <Routes>
             <Route

@@ -11,19 +11,15 @@ import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
 let rows = [
   {
     name: "dsadsd",
-    icon: <SignalCellularAltIcon />,
   },
   {
     name: "dsadsd",
-    icon: <SignalCellularAltIcon />,
   },
   {
     name: "dsadsd",
-    icon: <SignalCellularAltIcon />,
   },
   {
     name: "dsadsd",
-    icon: <SignalCellularAltIcon />,
   },
 ];
 
@@ -46,8 +42,11 @@ let columns = [
     id: 4,
   },
 ];
-
-const MarketPlaceGridView = ({}) => {
+let defaultColor = "#e35981";
+const MarketPlaceGridView = ({
+  themeColor = "#e35981",
+  isDrawerMargin = true,
+}) => {
   let isSort = false;
   const handleSort = (value) => {
     console.log(`done`);
@@ -102,7 +101,13 @@ const MarketPlaceGridView = ({}) => {
                     {row.name}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {row.icon}
+                    <SignalCellularAltIcon
+                      sx={{
+                        color: `${!!themeColor ? themeColor : defaultColor}`,
+                        fontSize: "40px",
+                      }}
+                    />
+                    ,
                   </TableCell>
                 </TableRow>
               );

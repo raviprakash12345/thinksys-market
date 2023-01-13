@@ -37,7 +37,7 @@ const data = [
     amt: 181,
   },
 ];
-const LineChartView = ({ isDrawerMargin = true }) => {
+const LineChartView = ({ isDrawerMargin = true, bg_color="a152b0" }) => {
   return (
     <>
       <Paper
@@ -90,7 +90,7 @@ const LineChartView = ({ isDrawerMargin = true }) => {
           sx={{
             width: `${!isDrawerMargin ? "700px" : "850px"}`,
             height: "100px",
-            backgroundColor: "#ffb300",
+            backgroundColor: `#${bg_color}`,
             position: "relative",
             top: 10,
             borderBottomLeftRadius: "12px",

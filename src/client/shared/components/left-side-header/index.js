@@ -27,6 +27,7 @@ const LeftSideHeader = ({
   handlePanelChange = () => {},
   handleLoginPage = () => {},
   handleMargin = () => {},
+  themeColor="#e35981"
 }) => {
   const [state, setState] = useState(defaultState);
   const navigate = useNavigate();
@@ -136,6 +137,7 @@ const LeftSideHeader = ({
           }
           handlThemeChange={handlThemeChange}
           handleLoginPage={handleLoginPage}
+          themeColor={themeColor}
         />
         {children}
       </Box>
@@ -143,6 +145,7 @@ const LeftSideHeader = ({
         isSideDrawerOpen={state.isDrawerOpen}
         drawerList={drawerList}
         isOpen={state.isOpen}
+        themeColor={themeColor}
       />
     </>
   );

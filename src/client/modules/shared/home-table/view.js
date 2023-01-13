@@ -73,6 +73,7 @@ const rows = [
     date: "11 Jan 2023",
   },
 ];
+let defaultColor = "#e35981";
 const HomeTableView = ({
   handleOpenContacts = noop,
   isContact = false,
@@ -80,7 +81,7 @@ const HomeTableView = ({
   isNotifications = false,
   handleOpenMessage = noop,
   handleOpenNotifications = noop,
-  themeColor = "#e35981"
+  themeColor = "#e35981",
 }) => {
   const defaultContact = isMessage || isNotifications ? false : true;
   return (
@@ -94,7 +95,9 @@ const HomeTableView = ({
                   sx={
                     (isContact || defaultContact) && {
                       cursor: "pointer",
-                      borderBottom: "3px solid red",
+                      borderBottom: `3px solid ${
+                        !!themeColor ? themeColor : defaultColor
+                      }`,
                     }
                   }
                   onClick={handleOpenContacts}
@@ -102,13 +105,17 @@ const HomeTableView = ({
                 >
                   <Box>
                     <PermContactCalendarIcon
-                      sx={(isContact || defaultContact) && { color: "red" }}
+                      sx={
+                        (isContact || defaultContact) && {
+                          color: `${!!themeColor ? themeColor : defaultColor}`,
+                        }
+                      }
                     />
                   </Box>
                   <Typography
                     sx={
                       (isContact || defaultContact) && {
-                        color: "red",
+                        color: `${!!themeColor ? themeColor : defaultColor}`,
                         fontWeight: "bold",
                       }
                     }
@@ -121,7 +128,9 @@ const HomeTableView = ({
                   sx={
                     isMessage && {
                       cursor: "pointer",
-                      borderBottom: "3px solid red",
+                      borderBottom: `3px solid ${
+                        !!themeColor ? themeColor : defaultColor
+                      }`,
                     }
                   }
                   onClick={handleOpenMessage}
@@ -129,7 +138,13 @@ const HomeTableView = ({
                 >
                   {" "}
                   <Box>
-                    <MessageIcon sx={isMessage && { color: "red" }} />
+                    <MessageIcon
+                      sx={
+                        isMessage && {
+                          color: `${!!themeColor ? themeColor : defaultColor}`,
+                        }
+                      }
+                    />
                   </Box>
                   <Box>Massage</Box>
                 </StyledTableCell>
@@ -137,7 +152,9 @@ const HomeTableView = ({
                   sx={
                     isNotifications && {
                       cursor: "pointer",
-                      borderBottom: "3px solid red",
+                      borderBottom: `3px solid ${
+                        !!themeColor ? themeColor : defaultColor
+                      }`,
                     }
                   }
                   onClick={handleOpenNotifications}
@@ -146,7 +163,11 @@ const HomeTableView = ({
                   {" "}
                   <Box>
                     <NotificationsActiveIcon
-                      sx={isNotifications && { color: "red" }}
+                      sx={
+                        isNotifications && {
+                          color: `${!!themeColor ? themeColor : defaultColor}`,
+                        }
+                      }
                     />
                   </Box>
                   <Box>Notification</Box>

@@ -139,7 +139,7 @@ const HomeView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
           </Box>
         </Box>
         <Box sx={{ marginTop: "48px" }}>
-          <ChartArea />
+          <ChartArea themeColor={themeColor} />
         </Box>
         <Box
           sx={{

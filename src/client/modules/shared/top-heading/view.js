@@ -23,7 +23,10 @@ const TopHeadingView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
           <Box>
             <IconButton>
               <RadioButtonUncheckedIcon
-                sx={{ color: "#fba630", fontSize: "40px" }}
+                sx={{
+                  color: `${!!themeColor ? themeColor : defaultColor}`,
+                  fontSize: "40px",
+                }}
               />
             </IconButton>
           </Box>
@@ -42,7 +45,6 @@ const TopHeadingView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
               height: "120px",
               width: `${!isDrawerMargin ? "350px" : "390px"}`,
               borderRadius: "10px",
-              backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
               color: "white",
               marginTop: "8px",
               padding: "4px",
