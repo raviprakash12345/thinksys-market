@@ -27,6 +27,7 @@ import { useEffect, useState } from "react";
 import Cryptocurrency from "./cryptocurrency";
 import Todo from "./todo";
 import Infographics from "./infographics";
+import Email from "./email";
 
 let index = 1;
 const drawerList1 = [
@@ -389,6 +390,15 @@ const App = ({ isSideDrawerOpen = false }) => {
               path="/home/infographics"
               element={
                 <Infographics
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                />
+              }
+            />
+             <Route
+              path="/applications/email"
+              element={
+                <Email
                   themeColor={state.themeColor}
                   isDrawerMargin={state.isDrawerMargin}
                 />

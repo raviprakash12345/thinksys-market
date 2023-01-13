@@ -6,22 +6,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import MenuItem from "@mui/material/MenuItem";
-import MenuList from "@mui/material/MenuList";
 import Typography from "@mui/material/Typography";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import LightModeIcon from "@mui/icons-material/LightMode";
 import InvertColorsIcon from "@mui/icons-material/InvertColors";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import InputBase from "@mui/material/InputBase";
-import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
-import MenuIcon from "@mui/icons-material/Menu";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { About } from "@client/shared/components";
 import { decodeToken, getToken, removeToken } from "@client/utils";
 import { AppService } from "@client/shared/services";
@@ -39,10 +29,8 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
 import PaletteIcon from "@mui/icons-material/Palette";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
-import { pink } from "@mui/material/colors";
 import Switch from "@mui/material/Switch";
 import FormatTextdirectionLToRIcon from "@mui/icons-material/FormatTextdirectionLToR";
-import { NavLink } from "react-router-dom";
 let defaultColor = "#e35981";
 const defaultState = {
   open: false,
@@ -212,10 +200,11 @@ export default function Header({
           <TextField
             variant="outlined"
             size="small"
+            
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon />
+                  <SearchIcon sx={{ color: "black" }} />
                 </InputAdornment>
               ),
             }}
@@ -223,9 +212,11 @@ export default function Header({
             sx={{
               width: "150px",
               mr: "20px",
-              border: "1px solid white",
+
+              
               "& .MuiOutlinedInput-root": {
                 backgroundColor: "white",
+                color: "black",
 
                 //  "&:hover": {
                 //    borderColor:"1px solid red",
@@ -273,7 +264,7 @@ export default function Header({
             fontSize="large"
             sx={{
               bottom: 50,
-              color: "#3f51b5",
+              color:`${!!themeColor ? themeColor : defaultColor}`,
               position: "relative",
               top: "400px",
             }}
@@ -289,7 +280,12 @@ export default function Header({
           <Box sx={style.drawerPaper}>
             <Box sx={{ backgroundColor: "#fafafa" }}>
               <Typography
-                sx={{ paddingTop: 3, paddingLeft: 9, paddingBottom: 3 }}
+                sx={{
+                  paddingTop: 3,
+                  paddingLeft: 9,
+                  paddingBottom: 3,
+                  color: "black",
+                }}
               >
                 TEMPLATE SETTINGS
               </Typography>
@@ -381,14 +377,29 @@ export default function Header({
                 <Typography sx={{ color: "#757575" }}>Theme Mode</Typography>
               </Box>
               <Box sx={{ ...style.themeColor, ml: "30px" }}>
-                <Typography sx={{ mr: "10px" }}>Light Mode</Typography>
+                <Typography sx={{ mr: "10px", color: "black" }}>
+                  Light Mode
+                </Typography>
                 <Switch
                   size="large"
                   checked={state.checked}
-                  onChange={handleChange}
+                  onChange={(event) => {
+                    const newThemeType =
+                      themeVariant === THEME_VARIANT.LIGHT
+                        ? THEME_VARIANT.DARK
+                        : THEME_VARIANT.LIGHT;
+                    setThemeVariant(newThemeType);
+
+                    setState((prevState) => ({
+                      ...prevState,
+                      checked: event.target.checked,
+                    }));
+                  }}
                   inputProps={{ "aria-label": "controlled" }}
                 />
-                <Typography sx={{ ml: "10px" }}>Dark Mode</Typography>
+                <Typography sx={{ ml: "10px", color: "black" }}>
+                  Dark Mode
+                </Typography>
               </Box>
             </Box>
 
@@ -403,14 +414,14 @@ export default function Header({
                 </Typography>
               </Box>
               <Box sx={{ ...style.themeColor, ml: "30px" }}>
-                <Typography sx={{ mr: "10px" }}>LTR</Typography>
+                <Typography sx={{ mr: "10px", color: "black" }}>LTR</Typography>
                 <Switch
                   size="large"
                   checked={state.checked1}
                   onChange={handleChange1}
                   inputProps={{ "aria-label": "controlled" }}
                 />
-                <Typography sx={{ ml: "10px" }}>RTL</Typography>
+                <Typography sx={{ ml: "10px", color: "black" }}>RTL</Typography>
               </Box>
             </Box>
           </Box>
