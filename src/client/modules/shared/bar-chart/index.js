@@ -1,10 +1,10 @@
 import BarChartView from "./view";
 
 
-const ChartBar = () => {
+const ChartBar = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
   return (
     <>
-      <BarChartView />
+      <BarChartView themeColor={themeColor} isDrawerMargin={isDrawerMargin} />
     </>
   );
 };

@@ -31,12 +31,13 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
-
+let defaultColor = "#e35981";
 export default function SidebarHeader({
   drawerList = [],
   children = <></>,
   isSideDrawerOpen = false,
   isOpen = false,
+  themeColor = "#e35981",
 }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -82,7 +83,9 @@ export default function SidebarHeader({
                       isActiveItem(item.subHeading1.to)
                         ? {
                             color: "grey",
-                            backgroundColor: "pink",
+                            backgroundColor: `${
+                              !!themeColor ? themeColor : defaultColor
+                            }`,
                           }
                         : { color: "grey" }
                     }
@@ -103,7 +106,9 @@ export default function SidebarHeader({
                       isActiveItem(item.subHeading2.to)
                         ? {
                             color: "grey",
-                            backgroundColor: "pink",
+                            backgroundColor: `${
+                              !!themeColor ? themeColor : defaultColor
+                            }`,
                           }
                         : { color: "grey" }
                     }
@@ -124,7 +129,9 @@ export default function SidebarHeader({
                       isActiveItem(item.subHeading3.to)
                         ? {
                             color: "grey",
-                            backgroundColor: "pink",
+                            backgroundColor: `${
+                              !!themeColor ? themeColor : defaultColor
+                            }`,
                           }
                         : { color: "grey" }
                     }

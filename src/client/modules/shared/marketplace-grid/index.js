@@ -1,9 +1,12 @@
 import MarketPlaceGridView from "./view";
 
-const MarketPlaceGrid = () => {
+const MarketPlaceGrid = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
   return (
     <>
-      <MarketPlaceGridView />
+      <MarketPlaceGridView
+        themeColor={themeColor}
+        isDrawerMargin={isDrawerMargin}
+      />
     </>
   );
 };

@@ -47,7 +47,6 @@ const data = [
     amt: 181,
   },
 ];
-
 const CryptocurrencyView = ({
   themeColor = "#e35981",
   handleSearch = noop,
@@ -58,7 +57,10 @@ const CryptocurrencyView = ({
     <>
       <Box sx={!isDrawerMargin && { marginLeft: "250px" }}>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography sx={{ color: "#b22362" }} variant="h4">
+          <Typography
+            sx={{ color: `${!!themeColor ? themeColor : defaultColor}` }}
+            variant="h4"
+          >
             Crypto
           </Typography>
           <Typography sx={{ marginLeft: "16px" }} variant="body1">
@@ -343,12 +345,12 @@ const CryptocurrencyView = ({
           <Box>
             <Box
               sx={{
-                border: `1px solid #e35981`,
+                border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
                 height: "135px",
                 width: "380px",
                 borderRadius: "10px",
                 marginTop: "8px",
-                color: "#e35981",
+                color: `${!!themeColor ? themeColor : defaultColor}`,
                 padding: "4px",
               }}
             >
@@ -363,7 +365,7 @@ const CryptocurrencyView = ({
                   <IconButton>
                     <AccountBalanceWalletIcon
                       sx={{
-                        color: `#e35981`,
+                        color: `${!!themeColor ? themeColor : defaultColor}`,
                         fontSize: "80px",
                       }}
                     />
@@ -373,11 +375,11 @@ const CryptocurrencyView = ({
             </Box>
             <Box
               sx={{
-                border: `1px solid #e35981`,
+                border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
                 height: "135px",
                 width: "380px",
                 borderRadius: "10px",
-                color: "#e35981",
+                color: `${!!themeColor ? themeColor : defaultColor}`,
                 marginTop: "8px",
                 padding: "4px",
               }}
@@ -393,7 +395,7 @@ const CryptocurrencyView = ({
                   <IconButton>
                     <CompareArrowsIcon
                       sx={{
-                        color: `#e35981`,
+                        color: `${!!themeColor ? themeColor : defaultColor}`,
                         fontSize: "80px",
                       }}
                     />
@@ -403,11 +405,11 @@ const CryptocurrencyView = ({
             </Box>
             <Box
               sx={{
-                border: `1px solid #e35981`,
+                border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
                 height: "135px",
                 width: "380px",
                 borderRadius: "10px",
-                color: "#e35981",
+                color: `${!!themeColor ? themeColor : defaultColor}`,
                 marginTop: "8px",
                 padding: "4px",
               }}
@@ -423,7 +425,7 @@ const CryptocurrencyView = ({
                   <IconButton>
                     <OndemandVideoIcon
                       sx={{
-                        color: `#e35981`,
+                        color: `${!!themeColor ? themeColor : defaultColor}`,
                         fontSize: "80px",
                       }}
                     />
@@ -470,7 +472,7 @@ const CryptocurrencyView = ({
             <Box
               sx={{
                 border: "1px solid #f8e4ec",
-                background: "#f8e4ec",
+                background: `${!!themeColor ? themeColor : defaultColor}`,
                 marginLeft: "10px",
                 marginRight: "10px",
                 borderRadius: "10px",
@@ -487,7 +489,7 @@ const CryptocurrencyView = ({
                 }}
               >
                 <Typography
-                  sx={{ fontWeight: "bold", color: "#8c3246" }}
+                  sx={{ fontWeight: "bold", color: "white" }}
                   variant="h6"
                 >
                   USD Market
@@ -510,7 +512,7 @@ const CryptocurrencyView = ({
                 </IconButton>
               </Box>
             </Box>
-            <MarketPlaceGrid />
+            <MarketPlaceGrid themeColor={themeColor} />
           </Paper>
         </Box>
       </Box>

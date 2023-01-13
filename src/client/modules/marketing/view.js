@@ -24,8 +24,8 @@ const rows = [
   createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
   createData("Eclair", 262, 16.0, 24, 6.0),
 ];
-
-const MarketingView = ({ isDrawerMargin = true }) => {
+let defaultColor = "#e35981";
+const MarketingView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
   return (
     <>
       <Box sx={!isDrawerMargin && { marginLeft: "255px" }}>
@@ -40,11 +40,11 @@ const MarketingView = ({ isDrawerMargin = true }) => {
         <Box sx={{ display: "flex", gap: "8px" }}>
           <Box
             sx={{
-              border: "1px solid #e35981",
+              border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
               width: "350px",
               borderRadius: "10px",
-              backgroundColor: "#e35981",
+              backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
               color: "white",
               marginTop: "8px",
               padding: "4px",
@@ -60,7 +60,10 @@ const MarketingView = ({ isDrawerMargin = true }) => {
               <Box sx={{ marginTop: "28px" }}>
                 <IconButton>
                   <OndemandVideoIcon
-                    sx={{ color: "#e575a7", fontSize: "80px" }}
+                    sx={{
+                      color: `${!!themeColor ? themeColor : defaultColor}`,
+                      fontSize: "80px",
+                    }}
                   />
                 </IconButton>
               </Box>
@@ -68,11 +71,11 @@ const MarketingView = ({ isDrawerMargin = true }) => {
           </Box>
           <Box
             sx={{
-              border: "1px solid #e35981",
+              border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
               width: "350px",
               borderRadius: "10px",
-              color: "#e35981",
+              color: `${!!themeColor ? themeColor : defaultColor}`,
               marginTop: "8px",
               padding: "4px",
             }}
@@ -86,18 +89,23 @@ const MarketingView = ({ isDrawerMargin = true }) => {
               </Box>
               <Box sx={{ marginTop: "28px" }}>
                 <IconButton>
-                  <CreateIcon sx={{ color: "#e575a7", fontSize: "80px" }} />
+                  <CreateIcon
+                    sx={{
+                      color: `${!!themeColor ? themeColor : defaultColor}`,
+                      fontSize: "80px",
+                    }}
+                  />
                 </IconButton>
               </Box>
             </Box>
           </Box>
           <Box
             sx={{
-              border: "1px solid #e35981",
+              border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
               width: "350px",
               borderRadius: "10px",
-              color: "#e35981",
+              color: `${!!themeColor ? themeColor : defaultColor}`,
               marginTop: "8px",
               padding: "4px",
             }}
@@ -111,18 +119,23 @@ const MarketingView = ({ isDrawerMargin = true }) => {
               </Box>
               <Box sx={{ marginTop: "28px" }}>
                 <IconButton>
-                  <PeopleAltIcon sx={{ color: "#e575a7", fontSize: "80px" }} />
+                  <PeopleAltIcon
+                    sx={{
+                      color: `${!!themeColor ? themeColor : defaultColor}`,
+                      fontSize: "80px",
+                    }}
+                  />
                 </IconButton>
               </Box>
             </Box>
           </Box>
           <Box
             sx={{
-              border: "1px solid #e35981",
+              border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
               width: "350px",
               borderRadius: "10px",
-              color: "#e35981",
+              color: `${!!themeColor ? themeColor : defaultColor}`,
               marginTop: "8px",
               padding: "4px",
             }}
@@ -136,14 +149,19 @@ const MarketingView = ({ isDrawerMargin = true }) => {
               </Box>
               <Box sx={{ marginTop: "24px" }}>
                 <IconButton>
-                  <FilterIcon sx={{ color: "#e575a7", fontSize: "80px" }} />
+                  <FilterIcon
+                    sx={{
+                      color: `${!!themeColor ? themeColor : defaultColor}`,
+                      fontSize: "80px",
+                    }}
+                  />
                 </IconButton>
               </Box>
             </Box>
           </Box>
         </Box>
         <Box sx={{ marginTop: "48px" }}>
-          <ChartBar />
+          <ChartBar themeColor={themeColor} />
 
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="caption table">
@@ -166,6 +184,7 @@ const MarketingView = ({ isDrawerMargin = true }) => {
                         <img
                           style={{ width: "80px" }}
                           src="https://res.cloudinary.com/walden-global-services/image/upload/v1544584556/dandelion/21.jpg"
+                          alt="Profile"
                         />
 
                         <Box sx={{ display: "flex", flexDirection: "column" }}>

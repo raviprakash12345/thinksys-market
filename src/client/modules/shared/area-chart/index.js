@@ -1,9 +1,9 @@
 import AreaChartView from "./view";
 
-const ChartArea = () => {
+const ChartArea = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
   return (
     <>
-      <AreaChartView />
+      <AreaChartView themeColor={themeColor} />
     </>
   );
 };

@@ -43,7 +43,7 @@ import { pink } from "@mui/material/colors";
 import Switch from "@mui/material/Switch";
 import FormatTextdirectionLToRIcon from "@mui/icons-material/FormatTextdirectionLToR";
 import { NavLink } from "react-router-dom";
-
+let defaultColor = "#e35981";
 const defaultState = {
   open: false,
   version: {},
@@ -61,7 +61,8 @@ export default function Header({
   responsive = true,
   isDrawerOpen = false,
   handlThemeChange = () => {},
-  handleLoginPage = ()=>{}
+  handleLoginPage = () => {},
+  themeColor = "#e35981",
 }) {
   const navigate = useNavigate();
   const { themeVariant, setThemeVariant } = useContext(AppContext);
@@ -100,7 +101,7 @@ export default function Header({
 
   const handleNavigation = () => {
     navigate("/login");
-    handleLoginPage()
+    handleLoginPage();
   };
   const handleLogout = async () => {
     // const { error } = await AppService.logoutUser(getToken());
@@ -248,7 +249,10 @@ export default function Header({
 
           <Button
             variant="contained"
-            sx={{ backgroundColor: "#3f51b5", width: "110px" }}
+            sx={{
+              backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
+              width: "110px",
+            }}
             onClick={handleNavigation}
           >
             Login

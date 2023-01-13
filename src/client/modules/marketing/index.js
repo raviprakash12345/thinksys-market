@@ -1,14 +1,14 @@
 import { useState } from "react";
-import MarketingView from "./view"; 
+import MarketingView from "./view";
 
 const defaultState = {};
 
-const Marketing = ({isDrawerMargin = true}) => {
+const Marketing = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
   const [state, setState] = useState(defaultState);
 
   return (
     <>
-      <MarketingView isDrawerMargin={isDrawerMargin} />
+      <MarketingView isDrawerMargin={isDrawerMargin} themeColor={themeColor} />
     </>
   );
 };

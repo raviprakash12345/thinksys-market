@@ -63,8 +63,9 @@ const data = [
     amt: 2100,
   },
 ];
-
-const AreaChartView = () => {
+let defaultColor = "#e35981";
+const AreaChartView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
+  console.log(`themeColor`, themeColor);
   return (
     <>
       {/* <ResponsiveContainer width="100%" height="100%"> */}
@@ -85,7 +86,12 @@ const AreaChartView = () => {
             >
               <Box sx={{ border: "1px solid purple", borderRadius: "30px" }}>
                 <IconButton>
-                  <DvrIcon sx={{ fontSize: "35px", color: "#e35981" }} />
+                  <DvrIcon
+                    sx={{
+                      fontSize: "35px",
+                      color: `${!!themeColor ? themeColor : defaultColor}`,
+                    }}
+                  />
                 </IconButton>
               </Box>
               <Box sx={{ marginLeft: "8px" }}>
@@ -104,7 +110,10 @@ const AreaChartView = () => {
               <Box sx={{ border: "1px solid #7cb342", borderRadius: "30px" }}>
                 <IconButton>
                   <CheckCircleIcon
-                    sx={{ fontSize: "35px", color: "#e35981" }}
+                    sx={{
+                      fontSize: "35px",
+                      color: `${!!themeColor ? themeColor : defaultColor}`,
+                    }}
                   />
                 </IconButton>
               </Box>
@@ -123,7 +132,12 @@ const AreaChartView = () => {
             >
               <Box sx={{ border: "1px solid #e35981", borderRadius: "30px" }}>
                 <IconButton>
-                  <HealingIcon sx={{ fontSize: "35px", color: "#e35981" }} />
+                  <HealingIcon
+                    sx={{
+                      fontSize: "35px",
+                      color: `${!!themeColor ? themeColor : defaultColor}`,
+                    }}
+                  />
                 </IconButton>
               </Box>
               <Box sx={{ marginLeft: "8px" }}>
@@ -142,7 +156,10 @@ const AreaChartView = () => {
               <Box sx={{ border: "1px solid #536dfe", borderRadius: "30px" }}>
                 <IconButton>
                   <LocalActivityIcon
-                    sx={{ fontSize: "35px", color: "#e35981" }}
+                    sx={{
+                      fontSize: "35px",
+                      color: `${!!themeColor ? themeColor : defaultColor}`,
+                    }}
                   />
                 </IconButton>
               </Box>
