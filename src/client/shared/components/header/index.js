@@ -129,7 +129,7 @@ export default function Header({
         }
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography sx={{ mr: 5, width: "150px" }}>Thinksys Prime</Typography>
+          <Typography sx={{ mr: 5, width: "150px" }}>Enlite Prime</Typography>
           <IconButton
             onClick={() =>
               setState((prevState) => ({

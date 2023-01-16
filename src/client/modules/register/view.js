@@ -41,7 +41,7 @@ const RegisterView = ()=>{
             <Box  sx={style.leftBox}>
               
                
-                <Typography variant="h5" sx={{color : "#ffffff",margin : 5}}>Thinksys Prime</Typography>
+                <Typography variant="h5" sx={{color : "#ffffff",margin : 5}}>Enlite Prime</Typography>
 
                 <Typography variant="h3" sx={{marginLeft : 5,marginTop : 30,width:400}}>Hello, nice to meet you</Typography>
                
