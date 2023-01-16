@@ -6,18 +6,36 @@ import Divider from "@mui/material/Divider";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import DirectionsIcon from "@mui/icons-material/Directions";
-import MoveToInboxOutlinedIcon from '@mui/icons-material/MoveToInboxOutlined';
-import StarPurple500OutlinedIcon from '@mui/icons-material/StarPurple500Outlined';
-import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
-import NewReleasesOutlinedIcon from '@mui/icons-material/NewReleasesOutlined';
-import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
-import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
+import MoveToInboxOutlinedIcon from "@mui/icons-material/MoveToInboxOutlined";
+import StarPurple500OutlinedIcon from "@mui/icons-material/StarPurple500Outlined";
+import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
+import NewReleasesOutlinedIcon from "@mui/icons-material/NewReleasesOutlined";
+import FlagRoundedIcon from "@mui/icons-material/FlagRounded";
+import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
+import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import { useState } from "react";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import DeleteIcon from "@mui/icons-material/Delete";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 let defaultColor = "#e35981";
 
 const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
+  const [div, setDiv] = useState(false);
+
   function createData(name) {
     return { name };
   }
+
+  const showDiv = () => {
+    if (div === true) {
+      setDiv(false);
+    } else {
+      setDiv(true);
+    }
+  };
 
   const rows = [
     createData("Frozen yoghurt"),
@@ -82,7 +100,7 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                width: 1400,
+                width: 1150,
               }}
             >
               <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
@@ -107,9 +125,15 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
                 width: 190,
               }}
             >
-              <Button sx={{ width: "100%", backgroundColor: "white",color:`${!!themeColor ? themeColor : defaultColor}`, }}>
-                <MoveToInboxOutlinedIcon sx={{ mr: 2,}} />
-                   Inbox
+              <Button
+                sx={{
+                  width: "100%",
+                  backgroundColor: "white",
+                  color: `${!!themeColor ? themeColor : defaultColor}`,
+                }}
+              >
+                <MoveToInboxOutlinedIcon sx={{ mr: 2 }} />
+                Inbox
               </Button>
             </Box>
 
@@ -122,7 +146,13 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
                 mt: 3,
               }}
             >
-              <Button sx={{ width: "100%", backgroundColor: "white",color : `${!!themeColor ? themeColor : defaultColor}` }}>
+              <Button
+                sx={{
+                  width: "100%",
+                  backgroundColor: "white",
+                  color: `${!!themeColor ? themeColor : defaultColor}`,
+                }}
+              >
                 <StarPurple500OutlinedIcon sx={{ mr: 2 }} />
                 stared
               </Button>
@@ -137,7 +167,13 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
                 mt: 3,
               }}
             >
-              <Button sx={{ width: "100%", backgroundColor: "white" ,color : `${!!themeColor ? themeColor : defaultColor}` }}>
+              <Button
+                sx={{
+                  width: "100%",
+                  backgroundColor: "white",
+                  color: `${!!themeColor ? themeColor : defaultColor}`,
+                }}
+              >
                 <SendOutlinedIcon sx={{ mr: 2 }} />
                 Sent
               </Button>
@@ -152,13 +188,18 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
                 mt: 3,
               }}
             >
-              <Button sx={{ width: "100%", backgroundColor: "white" ,color : `${!!themeColor ? themeColor : defaultColor}` }}>
+              <Button
+                sx={{
+                  width: "100%",
+                  backgroundColor: "white",
+                  color: `${!!themeColor ? themeColor : defaultColor}`,
+                }}
+              >
                 <NewReleasesOutlinedIcon sx={{ mr: 2 }} />
                 Spam
               </Button>
             </Box>
 
-           
             <Box
               sx={{
                 display: "flex",
@@ -168,8 +209,10 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
                 mt: 3,
               }}
             >
-              <Button sx={{ width: "100%", backgroundColor: "white"  ,color :"gray" }}>
-                <FlagRoundedIcon sx={{ mr: 2 ,color :"yellow"}} />
+              <Button
+                sx={{ width: "100%", backgroundColor: "white", color: "gray" }}
+              >
+                <FlagRoundedIcon sx={{ mr: 2, color: "yellow" }} />
                 Updates
               </Button>
             </Box>
@@ -182,8 +225,10 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
                 mt: 3,
               }}
             >
-              <Button sx={{ width: "100%", backgroundColor: "white" ,color :"gray" }}>
-                <GroupRoundedIcon sx={{ mr: 2 ,color:"#f24636"}} />
+              <Button
+                sx={{ width: "100%", backgroundColor: "white", color: "gray" }}
+              >
+                <GroupRoundedIcon sx={{ mr: 2, color: "#f24636" }} />
                 Social
               </Button>
             </Box>
@@ -196,7 +241,9 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
                 mt: 3,
               }}
             >
-              <Button sx={{ width: "100%", backgroundColor: "white",color :"gray"  }}>
+              <Button
+                sx={{ width: "100%", backgroundColor: "white", color: "gray" }}
+              >
                 <DirectionsIcon sx={{ mr: 2 }} />
                 Promos
               </Button>
@@ -210,13 +257,125 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
                 mt: 3,
               }}
             >
-              <Button sx={{ width: "100%", backgroundColor: "white" }}>
-                <DirectionsIcon sx={{ mr: 2 }} />
-                Inbox
+              <Button
+                sx={{ width: "100%", backgroundColor: "white", color: "gray" }}
+              >
+                <QuestionAnswerIcon sx={{ mr: 2, color: "#3dbdd4" }} />
+                Forums
               </Button>
             </Box>
+          </Box>
 
+          <Box>
+            <Box
+              sx={{
+                width: 1150,
+                backgroundColor: "white",
+                ml: 15,
+                borderRadius: "16px",
+              }}
+            >
+              <Box sx={{ borderBottom: "0.5px solid gray" }}>
+                <Box
+                  sx={{ display: "flex", flexDirection: "row", p: 4, gap: 3 }}
+                >
+                  <StarBorderIcon />
+                  <AccountCircleIcon />
 
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <Typography>john@deo.com</Typography>
+                    <Typography variant="caption">may, 07 2021</Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <Typography>Vivamus sit amet interdum elit</Typography>
+                    <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
+                      <FlagRoundedIcon sx={{ color: "#f9982d" }} />
+                      <Typography sx={{ fontSize: "13px", color: "#f9982d" }}>
+                        Updates
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Box sx={{ ml: 70, height: 0.2 }} onClick={showDiv}>
+                    {!div && <KeyboardArrowDownIcon />}
+                    {div && <KeyboardArrowUpIcon />}
+                  </Box>
+                </Box>
+
+                {div && (
+                  <Box>
+                    <Paper
+                      component="form"
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        width: 1100,
+                        backgroundColor: "#f5f5f5",
+                        ml: 2.5,
+                      }}
+                    >
+                      <InputBase
+                        sx={{ ml: 1, flex: 1 }}
+                        placeholder="Search Email"
+                        inputProps={{ "aria-label": "search google maps" }}
+                      />
+                      <IconButton
+                        type="button"
+                        sx={{ p: "10px" }}
+                        aria-label="search"
+                      >
+                        <StarBorderIcon />
+                      </IconButton>
+                      <IconButton
+                        type="button"
+                        sx={{ p: "10px" }}
+                        aria-label="search"
+                      >
+                        <BookmarkIcon />
+                      </IconButton>
+
+                      <IconButton
+                        type="button"
+                        sx={{ p: "10px" }}
+                        aria-label="search"
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Paper>
+
+                    <Typography
+                      sx={{ ml: 3, mt: 3, color: "black", fontSize: "22px" }}
+                      variant="caption"
+                    >
+                      Vivamus sit amet interdum elit
+                    </Typography>
+                    <Typography
+                      sx={{ ml: 3, mt: 0, color: "black", fontSize: "15px" }}
+                    >
+                      Integer orci justo, fringilla at faucibus vel, pulvinar in
+                      eros.
+                    </Typography>
+
+                    <Divider orientation="vertical" />
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "end",
+                      }}
+                    >
+                      <Button sx={{ backgroundColor: "white", color: "gray" }}>
+                        Forward
+                      </Button>
+                      <Button sx={{ backgroundColor: "white", color: "blue" }}>
+                        Reply
+                      </Button>
+                    </Box>
+                  </Box>
+                )}
+              </Box>
+
+              {/* <Button onClick={showDiv}>sdsd</Button> */}
+            </Box>
           </Box>
         </Box>
       </Box>

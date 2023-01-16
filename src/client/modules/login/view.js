@@ -33,14 +33,14 @@ const LoginView = () => {
     <Box sx={{ display: "flex", height: "100%" }}>
       <Box sx={style.leftBox}>
         <Typography variant="h5" sx={{ color: "#ffffff", margin: 5 }}>
-          Thinksys Prime
+          Enlite Prime
         </Typography>
 
         <Typography
           variant="h3"
           sx={{ marginLeft: 5, marginTop: 30, width: 400 }}
         >
-          Welcome to Thinksys Prime
+          Welcome to Enlite Prime
         </Typography>
 
         <Typography sx={{ marginLeft: 5, marginTop: 3, fontSize: "20px" }}>
