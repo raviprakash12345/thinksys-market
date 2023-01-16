@@ -31,7 +31,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
-let defaultColor = "#e35981";
+let defaultColor = "#f6dbe9";
 export default function SidebarHeader({
   drawerList = [],
   children = <></>,
@@ -71,7 +71,12 @@ export default function SidebarHeader({
             return (
               <Box sx={{ p: "8px" }}>
                 <Typography
-                  sx={{ marginRight: "110px", color: "#E32D46", width: "100%" }}
+                  sx={{
+                    marginRight: "110px",
+                    color: "#E32D46",
+                    width: "100%",
+                    fontSize: "12px",
+                  }}
                   variant="body1"
                 >
                   {item.heading}
@@ -82,12 +87,13 @@ export default function SidebarHeader({
                     sx={
                       isActiveItem(item.subHeading1.to)
                         ? {
-                            color: "grey",
+                            color: "black",
                             backgroundColor: `${
                               !!themeColor ? themeColor : defaultColor
                             }`,
+                            fontSize: "12px",
                           }
-                        : { color: "grey" }
+                        : { color: "black", fontSize: "12px" }
                     }
                     variant="text"
                     onClick={(e) => {
@@ -105,12 +111,13 @@ export default function SidebarHeader({
                     sx={
                       isActiveItem(item.subHeading2.to)
                         ? {
-                            color: "grey",
+                            color: "black",
                             backgroundColor: `${
                               !!themeColor ? themeColor : defaultColor
                             }`,
+                            fontSize: "12px",
                           }
-                        : { color: "grey" }
+                        : { color: "black", fontSize: "12px" }
                     }
                     variant="text"
                     onClick={(e) => {
@@ -128,12 +135,13 @@ export default function SidebarHeader({
                     sx={
                       isActiveItem(item.subHeading3.to)
                         ? {
-                            color: "grey",
+                            color: "Black",
                             backgroundColor: `${
                               !!themeColor ? themeColor : defaultColor
                             }`,
+                            fontSize: "12px",
                           }
-                        : { color: "grey" }
+                        : { color: "black", fontSize: "12px" }
                     }
                     variant="text"
                     onClick={(e) => {

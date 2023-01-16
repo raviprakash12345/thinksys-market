@@ -42,7 +42,7 @@ let columns = [
     id: 4,
   },
 ];
-let defaultColor = "#e35981";
+let defaultColor = "rgb(248,228,236)";
 const MarketPlaceGridView = ({
   themeColor = "#e35981",
   isDrawerMargin = true,
@@ -86,7 +86,7 @@ const MarketPlaceGridView = ({
                   key={row.name}
                   sx={{
                     ":hover": {
-                      background: "#f8e4ec",
+                      background: `${!!themeColor ? themeColor : defaultColor}`,
                     },
                     height: "80px !important",
                   }}
