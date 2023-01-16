@@ -30,6 +30,7 @@ import Infographics from "./infographics";
 import Status from "./status";
 import Analytics from "./analytics";
 import Email from "./email";
+import Contact from "./contact";
 
 let index = 1;
 const drawerList1 = [
@@ -357,6 +358,15 @@ const App = ({ isSideDrawerOpen = false }) => {
                 />
               }
             />
+            <Route
+              path="/"
+              element={
+                <Home
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                />
+              }
+            />
           </Routes>
           <Routes>
             <Route
@@ -417,6 +427,15 @@ const App = ({ isSideDrawerOpen = false }) => {
               path="/applications/email"
               element={
                 <Email
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                />
+              }
+            />
+            <Route
+              path="/applications/contact"
+              element={
+                <Contact
                   themeColor={state.themeColor}
                   isDrawerMargin={state.isDrawerMargin}
                 />

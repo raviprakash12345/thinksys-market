@@ -387,7 +387,7 @@ const CryptocurrencyView = ({
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box>
                   <Typography sx={{ marginTop: "40px" }} variant="h3">
-                    207
+                    $ 2047
                   </Typography>
                   <Typography variant="body1">Subscribes</Typography>
                 </Box>
@@ -417,7 +417,7 @@ const CryptocurrencyView = ({
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box>
                   <Typography sx={{ marginTop: "40px" }} variant="h3">
-                    207
+                   $ 1207
                   </Typography>
                   <Typography variant="body1">Subscribes</Typography>
                 </Box>
