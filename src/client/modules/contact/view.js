@@ -12,43 +12,81 @@ import WorkIcon from "@mui/icons-material/Work";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import LanguageIcon from "@mui/icons-material/Language";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 const contactData = [
   {
+    id: 1,
     profileImg: <AccountCircleIcon fontSize="large" />,
     profileName: "James Doe",
     designation: "Admin",
   },
   {
+    id: 2,
     profileImg: <AccountCircleIcon fontSize="large" />,
     profileName: "Jim Doe",
     designation: "System Engineer",
   },
   {
+    id: 3,
     profileImg: <AccountCircleIcon fontSize="large" />,
     profileName: "jen Doe",
     designation: "Executive",
   },
   {
+    id: 4,
     profileImg: <AccountCircleIcon fontSize="large" />,
     profileName: "Jin Doe",
     designation: "Security",
   },
   {
+    id: 5,
     profileImg: <AccountCircleIcon fontSize="large" />,
     profileName: "Jin Doe",
-    designation: "Security",
+    designation: "Marketing",
   },
   {
+    id: 6,
     profileImg: <AccountCircleIcon fontSize="large" />,
-    profileName: "Jin Doe",
-    designation: "Security",
+    profileName: "Joney Doe",
+    designation: "Actor",
   },
 ];
-const ContactView = ({ userData = [] }) => {
+const defaultState = {
+  userData: [],
+  profileId: 1,
+  profileName: [],
+};
+const ContactView = ({
+  userData = [],
+  themeColor = "#e35981",
+  isDrawerMargin = true,
+}) => {
+  const [state, setState] = useState(defaultState);
   const location = useLocation();
+  const handleProfile = (id, index) => {
+    setState((prevState) => ({
+      ...prevState,
+      userData: userData.filter((profileId) => {
+        return id == profileId.id;
+      }),
+      profileName: contactData.filter((item) => {
+        return item.id == id;
+      }),
+      profileId: index + 1,
+    }));
+  };
+
+  const isActiveItem = (id, index) => {
+    let isActive = false;
+    if (index === id) {
+      isActive = true;
+    }
+    return isActive;
+  };
+
   return (
     <>
-      <Box sx={{ marginLeft: "250px" }}>
+      <Box sx={!isDrawerMargin && { marginLeft: "255px" }}>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography sx={{ color: "#b22362" }} variant="h4">
             Email
@@ -93,21 +131,32 @@ const ContactView = ({ userData = [] }) => {
                   {contactData.length} Contact
                 </Typography>
 
-                {contactData.map((item) => {
+                {contactData.map((item, index) => {
                   return (
                     <>
                       <Box
-                        sx={{
-                          width: "275px",
-                          maxWidth: "250px",
-                          height: "68px",
-                          border: "1px solid white",
-                          backgroundColor: "white",
-                          borderRadius: "8px",
-                          marginLeft: "24px",
-                          marginTop: "12px",
-                          cursor: "pointer",
-                        }}
+                        sx={
+                          isActiveItem(item.id, state.profileId)
+                            ? {
+                                width: "275px",
+                                maxWidth: "250px",
+                                height: "68px",
+                                backgroundColor: `white`,
+                                borderRadius: "8px",
+                                marginLeft: "24px",
+                                marginTop: "12px",
+                                cursor: "pointer",
+                              }
+                            : {
+                                width: "275px",
+                                maxWidth: "250px",
+                                height: "68px",
+                                borderRadius: "8px",
+                                marginLeft: "24px",
+                                marginTop: "12px",
+                                cursor: "pointer",
+                              }
+                        }
                       >
                         <Box
                           sx={{
@@ -117,7 +166,10 @@ const ContactView = ({ userData = [] }) => {
                           }}
                         >
                           {item.profileImg}
-                          <Box sx={{ width: "100%", marginLeft: "8px" }}>
+                          <Box
+                            onClick={() => handleProfile(item.id, index)}
+                            sx={{ width: "100%", marginLeft: "8px" }}
+                          >
                             <Typography variant="body1">
                               {item.profileName}
                             </Typography>
@@ -133,22 +185,28 @@ const ContactView = ({ userData = [] }) => {
               </Box>
             </Box>
             <Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "8px",
-                }}
-              >
-                <AccountCircleIcon fontSize="large" />
-                <Box sx={{ width: "100%", marginLeft: "8px" }}>
-                  <Typography sx={{ fontWeight: "bold" }} variant="h6">
-                    "Name"
-                  </Typography>
-                  <Typography variant="body2">"designation"</Typography>
-                </Box>
-              </Box>
-              {userData.userDetails1.map((item) => {
+              {state.profileName.map((item) => {
+                return (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "8px",
+                    }}
+                  >
+                    <AccountCircleIcon fontSize="large" />
+                    <Box sx={{ width: "100%", marginLeft: "8px" }}>
+                      <Typography sx={{ fontWeight: "bold" }} variant="h6">
+                        {item.profileName}
+                      </Typography>
+                      <Typography variant="body2">
+                        {item.designation}
+                      </Typography>
+                    </Box>
+                  </Box>
+                );
+              })}
+              {state.userData.map((item) => {
                 return (
                   <>
                     <Paper
@@ -206,8 +264,12 @@ const ContactView = ({ userData = [] }) => {
                           <MailIcon sx={{ color: "#519888" }} />
                         </IconButton>
                         <Box sx={{ width: "100%", marginLeft: "8px" }}>
-                          <Typography variant="h6">{item.personalEmail}</Typography>
-                          <Typography variant="body2">Personal Email</Typography>
+                          <Typography variant="h6">
+                            {item.personalEmail}
+                          </Typography>
+                          <Typography variant="body2">
+                            Personal Email
+                          </Typography>
                         </Box>
                       </Box>
                       <hr />
@@ -222,7 +284,9 @@ const ContactView = ({ userData = [] }) => {
                           <WorkIcon sx={{ color: "#795548" }} />
                         </IconButton>
                         <Box sx={{ width: "100%", marginLeft: "8px" }}>
-                          <Typography variant="h6">{item.companyEmail}</Typography>
+                          <Typography variant="h6">
+                            {item.companyEmail}
+                          </Typography>
                           <Typography variant="body2">Company Email</Typography>
                         </Box>
                       </Box>
