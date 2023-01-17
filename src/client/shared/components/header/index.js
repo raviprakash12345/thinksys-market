@@ -200,7 +200,6 @@ export default function Header({
           <TextField
             variant="outlined"
             size="small"
-            
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -213,7 +212,6 @@ export default function Header({
               width: "150px",
               mr: "20px",
 
-              
               "& .MuiOutlinedInput-root": {
                 backgroundColor: "white",
                 color: "black",
@@ -264,7 +262,7 @@ export default function Header({
             fontSize="large"
             sx={{
               bottom: 50,
-              color:`${!!themeColor ? themeColor : defaultColor}`,
+              color: `${!!themeColor ? themeColor : defaultColor}`,
               position: "relative",
               top: "400px",
             }}
@@ -297,41 +295,41 @@ export default function Header({
               </Box>
               <Box sx={style.themeColor}>
                 <Box
-                  onClick={() => handlThemeChange("#f14f6f")}
+                  onClick={() => handlThemeChange("#f14f6f", "#f6dbe9")}
                   sx={{ ...style.themeBox, backgroundColor: "#f14f6f" }}
                 >
                   {" "}
                 </Box>
                 <Box
-                  onClick={() => handlThemeChange("#40a291")}
+                  onClick={() => handlThemeChange("#40a291", "#cffaf4")}
                   sx={{ ...style.themeBox, backgroundColor: "#40a291" }}
                 ></Box>
                 <Box
-                  onClick={() => handlThemeChange("#3d53c8")}
+                  onClick={() => handlThemeChange("#3d53c8", "#e2e5fe")}
                   sx={{ ...style.themeBox, backgroundColor: "#3d53c8" }}
                 ></Box>
                 <Box
-                  onClick={() => handlThemeChange("#a45ac5")}
+                  onClick={() => handlThemeChange("#a45ac5", "#f3d6fe")}
                   sx={{ ...style.themeBox, backgroundColor: "#a45ac5" }}
                 ></Box>
                 <Box
-                  onClick={() => handlThemeChange("#f24724")}
+                  onClick={() => handlThemeChange("#f24724", "#f9e5de")}
                   sx={{ ...style.themeBox, backgroundColor: "#f24724" }}
                 ></Box>
                 <Box
-                  onClick={() => handlThemeChange("#607c89")}
+                  onClick={() => handlThemeChange("#607c89", "#ebecec")}
                   sx={{ ...style.themeBox, backgroundColor: "#607c89" }}
                 ></Box>
                 <Box
-                  onClick={() => handlThemeChange("#70cb34")}
+                  onClick={() => handlThemeChange("#70cb34", "#f0f3c9")}
                   sx={{ ...style.themeBox, backgroundColor: "#70cb34" }}
                 ></Box>
                 <Box
-                  onClick={() => handlThemeChange("#00a2f1")}
+                  onClick={() => handlThemeChange("#00a2f1", "#d6f4f9")}
                   sx={{ ...style.themeBox, backgroundColor: "#00a2f1" }}
                 ></Box>
                 <Box
-                  onClick={() => handlThemeChange("#795048")}
+                  onClick={() => handlThemeChange("#795048", "#f0e7e7")}
                   sx={{ ...style.themeBox, backgroundColor: "#795048" }}
                 ></Box>
               </Box>

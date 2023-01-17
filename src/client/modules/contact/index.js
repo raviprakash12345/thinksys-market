@@ -1,6 +1,10 @@
 import ContactView from "./view";
 
-const Contact = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
+const Contact = ({
+  themeColor = "#e35981",
+  isDrawerMargin = true,
+  lightColor = "",
+}) => {
   const userData = [
     {
       id: 1,
@@ -68,6 +72,7 @@ const Contact = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
         userData={userData}
         themeColor={themeColor}
         isDrawerMargin={isDrawerMargin}
+        lightColor={lightColor}
       />
     </>
   );

@@ -21,6 +21,7 @@ const defaultState = {
   isOpen: false,
 };
 let defaultColor = "#e35981";
+let defaultLightColor = "#f6dbe9";
 const LeftSideHeader = ({
   sidebarList = [],
   children = <></>,
@@ -30,8 +31,8 @@ const LeftSideHeader = ({
   handleLoginPage = () => {},
   handleMargin = () => {},
   themeColor = "#e35981",
+  lightColor = "#f6dbe9"
 }) => {
-  console.log(`THEME_VARIANT`, THEME_VARIANT);
   const [state, setState] = useState(defaultState);
   const navigate = useNavigate();
   const location = useLocation();
@@ -156,6 +157,7 @@ const LeftSideHeader = ({
         drawerList={drawerList}
         isOpen={state.isOpen}
         themeColor={themeColor}
+        lightColor={lightColor}
       />
     </>
   );

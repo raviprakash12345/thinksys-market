@@ -15,6 +15,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import TextField from "@mui/material/TextField";
 const noop = () => {};
 let defaultColor = "#e35981";
+let defaultLightColor = "#f6dbe9";
 const data = [
   {
     name: "Page A",
@@ -52,6 +53,7 @@ const CryptocurrencyView = ({
   handleSearch = noop,
   isSearchBox = false,
   isDrawerMargin = true,
+  lightColor = "",
 }) => {
   return (
     <>
@@ -417,7 +419,7 @@ const CryptocurrencyView = ({
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box>
                   <Typography sx={{ marginTop: "40px" }} variant="h3">
-                   $ 1207
+                    $ 1207
                   </Typography>
                   <Typography variant="body1">Subscribes</Typography>
                 </Box>
@@ -472,7 +474,7 @@ const CryptocurrencyView = ({
             <Box
               sx={{
                 border: "1px solid #f8e4ec",
-                background: `${!!themeColor ? themeColor : defaultColor}`,
+                background: `${!!themeColor ? lightColor : defaultLightColor}`,
                 marginLeft: "10px",
                 marginRight: "10px",
                 borderRadius: "10px",
@@ -489,7 +491,10 @@ const CryptocurrencyView = ({
                 }}
               >
                 <Typography
-                  sx={{ fontWeight: "bold", color: "white" }}
+                  sx={{
+                    fontWeight: "bold",
+                    color: `${!!themeColor ? themeColor : defaultColor}`,
+                  }}
                   variant="h6"
                 >
                   USD Market
@@ -512,7 +517,7 @@ const CryptocurrencyView = ({
                 </IconButton>
               </Box>
             </Box>
-            <MarketPlaceGrid themeColor={themeColor} />
+            <MarketPlaceGrid themeColor={themeColor} lightColor={lightColor} />
           </Paper>
         </Box>
       </Box>

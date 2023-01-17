@@ -46,6 +46,7 @@ let defaultColor = "rgb(248,228,236)";
 const MarketPlaceGridView = ({
   themeColor = "#e35981",
   isDrawerMargin = true,
+  lightColor=""
 }) => {
   let isSort = false;
   const handleSort = (value) => {
@@ -86,7 +87,7 @@ const MarketPlaceGridView = ({
                   key={row.name}
                   sx={{
                     ":hover": {
-                      background: `${!!themeColor ? themeColor : defaultColor}`,
+                      background: `${!!themeColor ? lightColor : defaultColor}`,
                     },
                     height: "80px !important",
                   }}

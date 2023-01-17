@@ -12,7 +12,18 @@ import WorkIcon from "@mui/icons-material/Work";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import LanguageIcon from "@mui/icons-material/Language";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+const defaultData = [
+  {
+    id: 1,
+    phone: "+23132213",
+    secondaryPhone: "+432434324",
+    personalEmail: "johndoe@mail.com",
+    companyEmail: "johndoe@company.com",
+    address: "Ipsum Street no.77 Block A/5A, New York",
+    website: "http://doeclans.net",
+  },
+];
 const contactData = [
   {
     id: 1,
@@ -51,15 +62,19 @@ const contactData = [
     designation: "Actor",
   },
 ];
+let defaultColor = "#e35981";
+let defaultLightColor = "#f6dbe9";
 const defaultState = {
   userData: [],
   profileId: 1,
   profileName: [],
+  entries: [],
 };
 const ContactView = ({
   userData = [],
   themeColor = "#e35981",
   isDrawerMargin = true,
+  lightColor = "",
 }) => {
   const [state, setState] = useState(defaultState);
   const location = useLocation();
@@ -76,6 +91,13 @@ const ContactView = ({
     }));
   };
 
+  const fetchData = () => {
+    setState((prevState) => ({
+      ...prevState,
+      entries: defaultData,
+    }));
+  };
+
   const isActiveItem = (id, index) => {
     let isActive = false;
     if (index === id) {
@@ -84,18 +106,29 @@ const ContactView = ({
     return isActive;
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <Box sx={!isDrawerMargin && { marginLeft: "255px" }}>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography sx={{ color: "#b22362" }} variant="h4">
+          <Typography
+            sx={{ color: `${!!themeColor ? themeColor : defaultColor}` }}
+            variant="h4"
+          >
             Email
           </Typography>
           <Typography sx={{ marginLeft: "16px" }} variant="body1">
             {location.pathname}
           </Typography>
         </Box>
-        <Paper sx={{ backgroundColor: "#e8eaf6" }}>
+        <Paper
+          sx={{
+            backgroundColor: `${!!themeColor ? lightColor : defaultLightColor}`,
+          }}
+        >
           <Box sx={{ display: "flex" }}>
             <Box>
               <Box
@@ -168,9 +201,20 @@ const ContactView = ({
                           {item.profileImg}
                           <Box
                             onClick={() => handleProfile(item.id, index)}
-                            sx={{ width: "100%", marginLeft: "8px" }}
+                            sx={{
+                              width: "100%",
+                              marginLeft: "8px",
+                              color: "grey",
+                            }}
                           >
-                            <Typography variant="body1">
+                            <Typography
+                              sx={{
+                                color: `${
+                                  !!themeColor ? themeColor : defaultColor
+                                }`,
+                              }}
+                              variant="body1"
+                            >
                               {item.profileName}
                             </Typography>
                             <Typography variant="body2">
@@ -213,7 +257,7 @@ const ContactView = ({
                       sx={{
                         backgroundColor: "white",
                         width: 1200,
-                        padding: "16px",
+                        marginBottom: "16px",
                       }}
                       elevation={0}
                     >
