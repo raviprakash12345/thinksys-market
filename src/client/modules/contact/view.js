@@ -25,11 +25,11 @@ const defaultData = [
   },
 ];
 const defaultProfileName = {
-    id: 1,
-    profileImg: <AccountCircleIcon fontSize="large" />,
-    profileName: "James Doe",
-    designation: "Admin",
-  }
+  id: 1,
+  profileImg: <AccountCircleIcon fontSize="large" />,
+  profileName: "James Doe",
+  designation: "Admin",
+};
 
 const contactData = [
   {
@@ -117,8 +117,7 @@ const ContactView = ({
 
   useEffect(() => {
     fetchData();
-  }, [state.entries,]);
-
+  }, [state.entries]);
   return (
     <>
       <Box sx={!isDrawerMargin && { marginLeft: "255px" }}>
@@ -238,7 +237,7 @@ const ContactView = ({
               </Box>
             </Box>
             <Box>
-              {(state.profileName).map((item) => {
+              {state.profileName.map((item) => {
                 return (
                   <Box
                     sx={{

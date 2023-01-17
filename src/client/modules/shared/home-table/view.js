@@ -199,9 +199,14 @@ const HomeTableView = ({
 
                     <StyledTableCell align="right">
                       <Button
-                        sx={{ marginRight: "10px" }}
+                        sx={{
+                          marginRight: "10px",
+                          color: `${!!themeColor ? themeColor : defaultColor}`,
+                          "& .MuiButton-outlined": {
+                            color: "red"
+                          }
+                        }}
                         variant="outlined"
-                        color="error"
                       >
                         FIX IT
                       </Button>
