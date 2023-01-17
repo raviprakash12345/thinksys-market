@@ -20,17 +20,18 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import LabelIcon from '@mui/icons-material/Label';
+import LabelIcon from "@mui/icons-material/Label";
 let defaultColor = "#e35981";
-let defaultLightColor = "#f6dbe9"
+let defaultLightColor = "#f6dbe9";
 
-const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981",lightColor="" }) => {
+const EmailView = ({
+  isDrawerMargin = true,
+  themeColor = "#e35981",
+  lightColor = "",
+}) => {
   const [div, setDiv] = useState(false);
-
-  function createData(name) {
-    return { name };
-  }
-
+  const [mainId, setMainid] = useState([]);
+  const [id, setId] = useState("");
   const showDiv = () => {
     if (div === true) {
       setDiv(false);
@@ -39,20 +40,70 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981",lightColor=""
     }
   };
 
-  const rows = [
-    createData("Frozen yoghurt"),
-    createData("Ice cream sandwich"),
-    createData("Eclair"),
-    createData("Cupcake"),
-    createData("Gingerbread"),
-    createData("Frozen yoghurt"),
-
-    createData("Ice cream sandwich"),
-    createData("Eclair"),
-    createData("Cupcake"),
-    createData("Gingerbread"),
+  const profiles = [
+    { id: 1, name: "john" },
+    { id: 2, name: "sam" },
+    { id: 3, name: "wan" },
+    { id: 4, name: "king" },
+    { id: 5, name: "john" },
+    { id: 6, name: "sam" },
+    { id: 7, name: "wan" },
+    { id: 8, name: "king" },
   ];
 
+  const data1 = [
+    { id: 1, name: "Inbox", icon: <MoveToInboxOutlinedIcon sx={{ mr: 2 }} /> },
+    {
+      id: 2,
+      name: "Stared",
+      icon: <StarPurple500OutlinedIcon sx={{ mr: 2 }} />,
+    },
+    {
+      id: 3,
+      name: "Sent",
+      icon: <SendOutlinedIcon sx={{ mr: 2 }} />,
+    },
+    { id: 4, name: "Spam", icon: <NewReleasesOutlinedIcon sx={{ mr: 2 }} /> },
+  ];
+
+  const data2 = [
+    {
+      id: 5,
+      name: "Updates",
+      icon: <FlagRoundedIcon sx={{ mr: 2, color: "yellow" }} />,
+    },
+    {
+      id: 6,
+      name: "Social",
+      icon: <GroupRoundedIcon sx={{ mr: 2, color: "#f24636" }} />,
+    },
+    {
+      id: 7,
+      name: "Promos",
+      icon: <LabelIcon sx={{ mr: 2, color: "#3f51b5" }} />,
+    },
+    {
+      id: 8,
+      name: "Forums",
+      icon: <QuestionAnswerIcon sx={{ mr: 2, color: "#3dbdd4" }} />,
+    },
+  ];
+  const dataHandle = (id, index) => {
+    setMainid(
+      profiles.filter((item) => {
+        return item.id == id;
+      })
+    );
+    setId(id);
+  };
+  const isActiveItem = (id, index) => {
+    let isActive = false;
+    if (index === id) {
+      isActive = true;
+    }
+    return isActive;
+  };
+  console.log(mainId);
   return (
     <Box sx={!isDrawerMargin && { marginLeft: "250px" }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -119,266 +170,220 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981",lightColor=""
 
         <Box sx={{ display: "flex", flexDirection: "row" }}>
           <Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 3,
-                width: 190,
-              }}
-            >
-              <Button
-                sx={{
-                  width: "100%",
-                  backgroundColor: "white",
-                  color: `${!!themeColor ? themeColor : defaultColor}`,
-                }}
-              >
-                <MoveToInboxOutlinedIcon sx={{ mr: 2 }} />
-                Inbox
-              </Button>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 3,
-                width: 190,
-                mt: 3,
-              }}
-            >
-              <Button
-                sx={{
-                  width: "100%",
-                  backgroundColor: "white",
-                  color: `${!!themeColor ? themeColor : defaultColor}`,
-                }}
-              >
-                <StarPurple500OutlinedIcon sx={{ mr: 2 }} />
-                stared
-              </Button>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 3,
-                width: 190,
-                mt: 3,
-              }}
-            >
-              <Button
-                sx={{
-                  width: "100%",
-                  backgroundColor: "white",
-                  color: `${!!themeColor ? themeColor : defaultColor}`,
-                }}
-              >
-                <SendOutlinedIcon sx={{ mr: 2 }} />
-                Sent
-              </Button>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 3,
-                width: 190,
-                mt: 3,
-              }}
-            >
-              <Button
-                sx={{
-                  width: "100%",
-                  backgroundColor: "white",
-                  color: `${!!themeColor ? themeColor : defaultColor}`,
-                }}
-              >
-                <NewReleasesOutlinedIcon sx={{ mr: 2 }} />
-                Spam
-              </Button>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 3,
-                width: 190,
-                mt: 3,
-              }}
-            >
-              <Button
-                sx={{ width: "100%", backgroundColor: "white", color: "gray" }}
-              >
-                <FlagRoundedIcon sx={{ mr: 2, color: "yellow" }} />
-                Updates
-              </Button>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 3,
-                width: 190,
-                mt: 3,
-              }}
-            >
-              <Button
-                sx={{ width: "100%", backgroundColor: "white", color: "gray" }}
-              >
-                <GroupRoundedIcon sx={{ mr: 2, color: "#f24636" }} />
-                Social
-              </Button>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 3,
-                width: 190,
-                mt: 3,
-              }}
-            >
-              <Button
-                sx={{ width: "100%", backgroundColor: "white", color: "gray" }}
-              >
-                <LabelIcon sx={{ mr: 2,color:"#3f51b5" }} />
-                Promos
-              </Button>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 3,
-                width: 190,
-                mt: 3,
-              }}
-            >
-              <Button
-                sx={{ width: "100%", backgroundColor: "white", color: "gray" }}
-              >
-                <QuestionAnswerIcon sx={{ mr: 2, color: "#3dbdd4" }} />
-                Forums
-              </Button>
-            </Box>
-          </Box>
-
-          <Box>
-            <Box
-              sx={{
-                width: 1150,
-                backgroundColor: "white",
-                ml: 15,
-                borderRadius: "16px",
-              }}
-            >
-              <Box sx={{ borderBottom: "0.5px solid gray" }}>
+            {data1.map((item, index) => {
+              return (
                 <Box
-                  sx={{ display: "flex", flexDirection: "row", p: 4, gap: 3 }}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 3,
+                    width: 190,
+                    mt: 3,
+                  }}
                 >
-                  <StarBorderIcon />
-                  <AccountCircleIcon />
+                  <Button
+                    sx={
+                      isActiveItem(item.id, id)
+                        ? {
+                            width: "100%",
+                            backgroundColor: "white",
+                            color: `${
+                              !!themeColor ? themeColor : defaultColor
+                            }`,
+                          }
+                        : {
+                            width: "100%",
 
-                  <Box sx={{ display: "flex", flexDirection: "column" }}>
-                    <Typography>john@deo.com</Typography>
-                    <Typography variant="caption">may, 07 2021</Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", flexDirection: "column" }}>
-                    <Typography>Vivamus sit amet interdum elit</Typography>
-                    <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
-                      <FlagRoundedIcon sx={{ color: "#f9982d" }} />
-                      <Typography sx={{ fontSize: "13px", color: "#f9982d" }}>
-                        Updates
-                      </Typography>
-                    </Box>
-                  </Box>
-                  <Box sx={{ ml: 70, height: 0.2 }} onClick={showDiv}>
-                    {!div && <KeyboardArrowDownIcon />}
-                    {div && <KeyboardArrowUpIcon />}
-                  </Box>
+                            color: `${
+                              !!themeColor ? themeColor : defaultColor
+                            }`,
+                          }
+                    }
+                    onClick={() => dataHandle(item.id)}
+                  >
+                    {item.icon}
+
+                    {item.name}
+                  </Button>
                 </Box>
+              );
+            })}
+            {data2.map((item) => {
+              return (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 3,
+                    width: 190,
+                    mt: 3,
+                  }}
+                >
+                  <Button
+                    sx={
+                      isActiveItem(item.id, id)
+                        ? {
+                            width: "100%",
+                            backgroundColor: "white",
+                            color: `${
+                              !!themeColor ? themeColor : defaultColor
+                            }`,
+                          }
+                        : {
+                            width: "100%",
 
-                {div && (
-                  <Box>
-                    <Paper
-                      component="form"
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        width: 1100,
-                        backgroundColor: "#f5f5f5",
-                        ml: 2.5,
-                      }}
-                    >
-                      <InputBase
-                        sx={{ ml: 1, flex: 1 }}
-                        value= "From John Doe to me"
-                        inputProps={{ "aria-label": "search google maps" }}
-                      />
-                      <IconButton
-                        type="button"
-                        sx={{ p: "10px" }}
-                        aria-label="search"
-                      >
-                        <StarBorderIcon />
-                      </IconButton>
-                      <IconButton
-                        type="button"
-                        sx={{ p: "10px" }}
-                        aria-label="search"
-                      >
-                        <BookmarkIcon />
-                      </IconButton>
-
-                      <IconButton
-                        type="button"
-                        sx={{ p: "10px" }}
-                        aria-label="search"
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </Paper>
-
-                    <Typography
-                      sx={{ ml: 3, mt: 3, color: "black", fontSize: "22px" }}
-                      variant="caption"
-                    >
-                      Vivamus sit amet interdum elit
-                    </Typography>
-                    <Typography
-                      sx={{ ml: 3, mt: 0, color: "black", fontSize: "15px" }}
-                    >
-                      Integer orci justo, fringilla at faucibus vel, pulvinar in
-                      eros.
-                    </Typography>
-
-                    <Divider orientation="vertical" />
+                            color: `${
+                              !!themeColor ? themeColor : defaultColor
+                            }`,
+                          }
+                    }
+                    onClick={() => dataHandle(item.id)}
+                  >
+                    {item.icon}
+                    {item.name}
+                  </Button>
+                </Box>
+              );
+            })}
+          </Box>
+          {mainId.map((item) => {
+            return (
+              <Box>
+                <Box
+                  sx={{
+                    width: 1150,
+                    backgroundColor: "white",
+                    ml: 15,
+                    borderRadius: "16px",
+                  }}
+                >
+                  <Box sx={{ borderBottom: "0.5px solid gray" }}>
                     <Box
                       sx={{
                         display: "flex",
                         flexDirection: "row",
-                        justifyContent: "end",
+                        p: 4,
+                        gap: 3,
                       }}
                     >
-                      <Button sx={{ backgroundColor: "white", color: "gray" }}>
-                        Forward
-                      </Button>
-                      <Button sx={{ backgroundColor: "white", color: "blue" }}>
-                        Reply
-                      </Button>
-                    </Box>
-                  </Box>
-                )}
-              </Box>
+                      <StarBorderIcon />
+                      <AccountCircleIcon />
 
-              {/* <Button onClick={showDiv}>sdsd</Button> */}
-            </Box>
-          </Box>
+                      <Box sx={{ display: "flex", flexDirection: "column" }}>
+                        <Typography>{item.name}</Typography>
+                        <Typography variant="caption">may, 07 2021</Typography>
+                      </Box>
+                      <Box sx={{ display: "flex", flexDirection: "column" }}>
+                        <Typography>Vivamus sit amet interdum elit</Typography>
+                        <Box
+                          sx={{ display: "flex", flexDirection: "row", gap: 1 }}
+                        >
+                          <FlagRoundedIcon sx={{ color: "#f9982d" }} />
+                          <Typography
+                            sx={{ fontSize: "13px", color: "#f9982d" }}
+                          >
+                            Updates
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box sx={{ ml: 70, height: 0.2 }} onClick={showDiv}>
+                        {!div && <KeyboardArrowDownIcon />}
+                        {div && <KeyboardArrowUpIcon />}
+                      </Box>
+                    </Box>
+
+                    {div && (
+                      <Box>
+                        <Paper
+                          component="form"
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            width: 1100,
+                            backgroundColor: "#f5f5f5",
+                            ml: 2.5,
+                          }}
+                        >
+                          <InputBase
+                            sx={{ ml: 1, flex: 1 }}
+                            value="From John Doe to me"
+                            inputProps={{ "aria-label": "search google maps" }}
+                          />
+                          <IconButton
+                            type="button"
+                            sx={{ p: "10px" }}
+                            aria-label="search"
+                          >
+                            <StarBorderIcon />
+                          </IconButton>
+                          <IconButton
+                            type="button"
+                            sx={{ p: "10px" }}
+                            aria-label="search"
+                          >
+                            <BookmarkIcon />
+                          </IconButton>
+
+                          <IconButton
+                            type="button"
+                            sx={{ p: "10px" }}
+                            aria-label="search"
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                        </Paper>
+
+                        <Typography
+                          sx={{
+                            ml: 3,
+                            mt: 3,
+                            color: "black",
+                            fontSize: "22px",
+                          }}
+                          variant="caption"
+                        >
+                          Vivamus sit amet interdum elit
+                        </Typography>
+                        <Typography
+                          sx={{
+                            ml: 3,
+                            mt: 0,
+                            color: "black",
+                            fontSize: "15px",
+                          }}
+                        >
+                          Integer orci justo, fringilla at faucibus vel,
+                          pulvinar in eros.
+                        </Typography>
+
+                        <Divider orientation="vertical" />
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "end",
+                          }}
+                        >
+                          <Button
+                            sx={{ backgroundColor: "white", color: "gray" }}
+                          >
+                            Forward
+                          </Button>
+                          <Button
+                            sx={{ backgroundColor: "white", color: "blue" }}
+                          >
+                            Reply
+                          </Button>
+                        </Box>
+                      </Box>
+                    )}
+                  </Box>
+
+                  {/* <Button onClick={showDiv}>sdsd</Button> */}
+                </Box>
+              </Box>
+            );
+          })}
         </Box>
       </Box>
     </Box>
