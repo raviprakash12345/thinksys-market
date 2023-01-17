@@ -12,6 +12,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon from "@mui/icons-material/Done";
 let defaultColor = "#e35981";
+let defaultLightColor = "#f6dbe9";
 const TodoView = ({
   isDrawerMargin = true,
   themeColor = "#e35981",
@@ -51,7 +52,7 @@ const TodoView = ({
       <Box
         sx={{
           width: "100%",
-          backgroundColor: `${!!themeColor ? lightColor : defaultColor}`,
+          backgroundColor: `${!!themeColor ? lightColor : defaultLightColor}`,
           padding: 3,
           borderRadius: "12px",
         }}
