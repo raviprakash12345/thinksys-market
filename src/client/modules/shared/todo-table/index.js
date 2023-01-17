@@ -1,26 +1,20 @@
-import { useState } from "react";
-import TodoView from "./view";
+import TodoTableView from "./view";
 
-const defaultState = {};
-
-const Todo = ({
+const TodoTable = ({
   isDrawerMargin = true,
   themeColor = "#e35981",
   lightColor = "",
   isTable = false,
 }) => {
-  const [state, setState] = useState(defaultState);
-
   return (
     <>
-      <TodoView
+      <TodoTableView
+        isTable={isTable}
         isDrawerMargin={isDrawerMargin}
         themeColor={themeColor}
         lightColor={lightColor}
-        isTable={isTable}
       />
     </>
   );
 };
-
-export default Todo;
+export default TodoTable;

@@ -1,5 +1,4 @@
-import { Box } from "@mui/system";
-import { Typography, IconButton, Button } from "@mui/material";
+import { Typography, IconButton, Button, Box } from "@mui/material";
 import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
@@ -11,31 +10,18 @@ import TableRow from "@mui/material/TableRow";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon from "@mui/icons-material/Done";
+import TodoTable from "../shared/todo-table";
+import { useLocation } from "react-router-dom";
 let defaultColor = "#e35981";
 let defaultLightColor = "#f6dbe9";
 const TodoView = ({
   isDrawerMargin = true,
   themeColor = "#e35981",
   lightColor = "",
+  isTable = false,
 }) => {
-  function createData(name) {
-    return { name };
-  }
-
-  const rows = [
-    createData("Frozen yoghurt"),
-    createData("Ice cream sandwich"),
-    createData("Eclair"),
-    createData("Cupcake"),
-    createData("Gingerbread"),
-    createData("Frozen yoghurt"),
-
-    createData("Ice cream sandwich"),
-    createData("Eclair"),
-    createData("Cupcake"),
-    createData("Gingerbread"),
-  ];
-
+  const currentPath = useLocation();
+  console.log(`currentPath.location`, currentPath.pathname);
   return (
     <Box sx={!isDrawerMargin && { marginLeft: "250px" }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -141,70 +127,13 @@ const TodoView = ({
           /<Button sx={{ color: "gray" }}>ACTIVE</Button>/
           <Button sx={{ color: "gray" }}>COMPLETED</Button>
         </Box>
-
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            {/* <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead> */}
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {/* <Button size="small"> */}
-                    <IconButton
-                      sx={{
-                        color: "gray",
-                        height: 40,
-                        backgroundColor: "#ededed",
-                        mr: 2,
-                      }}
-                    >
-                      <DoneIcon />
-                    </IconButton>
-                    {/* </Button> */}
-                    {row.name}
-                  </TableCell>
-                  <TableCell sx={{ width: 200 }}>
-                    <IconButton
-                      // size="small"
-                      sx={{
-                        color: "gray",
-                        height: 40,
-                        // borderRadius: "60%",
-                        backgroundColor: "#ededed",
-                      }}
-                    >
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton
-                      // size="small"
-                      sx={{
-                        color: "gray",
-                        height: 40,
-                        // borderRadius: "60%",
-
-                        backgroundColor: "#ededed",
-                        ml: 2,
-                      }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        {currentPath.pathname == "/applications/todo" && (
+          <TodoTable
+            isDrawerMargin={isDrawerMargin}
+            themeColor={themeColor}
+            lightColor={lightColor}
+          />
+        )}
       </Box>
     </Box>
   );

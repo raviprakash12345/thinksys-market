@@ -31,6 +31,7 @@ import Status from "./status";
 import Analytics from "./analytics";
 import Email from "./email";
 import Contact from "./contact";
+import TodoFirebase from "./todo-firebase";
 
 let index = 1;
 const drawerList1 = [
@@ -442,6 +443,16 @@ const App = ({ isSideDrawerOpen = false }) => {
               path="/applications/contact"
               element={
                 <Contact
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                  lightColor={state.lightColor}
+                />
+              }
+            />
+            <Route
+              path="/applications/todoFireBase"
+              element={
+                <TodoFirebase
                   themeColor={state.themeColor}
                   isDrawerMargin={state.isDrawerMargin}
                   lightColor={state.lightColor}
