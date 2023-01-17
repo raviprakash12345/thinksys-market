@@ -24,6 +24,13 @@ const defaultData = [
     website: "http://doeclans.net",
   },
 ];
+const defaultProfileName = {
+    id: 1,
+    profileImg: <AccountCircleIcon fontSize="large" />,
+    profileName: "James Doe",
+    designation: "Admin",
+  }
+
 const contactData = [
   {
     id: 1,
@@ -81,9 +88,10 @@ const ContactView = ({
   const handleProfile = (id, index) => {
     setState((prevState) => ({
       ...prevState,
-      userData: userData.filter((profileId) => {
-        return id == profileId.id;
-      }),
+      userData:
+        userData.filter((profileId) => {
+          return id == profileId.id;
+        }) || defaultData,
       profileName: contactData.filter((item) => {
         return item.id == id;
       }),
@@ -95,6 +103,7 @@ const ContactView = ({
     setState((prevState) => ({
       ...prevState,
       entries: defaultData,
+      defaultName: defaultProfileName,
     }));
   };
 
@@ -108,7 +117,7 @@ const ContactView = ({
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [state.entries,]);
 
   return (
     <>
@@ -229,7 +238,7 @@ const ContactView = ({
               </Box>
             </Box>
             <Box>
-              {state.profileName.map((item) => {
+              {(state.profileName).map((item) => {
                 return (
                   <Box
                     sx={{
@@ -250,126 +259,130 @@ const ContactView = ({
                   </Box>
                 );
               })}
-              {state.userData.map((item) => {
-                return (
-                  <>
-                    <Paper
-                      sx={{
-                        backgroundColor: "white",
-                        width: 1200,
-                        marginBottom: "16px",
-                      }}
-                      elevation={0}
-                    >
-                      <Box
+              {(!state.userData ? state.userData : state.entries).map(
+                (item) => {
+                  return (
+                    <>
+                      <Paper
                         sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          padding: "8px",
+                          backgroundColor: "white",
+                          width: 1200,
+                          marginBottom: "16px",
                         }}
+                        elevation={0}
                       >
-                        <IconButton sx={{ background: "#e3f2fd" }}>
-                          <PhoneIcon sx={{ color: "#2d96f3" }} />
-                        </IconButton>
-                        <Box sx={{ width: "100%", marginLeft: "8px" }}>
-                          <Typography variant="h6">{item.phone}</Typography>
-                          <Typography variant="body2">Phone</Typography>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "8px",
+                          }}
+                        >
+                          <IconButton sx={{ background: "#e3f2fd" }}>
+                            <PhoneIcon sx={{ color: "#2d96f3" }} />
+                          </IconButton>
+                          <Box sx={{ width: "100%", marginLeft: "8px" }}>
+                            <Typography variant="h6">{item.phone}</Typography>
+                            <Typography variant="body2">Phone</Typography>
+                          </Box>
                         </Box>
-                      </Box>
-                      <hr />
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          padding: "8px",
-                        }}
-                      >
-                        <IconButton sx={{ background: "#fff8e1" }}>
-                          <SmartphoneIcon sx={{ color: "#f7c00f" }} />
-                        </IconButton>
-                        <Box sx={{ width: "100%", marginLeft: "8px" }}>
-                          <Typography variant="h6">
-                            {item.secondaryPhone}
-                          </Typography>
-                          <Typography variant="body2">
-                            Secondary Phone
-                          </Typography>
+                        <hr />
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "8px",
+                          }}
+                        >
+                          <IconButton sx={{ background: "#fff8e1" }}>
+                            <SmartphoneIcon sx={{ color: "#f7c00f" }} />
+                          </IconButton>
+                          <Box sx={{ width: "100%", marginLeft: "8px" }}>
+                            <Typography variant="h6">
+                              {item.secondaryPhone}
+                            </Typography>
+                            <Typography variant="body2">
+                              Secondary Phone
+                            </Typography>
+                          </Box>
                         </Box>
-                      </Box>
-                      <hr />
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          padding: "8px",
-                        }}
-                      >
-                        <IconButton sx={{ background: "#e0f2f1" }}>
-                          <MailIcon sx={{ color: "#519888" }} />
-                        </IconButton>
-                        <Box sx={{ width: "100%", marginLeft: "8px" }}>
-                          <Typography variant="h6">
-                            {item.personalEmail}
-                          </Typography>
-                          <Typography variant="body2">
-                            Personal Email
-                          </Typography>
+                        <hr />
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "8px",
+                          }}
+                        >
+                          <IconButton sx={{ background: "#e0f2f1" }}>
+                            <MailIcon sx={{ color: "#519888" }} />
+                          </IconButton>
+                          <Box sx={{ width: "100%", marginLeft: "8px" }}>
+                            <Typography variant="h6">
+                              {item.personalEmail}
+                            </Typography>
+                            <Typography variant="body2">
+                              Personal Email
+                            </Typography>
+                          </Box>
                         </Box>
-                      </Box>
-                      <hr />
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          padding: "8px",
-                        }}
-                      >
-                        <IconButton sx={{ background: "#efebe9" }}>
-                          <WorkIcon sx={{ color: "#795548" }} />
-                        </IconButton>
-                        <Box sx={{ width: "100%", marginLeft: "8px" }}>
-                          <Typography variant="h6">
-                            {item.companyEmail}
-                          </Typography>
-                          <Typography variant="body2">Company Email</Typography>
+                        <hr />
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "8px",
+                          }}
+                        >
+                          <IconButton sx={{ background: "#efebe9" }}>
+                            <WorkIcon sx={{ color: "#795548" }} />
+                          </IconButton>
+                          <Box sx={{ width: "100%", marginLeft: "8px" }}>
+                            <Typography variant="h6">
+                              {item.companyEmail}
+                            </Typography>
+                            <Typography variant="body2">
+                              Company Email
+                            </Typography>
+                          </Box>
                         </Box>
-                      </Box>
-                      <hr />
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          padding: "8px",
-                        }}
-                      >
-                        <IconButton sx={{ background: "#faebee" }}>
-                          <LocationOnIcon sx={{ color: "#e44f37" }} />
-                        </IconButton>
-                        <Box sx={{ width: "100%", marginLeft: "8px" }}>
-                          <Typography variant="h6">{item.address}</Typography>
-                          <Typography variant="body2">Address</Typography>
+                        <hr />
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "8px",
+                          }}
+                        >
+                          <IconButton sx={{ background: "#faebee" }}>
+                            <LocationOnIcon sx={{ color: "#e44f37" }} />
+                          </IconButton>
+                          <Box sx={{ width: "100%", marginLeft: "8px" }}>
+                            <Typography variant="h6">{item.address}</Typography>
+                            <Typography variant="body2">Address</Typography>
+                          </Box>
                         </Box>
-                      </Box>
-                      <hr />
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          padding: "8px",
-                        }}
-                      >
-                        <IconButton sx={{ background: "#ede7f6" }}>
-                          <LanguageIcon sx={{ color: "#6a4bb7" }} />
-                        </IconButton>
-                        <Box sx={{ width: "100%", marginLeft: "8px" }}>
-                          <Typography variant="h6">{item.website}</Typography>
-                          <Typography variant="body2">Website</Typography>
+                        <hr />
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "8px",
+                          }}
+                        >
+                          <IconButton sx={{ background: "#ede7f6" }}>
+                            <LanguageIcon sx={{ color: "#6a4bb7" }} />
+                          </IconButton>
+                          <Box sx={{ width: "100%", marginLeft: "8px" }}>
+                            <Typography variant="h6">{item.website}</Typography>
+                            <Typography variant="body2">Website</Typography>
+                          </Box>
                         </Box>
-                      </Box>
-                    </Paper>
-                  </>
-                );
-              })}
+                      </Paper>
+                    </>
+                  );
+                }
+              )}
             </Box>
           </Box>
         </Paper>

@@ -39,7 +39,7 @@ export default function SidebarHeader({
   isSideDrawerOpen = false,
   isOpen = false,
   themeColor = "#e35981",
-  lightColor="#f6dbe9"
+  lightColor = "#f6dbe9",
 }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -77,84 +77,92 @@ export default function SidebarHeader({
                     marginRight: "110px",
                     color: `${!!themeColor ? themeColor : defaultColor}`,
                     width: "100%",
-                    fontSize: "12px",
+                    fontSize: "10px",
+                    fontWeight:"bold"
                   }}
                   variant="body1"
                 >
                   {item.heading}
                 </Typography>
-                <Box>
-                  <IconButton>{item.subHeading1.icon}</IconButton>
-                  <Button
-                    sx={
-                      isActiveItem(item.subHeading1.to)
-                        ? {
-                            color: "grey",
-                            backgroundColor: `${
-                              !!themeColor ? lightColor : defaultLightColor
-                            }`,
-                            fontSize: "12px",
-                          }
-                        : { color: "grey", fontSize: "12px" }
-                    }
-                    variant="text"
-                    onClick={(e) => {
-                      navigate(`${item.subHeading1.to}`);
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
-                  >
-                    {item.subHeading1.subHeading}
-                  </Button>
-                </Box>
-                <Box>
-                  <IconButton>{item.subHeading2.icon}</IconButton>
-                  <Button
-                    sx={
-                      isActiveItem(item.subHeading2.to)
-                        ? {
-                            color: "grey",
-                            backgroundColor: `${
-                              !!themeColor ? lightColor : defaultLightColor
-                            }`,
-                            fontSize: "12px",
-                          }
-                        : { color: "grey", fontSize: "12px" }
-                    }
-                    variant="text"
-                    onClick={(e) => {
-                      navigate(`${item.subHeading2.to}`);
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
-                  >
-                    {item.subHeading2.subHeading}
-                  </Button>
-                </Box>
-                <Box>
-                  <IconButton>{item.subHeading3.icon}</IconButton>
-                  <Button
-                    sx={
-                      isActiveItem(item.subHeading3.to)
-                        ? {
-                            color: "grey",
-                            backgroundColor: `${
-                              !!themeColor ? lightColor : defaultLightColor
-                            }`,
-                            fontSize: "12px",
-                          }
-                        : { color: "grey", fontSize: "12px" }
-                    }
-                    variant="text"
-                    onClick={(e) => {
-                      navigate(`${item.subHeading3.to}`);
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
-                  >
-                    {item.subHeading3.subHeading}
-                  </Button>
-                </Box>
+                {item.subHeading1.subHeading !== "" && (
+                  <Box>
+                    <IconButton>{item.subHeading1.icon}</IconButton>
+                    <Button
+                      sx={
+                        isActiveItem(item.subHeading1.to)
+                          ? {
+                              color: "grey",
+                              backgroundColor: `${
+                                !!themeColor ? lightColor : defaultLightColor
+                              }`,
+                              fontSize: "12px",
+                            }
+                          : { color: "grey", fontSize: "12px" }
+                      }
+                      variant="text"
+                      onClick={(e) => {
+                        navigate(`${item.subHeading1.to}`);
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                    >
+                      {item.subHeading1.subHeading &&
+                        item.subHeading1.subHeading}
+                    </Button>
+                  </Box>
+                )}
+                {item.subHeading2.subHeading !== "" && (
+                  <Box>
+                    <IconButton>{item.subHeading2.icon}</IconButton>
+                    <Button
+                      sx={
+                        isActiveItem(item.subHeading2.to)
+                          ? {
+                              color: "grey",
+                              backgroundColor: `${
+                                !!themeColor ? lightColor : defaultLightColor
+                              }`,
+                              fontSize: "12px",
+                            }
+                          : { color: "grey", fontSize: "12px" }
+                      }
+                      variant="text"
+                      onClick={(e) => {
+                        navigate(`${item.subHeading2.to}`);
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                    >
+                      {item.subHeading2.subHeading}
+                    </Button>
+                  </Box>
+                )}
+                {item.subHeading3.subHeading !== "" && (
+                  <Box>
+                    <IconButton>{item.subHeading3.icon}</IconButton>
+                    <Button
+                      sx={
+                        isActiveItem(item.subHeading3.to)
+                          ? {
+                              color: "grey",
+                              backgroundColor: `${
+                                !!themeColor ? lightColor : defaultLightColor
+                              }`,
+                              fontSize: "12px",
+                            }
+                          : { color: "grey", fontSize: "12px" }
+                      }
+                      variant="text"
+                      onClick={(e) => {
+                        navigate(`${item.subHeading3.to}`);
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                    >
+                      {item.subHeading3.subHeading}
+                    </Button>
+                  </Box>
+                )}
               </Box>
             );
           })}
