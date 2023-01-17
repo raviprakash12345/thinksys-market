@@ -20,6 +20,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import LabelIcon from '@mui/icons-material/Label';
 let defaultColor = "#e35981";
 let defaultLightColor = "#f6dbe9"
 
@@ -245,7 +246,7 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981",lightColor=""
               <Button
                 sx={{ width: "100%", backgroundColor: "white", color: "gray" }}
               >
-                <DirectionsIcon sx={{ mr: 2 }} />
+                <LabelIcon sx={{ mr: 2,color:"#3f51b5" }} />
                 Promos
               </Button>
             </Box>
@@ -316,7 +317,7 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981",lightColor=""
                     >
                       <InputBase
                         sx={{ ml: 1, flex: 1 }}
-                        placeholder="Search Email"
+                        value= "From John Doe to me"
                         inputProps={{ "aria-label": "search google maps" }}
                       />
                       <IconButton
