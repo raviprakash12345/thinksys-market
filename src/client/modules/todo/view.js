@@ -12,7 +12,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon from "@mui/icons-material/Done";
 let defaultColor = "#e35981";
-const TodoView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
+const TodoView = ({
+  isDrawerMargin = true,
+  themeColor = "#e35981",
+  lightColor = "",
+}) => {
   function createData(name) {
     return { name };
   }
@@ -47,7 +51,7 @@ const TodoView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
       <Box
         sx={{
           width: "100%",
-          backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
+          backgroundColor: `${!!themeColor ? lightColor : defaultColor}`,
           padding: 3,
           borderRadius: "12px",
         }}
@@ -61,12 +65,18 @@ const TodoView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
                 borderRadius: "30px",
               }}
             >
-              <PlaylistAddCheckIcon sx={{ color: "red" }} fontSize="large" />
+              <PlaylistAddCheckIcon
+                sx={{ color: `${!!themeColor ? themeColor : defaultColor}` }}
+                fontSize="large"
+              />
             </IconButton>
             <Box sx={{ display: "flex", flexDirection: "column", ml: 2 }}>
               <Typography
                 variant="caption"
-                sx={{ fontSize: "20px", color: "#b04158" }}
+                sx={{
+                  fontSize: "20px",
+                  color: `${!!themeColor ? themeColor : defaultColor}`,
+                }}
               >
                 To Do Apps
               </Typography>
@@ -124,8 +134,10 @@ const TodoView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
         </Box>
 
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Button sx={{ color: "#b04158" }}>VIEW ALL</Button>/
-          <Button sx={{ color: "gray" }}>ACTIVE</Button>/
+          <Button sx={{ color: `${!!themeColor ? themeColor : defaultColor}` }}>
+            VIEW ALL
+          </Button>
+          /<Button sx={{ color: "gray" }}>ACTIVE</Button>/
           <Button sx={{ color: "gray" }}>COMPLETED</Button>
         </Box>
 
@@ -147,45 +159,45 @@ const TodoView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    <Button
-                      size="small"
+                    {/* <Button size="small"> */}
+                    <IconButton
                       sx={{
                         color: "gray",
                         height: 40,
-                        borderRadius: "50%",
                         backgroundColor: "#ededed",
                         mr: 2,
                       }}
                     >
                       <DoneIcon />
-                    </Button>
+                    </IconButton>
+                    {/* </Button> */}
                     {row.name}
                   </TableCell>
                   <TableCell sx={{ width: 200 }}>
-                    <Button
-                      size="small"
+                    <IconButton
+                      // size="small"
                       sx={{
                         color: "gray",
                         height: 40,
-                        borderRadius: "60%",
+                        // borderRadius: "60%",
                         backgroundColor: "#ededed",
                       }}
                     >
                       <EditIcon />
-                    </Button>
-                    <Button
-                      size="small"
+                    </IconButton>
+                    <IconButton
+                      // size="small"
                       sx={{
                         color: "gray",
                         height: 40,
-                        borderRadius: "60%",
+                        // borderRadius: "60%",
 
                         backgroundColor: "#ededed",
                         ml: 2,
                       }}
                     >
                       <DeleteIcon />
-                    </Button>
+                    </IconButton>
                   </TableCell>
                 </TableRow>
               ))}

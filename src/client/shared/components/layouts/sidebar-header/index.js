@@ -31,13 +31,15 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
-let defaultColor = "#f6dbe9";
+let defaultColor = "#e35981";
+let defaultLightColor = "#f6dbe9";
 export default function SidebarHeader({
   drawerList = [],
   children = <></>,
   isSideDrawerOpen = false,
   isOpen = false,
   themeColor = "#e35981",
+  lightColor="#f6dbe9"
 }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -73,7 +75,7 @@ export default function SidebarHeader({
                 <Typography
                   sx={{
                     marginRight: "110px",
-                    color: "#E32D46",
+                    color: `${!!themeColor ? themeColor : defaultColor}`,
                     width: "100%",
                     fontSize: "12px",
                   }}
@@ -87,13 +89,13 @@ export default function SidebarHeader({
                     sx={
                       isActiveItem(item.subHeading1.to)
                         ? {
-                            color: "black",
+                            color: "grey",
                             backgroundColor: `${
-                              !!themeColor ? themeColor : defaultColor
+                              !!themeColor ? lightColor : defaultLightColor
                             }`,
                             fontSize: "12px",
                           }
-                        : { color: "black", fontSize: "12px" }
+                        : { color: "grey", fontSize: "12px" }
                     }
                     variant="text"
                     onClick={(e) => {
@@ -111,13 +113,13 @@ export default function SidebarHeader({
                     sx={
                       isActiveItem(item.subHeading2.to)
                         ? {
-                            color: "black",
+                            color: "grey",
                             backgroundColor: `${
-                              !!themeColor ? themeColor : defaultColor
+                              !!themeColor ? lightColor : defaultLightColor
                             }`,
                             fontSize: "12px",
                           }
-                        : { color: "black", fontSize: "12px" }
+                        : { color: "grey", fontSize: "12px" }
                     }
                     variant="text"
                     onClick={(e) => {
@@ -135,13 +137,13 @@ export default function SidebarHeader({
                     sx={
                       isActiveItem(item.subHeading3.to)
                         ? {
-                            color: "Black",
+                            color: "grey",
                             backgroundColor: `${
-                              !!themeColor ? themeColor : defaultColor
+                              !!themeColor ? lightColor : defaultLightColor
                             }`,
                             fontSize: "12px",
                           }
-                        : { color: "black", fontSize: "12px" }
+                        : { color: "grey", fontSize: "12px" }
                     }
                     variant="text"
                     onClick={(e) => {

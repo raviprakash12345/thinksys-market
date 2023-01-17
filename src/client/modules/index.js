@@ -231,6 +231,7 @@ const App = ({ isSideDrawerOpen = false }) => {
     drawerList: [],
     isLoginPageOpen: false,
     isDrawerMargin: true,
+    lightColor: "",
   });
   let sidebarList = [
     {
@@ -297,10 +298,11 @@ const App = ({ isSideDrawerOpen = false }) => {
     }));
   };
 
-  const handlThemeChange = (color = "#e35981") => {
+  const handlThemeChange = (color = "#e35981", lightColor = "") => {
     setState((prevState) => ({
       ...prevState,
       themeColor: color || "#e35981",
+      lightColor: lightColor || "#f6dbe9",
     }));
   };
 
@@ -347,6 +349,7 @@ const App = ({ isSideDrawerOpen = false }) => {
           handleLoginPage={handleLoginPage}
           handleMargin={handleMargin}
           themeColor={state.themeColor}
+          lightColor={state.lightColor}
         >
           <Routes>
             <Route
@@ -375,6 +378,7 @@ const App = ({ isSideDrawerOpen = false }) => {
                 <Cryptocurrency
                   themeColor={state.themeColor}
                   isDrawerMargin={state.isDrawerMargin}
+                  lightColor={state.lightColor}
                 />
               }
             />
@@ -393,6 +397,7 @@ const App = ({ isSideDrawerOpen = false }) => {
                 <Todo
                   themeColor={state.themeColor}
                   isDrawerMargin={state.isDrawerMargin}
+                  lightColor={state.lightColor}
                 />
               }
             />
@@ -429,6 +434,7 @@ const App = ({ isSideDrawerOpen = false }) => {
                 <Email
                   themeColor={state.themeColor}
                   isDrawerMargin={state.isDrawerMargin}
+                  lightColor={state.lightColor}
                 />
               }
             />
@@ -438,6 +444,7 @@ const App = ({ isSideDrawerOpen = false }) => {
                 <Contact
                   themeColor={state.themeColor}
                   isDrawerMargin={state.isDrawerMargin}
+                  lightColor={state.lightColor}
                 />
               }
             />

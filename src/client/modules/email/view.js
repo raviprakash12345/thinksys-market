@@ -21,8 +21,9 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 let defaultColor = "#e35981";
+let defaultLightColor = "#f6dbe9"
 
-const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
+const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981",lightColor="" }) => {
   const [div, setDiv] = useState(false);
 
   function createData(name) {
@@ -64,7 +65,7 @@ const EmailView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
       <Box
         sx={{
           width: "100%",
-          backgroundColor: "#f3e5f5",
+          backgroundColor: `${!!themeColor ? lightColor : defaultLightColor}`,
           padding: 3,
           borderRadius: "12px",
           display: "flex",
