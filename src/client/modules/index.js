@@ -32,6 +32,7 @@ import Analytics from "./analytics";
 import Email from "./email";
 import Contact from "./contact";
 import TodoFirebase from "./todo-firebase";
+import DataTable from "./dataTable";
 
 let index = 1;
 const drawerList1 = [
@@ -225,6 +226,49 @@ const drawerList3 = [
     heading: "SOCIAL PAGES",
   },
 ];
+const drawerList4 = [
+  {
+    subHeading1: {
+      subHeading: "Basic",
+      to: "/tables/basic",
+      icon: <CorporateFareIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
+    },
+    subHeading2: {
+      subHeading: "Data Table",
+      to: "/tables/dataTable",
+      icon: "",
+    },
+    subHeading3: {
+      subHeading: "Table Playground",
+      to: "/tables/tablePlayground",
+      icon: "",
+    },
+    heading: "COMMON TABLES",
+  },
+  {
+    subHeading1: {
+      subHeading: "Tree Table",
+      to: "/tables/treeTable",
+      icon: (
+        <SettingsBrightnessIcon sx={{ color: "#7B7E7E" }} fontSize="small" />
+      ),
+    },
+    subHeading2: {
+      subHeading: "Table Edit",
+      to: "/tables/tableEdit",
+      icon: (
+        <SettingsSystemDaydreamIcon
+          sx={{ color: "#7B7E7E" }}
+          fontSize="small"
+        />
+      ),
+    },
+    subHeading3: {
+    },
+    heading: "REDUX TABLE",
+  },
+
+];
 const App = ({ isSideDrawerOpen = false }) => {
   const [state, setState] = useState({
     themeColor: "",
@@ -295,6 +339,8 @@ const App = ({ isSideDrawerOpen = false }) => {
           ? drawerList2
           : listIndex == 2
           ? drawerList3
+          : listIndex == 3
+          ? drawerList4
           : [],
     }));
   };
@@ -453,6 +499,16 @@ const App = ({ isSideDrawerOpen = false }) => {
               path="/applications/todoFireBase"
               element={
                 <TodoFirebase
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                  lightColor={state.lightColor}
+                />
+              }
+            />
+              <Route
+              path="/tables/dataTable"
+              element={
+                <DataTable
                   themeColor={state.themeColor}
                   isDrawerMargin={state.isDrawerMargin}
                   lightColor={state.lightColor}
