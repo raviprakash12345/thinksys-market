@@ -270,7 +270,7 @@ const ContactView = ({
                       sx={{
                         width: "100%",
                         marginLeft: "8px",
-                        color: `${themeVariant == "dark" ? "black" : "white"}`,
+                        color: `${themeVariant == "dark" && "black"}`,
                       }}
                     >
                       <Typography sx={{ fontWeight: "bold" }} variant="h6">
