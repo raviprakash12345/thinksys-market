@@ -37,13 +37,13 @@ const data = [
     amt: 181,
   },
 ];
-const LineChartView = ({ isDrawerMargin = true, bg_color="a152b0" }) => {
+const LineChartView = ({ isDrawerMargin = true, bg_color = "a152b0" }) => {
   return (
     <>
       <Paper
         sx={{
           height: "200px",
-          width: `${!isDrawerMargin ? "700px" : "850px"}`,
+          width: `${!isDrawerMargin ? "720px" : "850px"}`,
           marginTop: "12px",
         }}
         elevation={2}
@@ -88,7 +88,7 @@ const LineChartView = ({ isDrawerMargin = true, bg_color="a152b0" }) => {
         </Box>
         <Box
           sx={{
-            width: `${!isDrawerMargin ? "700px" : "850px"}`,
+            width: `${!isDrawerMargin ? "720px" : "850px"}`,
             height: "100px",
             backgroundColor: `#${bg_color}`,
             position: "relative",

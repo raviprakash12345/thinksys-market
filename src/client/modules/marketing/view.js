@@ -42,7 +42,7 @@ const MarketingView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
             sx={{
               border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
-              width: "350px",
+              width: `${!isDrawerMargin ? "350px" : "420px"}`,
               borderRadius: "10px",
               backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
               color: "white",
@@ -73,7 +73,7 @@ const MarketingView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
             sx={{
               border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
-              width: "350px",
+              width: `${!isDrawerMargin ? "350px" : "420px"}`,
               borderRadius: "10px",
               color: `${!!themeColor ? themeColor : defaultColor}`,
               marginTop: "8px",
@@ -103,7 +103,7 @@ const MarketingView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
             sx={{
               border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
-              width: "350px",
+              width: `${!isDrawerMargin ? "350px" : "420px"}`,
               borderRadius: "10px",
               color: `${!!themeColor ? themeColor : defaultColor}`,
               marginTop: "8px",
@@ -133,7 +133,7 @@ const MarketingView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
             sx={{
               border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
-              width: "350px",
+              width: `${!isDrawerMargin ? "350px" : "420px"}`,
               borderRadius: "10px",
               color: `${!!themeColor ? themeColor : defaultColor}`,
               marginTop: "8px",

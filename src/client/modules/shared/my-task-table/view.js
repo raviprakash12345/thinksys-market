@@ -35,7 +35,10 @@ const MyTaskTableView = ({
                 borderRadius: "30px",
               }}
             >
-              <PlaylistAddCheckIcon sx={{ color: "red" }} fontSize="large" />
+              <PlaylistAddCheckIcon
+                sx={{ color: `${!!themeColor ? themeColor : defaultColor}` }}
+                fontSize="large"
+              />
             </IconButton>
             <Box sx={{ marginLeft: "8px" }}>
               <Typography
@@ -55,7 +58,7 @@ const MyTaskTableView = ({
               width: "95%",
               height: "430px",
               marginTop: "32px",
-            //   marginBottom: "16px",
+              //   marginBottom: "16px",
               marginLeft: "16px",
             }}
           >

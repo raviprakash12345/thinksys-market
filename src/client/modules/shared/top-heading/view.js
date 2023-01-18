@@ -43,7 +43,7 @@ const TopHeadingView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
             sx={{
               border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
               height: "120px",
-              width: `${!isDrawerMargin ? "350px" : "390px"}`,
+              width: `${!isDrawerMargin ? "350px" : "480px"}`,
               borderRadius: "10px",
               color: "white",
               marginTop: "8px",

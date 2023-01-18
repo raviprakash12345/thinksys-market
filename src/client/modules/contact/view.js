@@ -12,7 +12,13 @@ import WorkIcon from "@mui/icons-material/Work";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import LanguageIcon from "@mui/icons-material/Language";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "@client/shared/contexts";
+import {
+  globalStyles,
+  THEME_VARIANT,
+  sessionExpireMsg,
+} from "@client/shared/constants";
 const defaultData = [
   {
     id: 1,
@@ -83,6 +89,7 @@ const ContactView = ({
   isDrawerMargin = true,
   lightColor = "",
 }) => {
+  const { themeVariant, setThemeVariant } = useContext(AppContext);
   const [state, setState] = useState(defaultState);
   const location = useLocation();
   const handleProfile = (id, index) => {
@@ -126,7 +133,7 @@ const ContactView = ({
             sx={{ color: `${!!themeColor ? themeColor : defaultColor}` }}
             variant="h4"
           >
-            Email
+            Contact
           </Typography>
           <Typography sx={{ marginLeft: "16px" }} variant="body1">
             {location.pathname}
@@ -156,12 +163,19 @@ const ContactView = ({
                         "& .MuiOutlinedInput-root": {
                           width: "200px",
                           height: "32px",
-                          background: "white",
+                          background: `${
+                            themeVariant == "dark" ? "grey" : "white"
+                          }`,
                         },
                       }}
                     />
                     <IconButton>
-                      <AddIcon sx={{ fontSize: "40px" }} />
+                      <AddIcon
+                        sx={{
+                          fontSize: "40px",
+                          color: `${!!themeColor ? themeColor : defaultColor}`,
+                        }}
+                      />
                     </IconButton>
                   </Box>
                 </Box>
@@ -246,8 +260,19 @@ const ContactView = ({
                       padding: "8px",
                     }}
                   >
-                    <AccountCircleIcon fontSize="large" />
-                    <Box sx={{ width: "100%", marginLeft: "8px" }}>
+                    <AccountCircleIcon
+                      sx={{
+                        color: `${themeVariant == "dark" && "grey"}`,
+                      }}
+                      fontSize="large"
+                    />
+                    <Box
+                      sx={{
+                        width: "100%",
+                        marginLeft: "8px",
+                        color: `${themeVariant == "dark" ? "black" : "white"}`,
+                      }}
+                    >
                       <Typography sx={{ fontWeight: "bold" }} variant="h6">
                         {item.profileName}
                       </Typography>
@@ -264,8 +289,10 @@ const ContactView = ({
                     <>
                       <Paper
                         sx={{
-                          backgroundColor: "white",
-                          width: 1200,
+                          backgroundColor: `${
+                            themeVariant == "dark" ? "grey" : "white"
+                          }`,
+                          width: `${!isDrawerMargin ? "1200px" : "1455px"}`,
                           marginBottom: "16px",
                         }}
                         elevation={0}

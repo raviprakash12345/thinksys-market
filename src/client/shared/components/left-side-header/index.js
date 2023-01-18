@@ -15,6 +15,7 @@ import Typography from "@mui/material/Typography";
 import MenuSharpIcon from "@mui/icons-material/MenuSharp";
 import { THEME_VARIANT } from "@client/shared/constants";
 import { DefaultLayout } from "../layouts";
+import { AppContext } from "@client/shared/contexts";
 const defaultState = {
   isDrawerOpen: false,
   isTakeoverDialogOpen: false,
@@ -31,8 +32,9 @@ const LeftSideHeader = ({
   handleLoginPage = () => {},
   handleMargin = () => {},
   themeColor = "#e35981",
-  lightColor = "#f6dbe9"
+  lightColor = "#f6dbe9",
 }) => {
+  const { themeVariant, setThemeVariant } = React.useContext(AppContext);
   const [state, setState] = useState(defaultState);
   const navigate = useNavigate();
   const location = useLocation();
@@ -49,7 +51,17 @@ const LeftSideHeader = ({
     <>
       <Drawer
         PaperProps={{
-          sx: false ? styles.drawerOpen : styles.drawerClose,
+          sx: false
+            ? styles.drawerOpen
+            : {
+                backgroundColor: `${
+                  themeVariant !== "light" ? "black" : "#EAEAEA"
+                }`,
+                justifyContent: "space-between",
+                maxWidth: "200px",
+                minWidth: "56px",
+                cursor: "pointer",
+              },
         }}
         variant="permanent"
         elevation={5}
@@ -60,7 +72,9 @@ const LeftSideHeader = ({
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              backgroundColor: "#EAEAEA",
+              backgroundColor: `${
+                themeVariant !== "light" ? "black" : "#EAEAEA"
+              }`,
               minHeight: "64px",
               width: "100%",
               marginRight: "32px",
@@ -76,7 +90,12 @@ const LeftSideHeader = ({
           >
             <MenuSharpIcon />
           </Box>
-          <Box sx={{ ...styles.drawerList, alignItems: "center" }}>
+          <Box
+            sx={{
+              ...styles.drawerList,
+              alignItems: "center",
+            }}
+          >
             <IconButton>
               <AccountCircleIcon fontSize="large" />
             </IconButton>

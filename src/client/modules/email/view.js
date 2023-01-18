@@ -13,7 +13,7 @@ import NewReleasesOutlinedIcon from "@mui/icons-material/NewReleasesOutlined";
 import FlagRoundedIcon from "@mui/icons-material/FlagRounded";
 import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -21,6 +21,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import LabelIcon from "@mui/icons-material/Label";
+import { AppContext } from "@client/shared/contexts";
 let defaultColor = "#e35981";
 let defaultLightColor = "#f6dbe9";
 
@@ -29,6 +30,7 @@ const EmailView = ({
   themeColor = "#e35981",
   lightColor = "",
 }) => {
+  const { themeVariant, setThemeVariant } = useContext(AppContext);
   const [div, setDiv] = useState(false);
   const [mainId, setMainid] = useState([]);
   const [id, setId] = useState("");
@@ -103,7 +105,7 @@ const EmailView = ({
     }
     return isActive;
   };
-  console.log(mainId);
+
   return (
     <Box sx={!isDrawerMargin && { marginLeft: "250px" }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -153,7 +155,7 @@ const EmailView = ({
               sx={{
                 display: "flex",
                 alignItems: "center",
-                width: 1150,
+                width: `${!isDrawerMargin ? "1148px" : "1400px"}`,
               }}
             >
               <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
@@ -167,7 +169,6 @@ const EmailView = ({
             </Paper>
           </Box>
         </Box>
-
         <Box sx={{ display: "flex", flexDirection: "row" }}>
           <Box>
             {data1.map((item, index) => {
@@ -251,8 +252,10 @@ const EmailView = ({
               <Box>
                 <Box
                   sx={{
-                    width: 1150,
-                    backgroundColor: "white",
+                    width: `${!isDrawerMargin ? "1150px" : "1400px"}`,
+                    backgroundColor: `${
+                      themeVariant == "dark" ? "grey" : "white"
+                    }`,
                     ml: 15,
                     borderRadius: "16px",
                   }}
@@ -299,8 +302,10 @@ const EmailView = ({
                           sx={{
                             display: "flex",
                             alignItems: "center",
-                            width: 1100,
-                            backgroundColor: "#f5f5f5",
+                            width: `${!isDrawerMargin ? "1100px" : "1350px"}`,
+                            backgroundColor: `${
+                              themeVariant == "dark" ? "black" : "#f5f5f5"
+                            }`,
                             ml: 2.5,
                           }}
                         >

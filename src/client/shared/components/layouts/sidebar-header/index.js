@@ -20,7 +20,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Button } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { AppContext } from "@client/shared/contexts";
 const drawerWidth = 240;
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -41,6 +41,7 @@ export default function SidebarHeader({
   themeColor = "#e35981",
   lightColor = "#f6dbe9",
 }) {
+  const { themeVariant, setThemeVariant } = React.useContext(AppContext);
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
@@ -78,7 +79,7 @@ export default function SidebarHeader({
                     color: `${!!themeColor ? themeColor : defaultColor}`,
                     width: "100%",
                     fontSize: "10px",
-                    fontWeight:"bold"
+                    fontWeight: "bold",
                   }}
                   variant="body1"
                 >

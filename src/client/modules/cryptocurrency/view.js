@@ -72,7 +72,13 @@ const CryptocurrencyView = ({
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <Box>
             <Box>
-              <Paper sx={{ height: "200px", width: "500px" }} elevation={2}>
+              <Paper
+                sx={{
+                  height: "200px",
+                  width: `${!isDrawerMargin ? "500px" : "600px"}`,
+                }}
+                elevation={2}
+              >
                 <Box
                   sx={{
                     display: "flex",
@@ -115,7 +121,7 @@ const CryptocurrencyView = ({
                 </Box>
                 <Box
                   sx={{
-                    width: "500px",
+                    width: `${!isDrawerMargin ? "500px" : "600px"}`,
                     height: "100px",
                     backgroundColor: "#ffb300",
                     position: "relative",
@@ -140,7 +146,11 @@ const CryptocurrencyView = ({
 
             <Box>
               <Paper
-                sx={{ marginTop: "12px", height: "200px", width: "500px" }}
+                sx={{
+                  marginTop: "12px",
+                  height: "200px",
+                  width: `${!isDrawerMargin ? "500px" : "600px"}`,
+                }}
                 elevation={2}
               >
                 <Box
@@ -183,7 +193,7 @@ const CryptocurrencyView = ({
                 </Box>
                 <Box
                   sx={{
-                    width: "500px",
+                    width: `${!isDrawerMargin ? "500px" : "600px"}`,
                     height: "100px",
                     backgroundColor: "#fb8c00",
                     position: "relative",
@@ -208,7 +218,13 @@ const CryptocurrencyView = ({
           </Box>
           <Box>
             <Box>
-              <Paper sx={{ height: "200px", width: "500px" }} elevation={2}>
+              <Paper
+                sx={{
+                  height: "200px",
+                  width: `${!isDrawerMargin ? "500px" : "600px"}`,
+                }}
+                elevation={2}
+              >
                 <Box
                   sx={{
                     display: "flex",
@@ -251,7 +267,7 @@ const CryptocurrencyView = ({
                 </Box>
                 <Box
                   sx={{
-                    width: "500px",
+                    width: `${!isDrawerMargin ? "500px" : "600px"}`,
                     height: "100px",
                     backgroundColor: "#536dfe",
                     position: "relative",
@@ -276,7 +292,11 @@ const CryptocurrencyView = ({
 
             <Box>
               <Paper
-                sx={{ marginTop: "12px", height: "200px", width: "500px" }}
+                sx={{
+                  marginTop: "12px",
+                  height: "200px",
+                  width: `${!isDrawerMargin ? "500px" : "600px"}`,
+                }}
                 elevation={2}
               >
                 <Box
@@ -321,7 +341,7 @@ const CryptocurrencyView = ({
                 </Box>
                 <Box
                   sx={{
-                    width: "500px",
+                    width: `${!isDrawerMargin ? "500px" : "600px"}`,
                     height: "100px",
                     backgroundColor: "#a152b0",
                     position: "relative",
@@ -349,7 +369,7 @@ const CryptocurrencyView = ({
               sx={{
                 border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
                 height: "135px",
-                width: "380px",
+                width: `${!isDrawerMargin ? "380px" : "480px"}`,
                 borderRadius: "10px",
                 marginTop: "8px",
                 color: `${!!themeColor ? themeColor : defaultColor}`,
@@ -379,7 +399,7 @@ const CryptocurrencyView = ({
               sx={{
                 border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
                 height: "135px",
-                width: "380px",
+                width: `${!isDrawerMargin ? "380px" : "480px"}`,
                 borderRadius: "10px",
                 color: `${!!themeColor ? themeColor : defaultColor}`,
                 marginTop: "8px",
@@ -409,7 +429,7 @@ const CryptocurrencyView = ({
               sx={{
                 border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
                 height: "135px",
-                width: "380px",
+                width: `${!isDrawerMargin ? "380px" : "480px"}`,
                 borderRadius: "10px",
                 color: `${!!themeColor ? themeColor : defaultColor}`,
                 marginTop: "8px",
@@ -444,7 +464,7 @@ const CryptocurrencyView = ({
               "& .MuiPaper-root": {
                 position: "absolute",
                 top: "790px",
-                width: "82%",
+                width: `${!isDrawerMargin ? "82%" : "95%"}`,
               },
             }}
             elevation={2}
@@ -517,7 +537,11 @@ const CryptocurrencyView = ({
                 </IconButton>
               </Box>
             </Box>
-            <MarketPlaceGrid themeColor={themeColor} lightColor={lightColor} />
+            <MarketPlaceGrid
+              themeColor={themeColor}
+              lightColor={lightColor}
+              isDrawerMargin={isDrawerMargin}
+            />
           </Paper>
         </Box>
       </Box>

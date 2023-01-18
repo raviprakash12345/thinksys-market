@@ -4,7 +4,7 @@ const { display, background, flex, text } = globalStyles;
 const styles = {
   drawerClose: {
     // ...background.color.primary.dark,
-    backgroundColor: "#EAEAEA",
+    backgroundColor: "red",
     ...flex.justify.between,
     maxWidth: "200px",
     minWidth: "56px",
