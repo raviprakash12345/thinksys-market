@@ -33,6 +33,7 @@ import Email from "./email";
 import Contact from "./contact";
 import TodoFirebase from "./todo-firebase";
 import DataTable from "./dataTable";
+import ContactFireBase from "./contact-firebase";
 
 let index = 1;
 const drawerList1 = [
@@ -263,11 +264,9 @@ const drawerList4 = [
         />
       ),
     },
-    subHeading3: {
-    },
+    subHeading3: {},
     heading: "REDUX TABLE",
   },
-
 ];
 const App = ({ isSideDrawerOpen = false }) => {
   const [state, setState] = useState({
@@ -505,7 +504,17 @@ const App = ({ isSideDrawerOpen = false }) => {
                 />
               }
             />
-              <Route
+            <Route
+              path="/applications/contactFireBase"
+              element={
+                <ContactFireBase
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                  lightColor={state.lightColor}
+                />
+              }
+            />
+            <Route
               path="/tables/dataTable"
               element={
                 <DataTable
