@@ -7,7 +7,6 @@ const DataTable = ({
   isDrawerMargin = true,
   themeColor = "#e35981",
   lightColor = "",
-  isTable = false,
 }) => {
   const [state, setState] = useState(defaultState);
 
@@ -17,7 +16,6 @@ const DataTable = ({
         isDrawerMargin={isDrawerMargin}
         themeColor={themeColor}
         lightColor={lightColor}
-        isTable={isTable}
       />
     </>
   );
