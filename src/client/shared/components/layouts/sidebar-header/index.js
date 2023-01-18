@@ -64,6 +64,7 @@ export default function SidebarHeader({
               boxSizing: "border-box",
               left: "80px",
               top: "65px",
+              background: `${themeVariant == "dark" ? "black" : "#EAEAEA"}`,
             },
           }}
           variant="persistent"

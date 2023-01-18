@@ -1,4 +1,10 @@
-import React, { useState, useCallback, useEffect, useContext } from "react";
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  useContext,
+  useRef,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import AppBar from "@mui/material/AppBar";
@@ -118,9 +124,48 @@ export default function Header({
   //     getUserDetails();
   //   }
   // }, [getUserDetails]);
+  const THRESHOLD = 0;
 
+  const useScrollDirection = () => {
+    const [scrollDirection, setScrollDirection] = useState("up");
+
+    const blocking = useRef(false);
+    const prevScrollY = useRef(0);
+
+    useEffect(() => {
+      prevScrollY.current = window.pageYOffset;
+
+      const updateScrollDirection = () => {
+        const scrollY = window.pageYOffset;
+
+        if (Math.abs(scrollY - prevScrollY.current) >= THRESHOLD) {
+          const newScrollDirection =
+            scrollY > prevScrollY.current ? "down" : "up";
+
+          setScrollDirection(newScrollDirection);
+
+          prevScrollY.current = scrollY > 0 ? scrollY : 0;
+        }
+
+        blocking.current = false;
+      };
+
+      const onScroll = () => {
+        if (!blocking.current) {
+          blocking.current = true;
+          window.requestAnimationFrame(updateScrollDirection);
+        }
+      };
+
+      window.addEventListener("scroll", onScroll);
+
+      return () => window.removeEventListener("scroll", onScroll);
+    }, [scrollDirection]);
+
+    return scrollDirection;
+  };
   return (
-    <AppBar position={position} color="default" elevation={5}>
+    <AppBar position={position} color="default" elevation={2}>
       <Toolbar
         sx={
           !!elements
@@ -130,133 +175,112 @@ export default function Header({
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography sx={{ mr: 5, width: "150px" }}>Enlite Prime</Typography>
-          <IconButton
-            onClick={() =>
-              setState((prevState) => ({
-                ...prevState,
-                fullScreen: !state.fullScreen,
-              }))
-            }
-          >
-            {!state.fullScreen ? (
-              <FullscreenIcon fontSize="medium"></FullscreenIcon>
-            ) : (
-              <FullscreenExitIcon fontSize="medium"></FullscreenExitIcon>
-            )}
-          </IconButton>
+          {useScrollDirection() !== "up" ? (
+            <Typography
+              sx={{ color: `${!!themeColor ? themeColor : defaultColor}` }}
+              variant="h4"
+            >
+              App
+            </Typography>
+          ) : (
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <IconButton
+                onClick={() =>
+                  setState((prevState) => ({
+                    ...prevState,
+                    fullScreen: !state.fullScreen,
+                  }))
+                }
+              >
+                {!state.fullScreen ? (
+                  <FullscreenIcon fontSize="medium"></FullscreenIcon>
+                ) : (
+                  <FullscreenExitIcon fontSize="medium"></FullscreenExitIcon>
+                )}
+              </IconButton>
 
-          <IconButton
-            onClick={() => {
-              const newThemeType =
-                themeVariant === THEME_VARIANT.LIGHT
-                  ? THEME_VARIANT.DARK
-                  : THEME_VARIANT.LIGHT;
-              setThemeVariant(newThemeType);
-            }}
-          >
-            {themeVariant === THEME_VARIANT.LIGHT ? (
-              <InvertColorsIcon
+              <IconButton
+                onClick={() => {
+                  const newThemeType =
+                    themeVariant === THEME_VARIANT.LIGHT
+                      ? THEME_VARIANT.DARK
+                      : THEME_VARIANT.LIGHT;
+                  setThemeVariant(newThemeType);
+                }}
+              >
+                {themeVariant === THEME_VARIANT.LIGHT ? (
+                  <InvertColorsIcon
+                    fontSize="medium"
+                    sx={{ color: "primary.dark" }}
+                  />
+                ) : (
+                  <InvertColorsIcon fontSize="medium" />
+                )}
+              </IconButton>
+              <HelpOutlineIcon
                 fontSize="medium"
-                sx={{ color: "primary.dark" }}
-              />
-            ) : (
-              <InvertColorsIcon fontSize="medium" />
-            )}
-          </IconButton>
-          <HelpOutlineIcon
-            fontSize="medium"
-            sx={{ color: "grey", mr: 120 }}
-          ></HelpOutlineIcon>
-          {/* <Box
-          
-           sx={{
-            width: 150,
-           maxWidth: '100%',
-           backgroundColor:"white",
-           display: "flex",
-           borderRadius: "10px",
-           border:"1px solid white",
-           }}
-              > 
-                 <SearchIcon  
-                 sx={{ marginTop :  "12px",}} />
-               <TextField 
-               size="small"
-               placeholder="search..."
-               sx={{width : "150px" ,
-               border:"1px solid white",
-                   "& .MuiOutlinedInput-root": {
-                    backgroundColor: "white",
-                    
-                    "&:hover": {
-                      border:"1px solid white",
-                      width:"280px"
-                    },
-                  },
-                }} 
-              />
-                
-        </Box> */}
-          <TextField
-            variant="outlined"
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon sx={{ color: "black" }} />
-                </InputAdornment>
-              ),
-            }}
-            placeholder="search..."
+                sx={{ color: "grey", mr: 120 }}
+              ></HelpOutlineIcon>
+            </Box>
+          )}
+
+          <Box
             sx={{
-              width: "150px",
-              mr: "20px",
-
-              "& .MuiOutlinedInput-root": {
-                backgroundColor: "white",
-                color: "black",
-
-                //  "&:hover": {
-                //    borderColor:"1px solid red",
-                //    width:"280px",
-
-                //  },
-              },
+              display: "flex",
+              alignItems: "center",
+              marginLeft: `${useScrollDirection() !== "up" ? "980px" : "0px"}`,
             }}
-          />
-
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={Lanuages}
-            size="small"
-            sx={{ width: 150, mr: "20px" }}
-            defaultValue="English"
-            disableClearable="true"
-            renderInput={(params) => <TextField {...params} />}
-          />
-
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
-              width: "110px",
-            }}
-            onClick={handleNavigation}
           >
-            Login
-          </Button>
+            <TextField
+              variant="outlined"
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon sx={{ color: "black" }} />
+                  </InputAdornment>
+                ),
+              }}
+              placeholder="search..."
+              sx={{
+                width: "150px",
+                mr: "20px",
 
-          {/* <Avatar
-            src={profileImageUri}
-            sx={{...globalStyles.cursor.pointer,top : 300}}
-            onClick={() => {
-              setState((prevState) => ({
-                ...prevState,
-                open: !prevState.open,
-              }));
-            }}
-          /> */}
+                "& .MuiOutlinedInput-root": {
+                  backgroundColor: "white",
+                  color: "black",
+
+                  //  "&:hover": {
+                  //    borderColor:"1px solid red",
+                  //    width:"280px",
+
+                  //  },
+                },
+              }}
+            />
+
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={Lanuages}
+              size="small"
+              sx={{ width: 150, mr: "20px" }}
+              defaultValue="English"
+              disableClearable="true"
+              renderInput={(params) => <TextField {...params} />}
+            />
+
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
+                width: "110px",
+              }}
+              onClick={handleNavigation}
+            >
+              Login
+            </Button>
+          </Box>
 
           <PaletteIcon
             fontSize="large"
@@ -274,6 +298,7 @@ export default function Header({
             }}
           ></PaletteIcon>
         </Box>
+
         <Drawer open={state.open} onClose={handleDrawerClose} anchor="right">
           <Box sx={style.drawerPaper}>
             <Box sx={{ backgroundColor: "#fafafa" }}>
@@ -296,41 +321,77 @@ export default function Header({
               <Box sx={style.themeColor}>
                 <Box
                   onClick={() => handlThemeChange("#f14f6f", "#f6dbe9")}
-                  sx={{ ...style.themeBox, backgroundColor: "#f14f6f" }}
+                  sx={{
+                    ...style.themeBox,
+                    backgroundColor: "#f14f6f",
+                    cursor: "pointer",
+                  }}
                 >
                   {" "}
                 </Box>
                 <Box
                   onClick={() => handlThemeChange("#40a291", "#cffaf4")}
-                  sx={{ ...style.themeBox, backgroundColor: "#40a291" }}
+                  sx={{
+                    ...style.themeBox,
+                    backgroundColor: "#40a291",
+                    cursor: "pointer",
+                  }}
                 ></Box>
                 <Box
                   onClick={() => handlThemeChange("#3d53c8", "#e2e5fe")}
-                  sx={{ ...style.themeBox, backgroundColor: "#3d53c8" }}
+                  sx={{
+                    ...style.themeBox,
+                    backgroundColor: "#3d53c8",
+                    cursor: "pointer",
+                  }}
                 ></Box>
                 <Box
                   onClick={() => handlThemeChange("#a45ac5", "#f3d6fe")}
-                  sx={{ ...style.themeBox, backgroundColor: "#a45ac5" }}
+                  sx={{
+                    ...style.themeBox,
+                    backgroundColor: "#a45ac5",
+                    cursor: "pointer",
+                  }}
                 ></Box>
                 <Box
                   onClick={() => handlThemeChange("#f24724", "#f9e5de")}
-                  sx={{ ...style.themeBox, backgroundColor: "#f24724" }}
+                  sx={{
+                    ...style.themeBox,
+                    backgroundColor: "#f24724",
+                    cursor: "pointer",
+                  }}
                 ></Box>
                 <Box
                   onClick={() => handlThemeChange("#607c89", "#ebecec")}
-                  sx={{ ...style.themeBox, backgroundColor: "#607c89" }}
+                  sx={{
+                    ...style.themeBox,
+                    backgroundColor: "#607c89",
+                    cursor: "pointer",
+                  }}
                 ></Box>
                 <Box
                   onClick={() => handlThemeChange("#70cb34", "#f0f3c9")}
-                  sx={{ ...style.themeBox, backgroundColor: "#70cb34" }}
+                  sx={{
+                    ...style.themeBox,
+                    backgroundColor: "#70cb34",
+                    cursor: "pointer",
+                  }}
                 ></Box>
                 <Box
                   onClick={() => handlThemeChange("#00a2f1", "#d6f4f9")}
-                  sx={{ ...style.themeBox, backgroundColor: "#00a2f1" }}
+                  sx={{
+                    ...style.themeBox,
+                    backgroundColor: "#00a2f1",
+                    cursor: "pointer",
+                  }}
                 ></Box>
                 <Box
                   onClick={() => handlThemeChange("#795048", "#f0e7e7")}
-                  sx={{ ...style.themeBox, backgroundColor: "#795048" }}
+                  sx={{
+                    ...style.themeBox,
+                    backgroundColor: "#795048",
+                    cursor: "pointer",
+                  }}
                 ></Box>
               </Box>
             </Box>

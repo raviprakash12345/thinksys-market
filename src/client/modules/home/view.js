@@ -7,14 +7,25 @@ import CreateIcon from "@mui/icons-material/Create";
 import FilterIcon from "@mui/icons-material/Filter";
 import ChartArea from "../shared/area-chart";
 import HomeTable from "../shared/home-table";
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import MyTaskTable from "../shared/my-task-table";
 let defaultColor = "#e35981";
 let defaultMargin = true;
 const HomeView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
+  
+  // useEffect(() => {
+  //   const onScroll = () => pageScrollUP()
+  //   // clean up code
+  //   window.removeEventListener("scroll", onScroll);
+  //   window.addEventListener("scroll", onScroll, { passive: true });
+  //   return () => window.removeEventListener("scroll", onScroll);
+  // }, []);
   return (
     <>
-      <Box sx={!isDrawerMargin && defaultMargin && { marginLeft: "255px" }}>
+      <Box
+        sx={!isDrawerMargin && defaultMargin && { marginLeft: "255px" }}
+        // onScroll={() => onScroll()}
+      >
         <Box sx={{ display: "flex", gap: "8px" }}>
           <Box
             sx={{
