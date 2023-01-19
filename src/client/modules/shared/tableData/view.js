@@ -10,10 +10,12 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 
 
 let defaultColor = "#e35981";
+let defaultLightColor = "#f6dbe9";
 const TableDataView = ({
   columnConfigs = [],
   entries = [],
   themeColor = "e35981",
+  lightColor=""
 }) => {
   return (
     <>
@@ -22,8 +24,8 @@ const TableDataView = ({
           sx={{
          
             height: "600px",
-            border: `1px solid ${!!themeColor ? themeColor : defaultColor}`,
-            backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
+            border: `1px solid ${!!themeColor ? lightColor : defaultLightColor}`,
+            backgroundColor: `${!!themeColor ? lightColor : defaultLightColor}`,
             borderRadius: "8px",
           }}
         >

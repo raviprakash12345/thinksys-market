@@ -263,11 +263,9 @@ const drawerList4 = [
         />
       ),
     },
-    subHeading3: {
-    },
+    subHeading3: {},
     heading: "REDUX TABLE",
   },
-
 ];
 const App = ({ isSideDrawerOpen = false }) => {
   const [state, setState] = useState({
@@ -505,7 +503,7 @@ const App = ({ isSideDrawerOpen = false }) => {
                 />
               }
             />
-              <Route
+            <Route
               path="/tables/dataTable"
               element={
                 <DataTable
