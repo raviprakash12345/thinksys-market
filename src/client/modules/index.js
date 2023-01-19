@@ -173,12 +173,12 @@ const drawerList3 = [
   {
     subHeading1: {
       subHeading: "Login",
-      to: "pages/login",
+      to: "/pages/login",
       icon: <AccountBoxIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
     },
     subHeading2: {
       subHeading: "Register",
-      to: "pages/register",
+      to: "/pages/register",
       icon: <BorderColorIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
     },
     subHeading3: {
@@ -399,6 +399,7 @@ const App = ({ isSideDrawerOpen = false }) => {
     <>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/pages/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
       {!state.isLoginPageOpen && (

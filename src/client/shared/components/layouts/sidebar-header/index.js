@@ -113,6 +113,10 @@ export default function SidebarHeader({
                         // isActiveItem(item.subHeading1.to)
                         e.preventDefault();
                         e.stopPropagation();
+                        if(item.subHeading1.subHeading == "Login"){
+                          handleLoginPage()
+                        }
+                       
                       }}
                     >
                       {item.subHeading1.subHeading &&
