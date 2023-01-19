@@ -13,7 +13,7 @@ import NewReleasesOutlinedIcon from "@mui/icons-material/NewReleasesOutlined";
 import FlagRoundedIcon from "@mui/icons-material/FlagRounded";
 import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -105,6 +105,12 @@ const EmailView = ({
     }
     return isActive;
   };
+  console.log(mainId);
+    
+  useEffect(() => {
+    setMainid([profiles[0]])
+    setId(1)
+  }, []);
 
   return (
     <Box sx={!isDrawerMargin && { marginLeft: "250px" }}>
