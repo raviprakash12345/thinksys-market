@@ -40,6 +40,7 @@ export default function SidebarHeader({
   isOpen = false,
   themeColor = "#e35981",
   lightColor = "#f6dbe9",
+  handleLoginPage = () => {},
 }) {
   const { themeVariant, setThemeVariant } = React.useContext(AppContext);
   const navigate = useNavigate();
@@ -109,6 +110,7 @@ export default function SidebarHeader({
                       variant="text"
                       onClick={(e) => {
                         navigate(`${item.subHeading1.to}`);
+                        // isActiveItem(item.subHeading1.to)
                         e.preventDefault();
                         e.stopPropagation();
                       }}

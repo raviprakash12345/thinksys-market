@@ -37,6 +37,7 @@ import PaletteIcon from "@mui/icons-material/Palette";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import Switch from "@mui/material/Switch";
 import FormatTextdirectionLToRIcon from "@mui/icons-material/FormatTextdirectionLToR";
+import CloseIcon from "@mui/icons-material/Close";
 let defaultColor = "#e35981";
 const defaultState = {
   open: false,
@@ -326,192 +327,248 @@ export default function Header({
           </Box>
         </Box>
 
-        <Drawer open={state.open} onClose={handleDrawerClose} anchor="right">
-          <Box sx={style.drawerPaper}>
-            <Box sx={{ backgroundColor: "#fafafa" }}>
-              <Typography
+        <Box sx={{ display: "flex" }}>
+          {" "}
+          {state.open && (
+            <Box
+              sx={{
+                border: "1px solid #fafafa",
+                background: "#fafafa",
+                width: "63px",
+                height: "60px",
+                bottom: 50,
+                padding: "10px",
+                borderTopLeftRadius: "30px",
+                borderBottomLeftRadius: "30px",
+                position: "absolute",
+                top: "400px",
+                zIndex: 1,
+                left: "1348px",
+              }}
+            >
+              <IconButton
                 sx={{
-                  paddingTop: 3,
-                  paddingLeft: 9,
-                  paddingBottom: 3,
-                  color: "black",
+                  backgroundColor: `${
+                    !!themeColor ? themeColor : defaultColor
+                  }`,
+                  borderRadius: "30px",
+                }}
+                onClick={() => {
+                  setState((prevState) => ({
+                    ...prevState,
+                    open: !prevState.open,
+                  }));
                 }}
               >
-                TEMPLATE SETTINGS
-              </Typography>
-            </Box>
-            <Box sx={{ backgroundColor: "#ffffff" }}>
-              <Box sx={{ ...style.themeColor, ml: "30px" }}>
-                <PaletteIcon sx={{ color: "#757575", mr: "6px" }}></PaletteIcon>
-                <Typography sx={{ color: "#757575" }}>Theme Colour</Typography>
-              </Box>
-              <Box sx={style.themeColor}>
-                <Box
-                  onClick={() => handlThemeChange("#f14f6f", "#f6dbe9")}
+                <CloseIcon
                   sx={{
-                    ...style.themeBox,
-                    backgroundColor: "#f14f6f",
-                    cursor: "pointer",
+                    bottom: 50,
+                    color: "white",
+                  }}
+                />
+              </IconButton>
+            </Box>
+          )}
+          <Drawer
+            open={state.open}
+            onClose={handleDrawerClose}
+            variant="persistent"
+            anchor="right"
+          >
+            <Box sx={style.drawerPaper}>
+              <Box sx={{ backgroundColor: "#fafafa" }}>
+                <Typography
+                  sx={{
+                    paddingTop: 3,
+                    paddingLeft: 9,
+                    paddingBottom: 3,
+                    color: "black",
                   }}
                 >
-                  {" "}
+                  TEMPLATE SETTINGS
+                </Typography>
+              </Box>
+              <Box sx={{ backgroundColor: "#ffffff" }}>
+                <Box sx={{ ...style.themeColor, ml: "30px" }}>
+                  <PaletteIcon
+                    sx={{ color: "#757575", mr: "6px" }}
+                  ></PaletteIcon>
+                  <Typography sx={{ color: "#757575" }}>
+                    Theme Colour
+                  </Typography>
                 </Box>
-                <Box
-                  onClick={() => handlThemeChange("#40a291", "#cffaf4")}
-                  sx={{
-                    ...style.themeBox,
-                    backgroundColor: "#40a291",
-                    cursor: "pointer",
-                  }}
-                ></Box>
-                <Box
-                  onClick={() => handlThemeChange("#3d53c8", "#e2e5fe")}
-                  sx={{
-                    ...style.themeBox,
-                    backgroundColor: "#3d53c8",
-                    cursor: "pointer",
-                  }}
-                ></Box>
-                <Box
-                  onClick={() => handlThemeChange("#a45ac5", "#f3d6fe")}
-                  sx={{
-                    ...style.themeBox,
-                    backgroundColor: "#a45ac5",
-                    cursor: "pointer",
-                  }}
-                ></Box>
-                <Box
-                  onClick={() => handlThemeChange("#f24724", "#f9e5de")}
-                  sx={{
-                    ...style.themeBox,
-                    backgroundColor: "#f24724",
-                    cursor: "pointer",
-                  }}
-                ></Box>
-                <Box
-                  onClick={() => handlThemeChange("#607c89", "#ebecec")}
-                  sx={{
-                    ...style.themeBox,
-                    backgroundColor: "#607c89",
-                    cursor: "pointer",
-                  }}
-                ></Box>
-                <Box
-                  onClick={() => handlThemeChange("#70cb34", "#f0f3c9")}
-                  sx={{
-                    ...style.themeBox,
-                    backgroundColor: "#70cb34",
-                    cursor: "pointer",
-                  }}
-                ></Box>
-                <Box
-                  onClick={() => handlThemeChange("#00a2f1", "#d6f4f9")}
-                  sx={{
-                    ...style.themeBox,
-                    backgroundColor: "#00a2f1",
-                    cursor: "pointer",
-                  }}
-                ></Box>
-                <Box
-                  onClick={() => handlThemeChange("#795048", "#f0e7e7")}
-                  sx={{
-                    ...style.themeBox,
-                    backgroundColor: "#795048",
-                    cursor: "pointer",
-                  }}
-                ></Box>
-              </Box>
-            </Box>
-
-            <Box sx={{ backgroundColor: "#ffffff" }}>
-              <Box sx={{ ...style.themeColor, ml: "30px" }}>
-                <FactCheckIcon
-                  sx={{ color: "#757575", mr: "6px" }}
-                ></FactCheckIcon>
-                <Typography sx={{ color: "#757575" }}>
-                  NAVIGATION LAYOUT
-                </Typography>
-              </Box>
-              <Box sx={style.themeColor}>
-                <Box sx={{ ...style.themeBox, backgroundColor: "#f14f6f" }}>
-                  {" "}
+                <Box sx={style.themeColor}>
+                  <Box
+                    onClick={() => handlThemeChange("#f14f6f", "#f6dbe9")}
+                    sx={{
+                      ...style.themeBox,
+                      backgroundColor: "#f14f6f",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {" "}
+                  </Box>
+                  <Box
+                    onClick={() => handlThemeChange("#40a291", "#cffaf4")}
+                    sx={{
+                      ...style.themeBox,
+                      backgroundColor: "#40a291",
+                      cursor: "pointer",
+                    }}
+                  ></Box>
+                  <Box
+                    onClick={() => handlThemeChange("#3d53c8", "#e2e5fe")}
+                    sx={{
+                      ...style.themeBox,
+                      backgroundColor: "#3d53c8",
+                      cursor: "pointer",
+                    }}
+                  ></Box>
+                  <Box
+                    onClick={() => handlThemeChange("#a45ac5", "#f3d6fe")}
+                    sx={{
+                      ...style.themeBox,
+                      backgroundColor: "#a45ac5",
+                      cursor: "pointer",
+                    }}
+                  ></Box>
+                  <Box
+                    onClick={() => handlThemeChange("#f24724", "#f9e5de")}
+                    sx={{
+                      ...style.themeBox,
+                      backgroundColor: "#f24724",
+                      cursor: "pointer",
+                    }}
+                  ></Box>
+                  <Box
+                    onClick={() => handlThemeChange("#607c89", "#ebecec")}
+                    sx={{
+                      ...style.themeBox,
+                      backgroundColor: "#607c89",
+                      cursor: "pointer",
+                    }}
+                  ></Box>
+                  <Box
+                    onClick={() => handlThemeChange("#70cb34", "#f0f3c9")}
+                    sx={{
+                      ...style.themeBox,
+                      backgroundColor: "#70cb34",
+                      cursor: "pointer",
+                    }}
+                  ></Box>
+                  <Box
+                    onClick={() => handlThemeChange("#00a2f1", "#d6f4f9")}
+                    sx={{
+                      ...style.themeBox,
+                      backgroundColor: "#00a2f1",
+                      cursor: "pointer",
+                    }}
+                  ></Box>
+                  <Box
+                    onClick={() => handlThemeChange("#795048", "#f0e7e7")}
+                    sx={{
+                      ...style.themeBox,
+                      backgroundColor: "#795048",
+                      cursor: "pointer",
+                    }}
+                  ></Box>
                 </Box>
-                <Box
-                  sx={{ ...style.themeBox, backgroundColor: "#40a291" }}
-                ></Box>
-                <Box
-                  sx={{ ...style.themeBox, backgroundColor: "#3d53c8" }}
-                ></Box>
-                <Box
-                  sx={{ ...style.themeBox, backgroundColor: "#a45ac5" }}
-                ></Box>
-                <Box
-                  sx={{ ...style.themeBox, backgroundColor: "#f24724" }}
-                ></Box>
-                <Box
-                  sx={{ ...style.themeBox, backgroundColor: "#607c89" }}
-                ></Box>
+              </Box>
+
+              <Box sx={{ backgroundColor: "#ffffff" }}>
+                <Box sx={{ ...style.themeColor, ml: "30px" }}>
+                  <FactCheckIcon
+                    sx={{ color: "#757575", mr: "6px" }}
+                  ></FactCheckIcon>
+                  <Typography sx={{ color: "#757575" }}>
+                    NAVIGATION LAYOUT
+                  </Typography>
+                </Box>
+                <Box sx={style.themeColor}>
+                  <Box sx={{ ...style.themeBox, backgroundColor: "#f14f6f" }}>
+                    {" "}
+                  </Box>
+                  <Box
+                    sx={{ ...style.themeBox, backgroundColor: "#40a291" }}
+                  ></Box>
+                  <Box
+                    sx={{ ...style.themeBox, backgroundColor: "#3d53c8" }}
+                  ></Box>
+                  <Box
+                    sx={{ ...style.themeBox, backgroundColor: "#a45ac5" }}
+                  ></Box>
+                  <Box
+                    sx={{ ...style.themeBox, backgroundColor: "#f24724" }}
+                  ></Box>
+                  <Box
+                    sx={{ ...style.themeBox, backgroundColor: "#607c89" }}
+                  ></Box>
+                </Box>
+              </Box>
+
+              <Box sx={{ backgroundColor: "#ffffff" }}>
+                <Box sx={{ ...style.themeColor, ml: "30px" }}>
+                  <InvertColorsIcon
+                    fontSize="small"
+                    sx={{ color: "#757575", mr: "6px" }}
+                  />
+                  <Typography sx={{ color: "#757575" }}>Theme Mode</Typography>
+                </Box>
+                <Box sx={{ ...style.themeColor, ml: "30px" }}>
+                  <Typography sx={{ mr: "10px", color: "black" }}>
+                    Light Mode
+                  </Typography>
+                  <Switch
+                    size="large"
+                    checked={state.checked}
+                    onChange={(event) => {
+                      const newThemeType =
+                        themeVariant === THEME_VARIANT.LIGHT
+                          ? THEME_VARIANT.DARK
+                          : THEME_VARIANT.LIGHT;
+                      setThemeVariant(newThemeType);
+
+                      setState((prevState) => ({
+                        ...prevState,
+                        checked: event.target.checked,
+                      }));
+                    }}
+                    inputProps={{ "aria-label": "controlled" }}
+                  />
+                  <Typography sx={{ ml: "10px", color: "black" }}>
+                    Dark Mode
+                  </Typography>
+                </Box>
+              </Box>
+
+              <Box sx={{ backgroundColor: "#ffffff" }}>
+                <Box sx={{ ...style.themeColor, ml: "30px" }}>
+                  <FormatTextdirectionLToRIcon
+                    fontSize="small"
+                    sx={{ color: "#757575", mr: "6px" }}
+                  />
+                  <Typography sx={{ color: "#757575" }}>
+                    LAYOUT DIRECTION
+                  </Typography>
+                </Box>
+                <Box sx={{ ...style.themeColor, ml: "30px" }}>
+                  <Typography sx={{ mr: "10px", color: "black" }}>
+                    LTR
+                  </Typography>
+                  <Switch
+                    size="large"
+                    checked={state.checked1}
+                    onChange={handleChange1}
+                    inputProps={{ "aria-label": "controlled" }}
+                  />
+                  <Typography sx={{ ml: "10px", color: "black" }}>
+                    RTL
+                  </Typography>
+                </Box>
               </Box>
             </Box>
-
-            <Box sx={{ backgroundColor: "#ffffff" }}>
-              <Box sx={{ ...style.themeColor, ml: "30px" }}>
-                <InvertColorsIcon
-                  fontSize="small"
-                  sx={{ color: "#757575", mr: "6px" }}
-                />
-                <Typography sx={{ color: "#757575" }}>Theme Mode</Typography>
-              </Box>
-              <Box sx={{ ...style.themeColor, ml: "30px" }}>
-                <Typography sx={{ mr: "10px", color: "black" }}>
-                  Light Mode
-                </Typography>
-                <Switch
-                  size="large"
-                  checked={state.checked}
-                  onChange={(event) => {
-                    const newThemeType =
-                      themeVariant === THEME_VARIANT.LIGHT
-                        ? THEME_VARIANT.DARK
-                        : THEME_VARIANT.LIGHT;
-                    setThemeVariant(newThemeType);
-
-                    setState((prevState) => ({
-                      ...prevState,
-                      checked: event.target.checked,
-                    }));
-                  }}
-                  inputProps={{ "aria-label": "controlled" }}
-                />
-                <Typography sx={{ ml: "10px", color: "black" }}>
-                  Dark Mode
-                </Typography>
-              </Box>
-            </Box>
-
-            <Box sx={{ backgroundColor: "#ffffff" }}>
-              <Box sx={{ ...style.themeColor, ml: "30px" }}>
-                <FormatTextdirectionLToRIcon
-                  fontSize="small"
-                  sx={{ color: "#757575", mr: "6px" }}
-                />
-                <Typography sx={{ color: "#757575" }}>
-                  LAYOUT DIRECTION
-                </Typography>
-              </Box>
-              <Box sx={{ ...style.themeColor, ml: "30px" }}>
-                <Typography sx={{ mr: "10px", color: "black" }}>LTR</Typography>
-                <Switch
-                  size="large"
-                  checked={state.checked1}
-                  onChange={handleChange1}
-                  inputProps={{ "aria-label": "controlled" }}
-                />
-                <Typography sx={{ ml: "10px", color: "black" }}>RTL</Typography>
-              </Box>
-            </Box>
-          </Box>
-        </Drawer>
+          </Drawer>
+        </Box>
       </Toolbar>
     </AppBar>
   );

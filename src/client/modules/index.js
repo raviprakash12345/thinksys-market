@@ -1,10 +1,9 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { DefaultLayout } from "@client/shared/components";
 import Home from "./home";
 import Marketing from "./marketing";
 import Login from "./login";
 import Register from "./register";
-import { Box } from "@mui/system";
 import { LeftSideHeader } from "@client/shared/components";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
 import WidgetsSharpIcon from "@mui/icons-material/WidgetsSharp";
@@ -170,12 +169,12 @@ const drawerList3 = [
   {
     subHeading1: {
       subHeading: "Login",
-      to: "/pages/login",
+      to: "pages/login",
       icon: <AccountBoxIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
     },
     subHeading2: {
       subHeading: "Register",
-      to: "/pages/register",
+      to: "pages/register",
       icon: <BorderColorIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
     },
     subHeading3: {
@@ -279,6 +278,7 @@ const App = ({ isSideDrawerOpen = false }) => {
     isDrawerMargin: true,
     lightColor: "",
   });
+  const location = useLocation();
   let sidebarList = [
     {
       icon: <HomeSharpIcon sx={{ color: "#7B7E7E" }} />,
@@ -361,6 +361,14 @@ const App = ({ isSideDrawerOpen = false }) => {
     }));
   };
 
+  // const handleOpenLogin = (location="") => {
+  //   console.log(`location`, location);
+  //   setState((prevState) => ({
+  //     ...prevState,
+  //     isLoginPageOpen: location.pathname == "/login",
+  //   }));
+  // };
+
   const handleMargin = (isDrawerOpen = false) => {
     setState((prevState) => ({
       ...prevState,
@@ -370,7 +378,8 @@ const App = ({ isSideDrawerOpen = false }) => {
 
   useEffect(() => {
     fetchList(state.listIndex);
-  }, [state.listIndex]);
+    // handleOpenLogin(location.pathname);
+  }, [state.listIndex, state.isLoginPageOpen]);
 
   useEffect(() => {
     window.addEventListener("popstate", (event) => {
@@ -381,7 +390,7 @@ const App = ({ isSideDrawerOpen = false }) => {
       }));
     });
   }, []);
-
+  console.log(`isLoginPageOpen`, state.isLoginPageOpen);
   return (
     <>
       <Routes>

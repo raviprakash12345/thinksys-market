@@ -177,6 +177,7 @@ const LeftSideHeader = ({
         isOpen={state.isOpen}
         themeColor={themeColor}
         lightColor={lightColor}
+        handleLoginPage={handleLoginPage}
       />
     </>
   );

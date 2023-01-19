@@ -65,13 +65,18 @@ const data = [
 ];
 let defaultColor = "#e35981";
 const AreaChartView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
-  console.log(`themeColor`, themeColor);
+  // console.log(`themeColor`, themeColor);
   return (
     <>
       {/* <ResponsiveContainer width="100%" height="100%"> */}
       <Box sx={{ display: "flex", alignItems: "center", gap: "5px" }}>
-        <IconButton>
-          <TimelineIcon sx={{ color: "pink", fontSize: "40px" }} />
+        <IconButton sx={{ background: "#E2E3E3" }}>
+          <TimelineIcon
+            sx={{
+              color: `${!!themeColor ? themeColor : defaultColor}`,
+              fontSize: "40px",
+            }}
+          />
         </IconButton>
         <Typography sx={{ fontWeight: "bold" }} variant="h6">
           Performance Indicator
