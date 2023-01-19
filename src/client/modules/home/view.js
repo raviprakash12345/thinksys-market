@@ -10,9 +10,13 @@ import HomeTable from "../shared/home-table";
 import { useCallback, useEffect, useRef, useState } from "react";
 import MyTaskTable from "../shared/my-task-table";
 let defaultColor = "#e35981";
+let defaultLightColor = "#f6dbe9";
 let defaultMargin = true;
-const HomeView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
-  
+const HomeView = ({
+  themeColor = "#e35981",
+  isDrawerMargin = true,
+  lightColor = "",
+}) => {
   // useEffect(() => {
   //   const onScroll = () => pageScrollUP()
   //   // clean up code
@@ -47,7 +51,9 @@ const HomeView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
                 <Typography variant="body1">Subscribes</Typography>
               </Box>
               <Box sx={{ marginTop: "28px" }}>
-                <IconButton>
+                <IconButton sx={{":hover":{
+                  background:"red"
+                }}}>
                   <OndemandVideoIcon
                     sx={{
                       color: `${!!themeColor ? themeColor : defaultColor}`,

@@ -93,13 +93,18 @@ export default function SidebarHeader({
                       sx={
                         isActiveItem(item.subHeading1.to)
                           ? {
-                              color: "grey",
+                              color: "black",
                               backgroundColor: `${
                                 !!themeColor ? lightColor : defaultLightColor
                               }`,
                               fontSize: "12px",
                             }
-                          : { color: "grey", fontSize: "12px" }
+                          : {
+                              color: `${
+                                themeVariant == "dark" ? "white" : "black"
+                              }`,
+                              fontSize: "12px",
+                            }
                       }
                       variant="text"
                       onClick={(e) => {
@@ -120,13 +125,18 @@ export default function SidebarHeader({
                       sx={
                         isActiveItem(item.subHeading2.to)
                           ? {
-                              color: "grey",
+                              color: "black",
                               backgroundColor: `${
                                 !!themeColor ? lightColor : defaultLightColor
                               }`,
                               fontSize: "12px",
                             }
-                          : { color: "grey", fontSize: "12px" }
+                          : {
+                              color: `${
+                                themeVariant == "dark" ? "white" : "black"
+                              }`,
+                              fontSize: "12px",
+                            }
                       }
                       variant="text"
                       onClick={(e) => {
@@ -146,13 +156,18 @@ export default function SidebarHeader({
                       sx={
                         isActiveItem(item.subHeading3.to)
                           ? {
-                              color: "grey",
+                              color: "black",
                               backgroundColor: `${
                                 !!themeColor ? lightColor : defaultLightColor
                               }`,
                               fontSize: "12px",
                             }
-                          : { color: "grey", fontSize: "12px" }
+                          : {
+                              color: `${
+                                themeVariant == "dark" ? "white" : "black"
+                              }`,
+                              fontSize: "12px",
+                            }
                       }
                       variant="text"
                       onClick={(e) => {

@@ -5,7 +5,7 @@ import React, {
   useContext,
   useRef,
 } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -59,6 +59,7 @@ export default function Header({
   themeColor = "#e35981",
 }) {
   const navigate = useNavigate();
+  const currentPath = useLocation();
   const { themeVariant, setThemeVariant } = useContext(AppContext);
   const token = getToken();
   const userData = decodeToken(token);
@@ -176,12 +177,16 @@ export default function Header({
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography sx={{ mr: 5, width: "150px" }}>Enlite Prime</Typography>
           {useScrollDirection() !== "up" ? (
-            <Typography
-              sx={{ color: `${!!themeColor ? themeColor : defaultColor}` }}
-              variant="h4"
-            >
-              App
-            </Typography>
+            <Box sx={{ width: "340px" }}>
+              <Typography
+                sx={{ color: `${!!themeColor ? themeColor : defaultColor}` }}
+                variant="h4"
+              >
+                {currentPath.pathname.split("/")[2] == "analytics"
+                  ? "App"
+                  : currentPath.pathname.split("/")[2].toUpperCase()}
+              </Typography>
+            </Box>
           ) : (
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <IconButton
@@ -219,84 +224,106 @@ export default function Header({
               </IconButton>
               <HelpOutlineIcon
                 fontSize="medium"
-                sx={{ color: "grey", mr: 120 }}
-              ></HelpOutlineIcon>
+                sx={{ color: "grey", marginRight: "920px" }}
+              />
             </Box>
           )}
 
+          <Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                marginLeft: `${useScrollDirection() !== "up" && "684px"}`,
+              }}
+            >
+              <TextField
+                variant="outlined"
+                size="small"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon sx={{ color: "black" }} />
+                    </InputAdornment>
+                  ),
+                }}
+                placeholder="search..."
+                sx={{
+                  width: "150px",
+                  mr: "20px",
+
+                  "& .MuiOutlinedInput-root": {
+                    backgroundColor: "white",
+                    color: "black",
+
+                    //  "&:hover": {
+                    //    borderColor:"1px solid red",
+                    //    width:"280px",
+
+                    //  },
+                  },
+                }}
+              />
+
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={Lanuages}
+                size="small"
+                sx={{ width: 150, mr: "20px" }}
+                defaultValue="English"
+                disableClearable="true"
+                renderInput={(params) => <TextField {...params} />}
+              />
+
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: `${
+                    !!themeColor ? themeColor : defaultColor
+                  }`,
+                  width: "110px",
+                }}
+                onClick={handleNavigation}
+              >
+                Login
+              </Button>
+            </Box>
+          </Box>
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
-              marginLeft: `${useScrollDirection() !== "up" ? "980px" : "0px"}`,
-            }}
-          >
-            <TextField
-              variant="outlined"
-              size="small"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon sx={{ color: "black" }} />
-                  </InputAdornment>
-                ),
-              }}
-              placeholder="search..."
-              sx={{
-                width: "150px",
-                mr: "20px",
-
-                "& .MuiOutlinedInput-root": {
-                  backgroundColor: "white",
-                  color: "black",
-
-                  //  "&:hover": {
-                  //    borderColor:"1px solid red",
-                  //    width:"280px",
-
-                  //  },
-                },
-              }}
-            />
-
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={Lanuages}
-              size="small"
-              sx={{ width: 150, mr: "20px" }}
-              defaultValue="English"
-              disableClearable="true"
-              renderInput={(params) => <TextField {...params} />}
-            />
-
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
-                width: "110px",
-              }}
-              onClick={handleNavigation}
-            >
-              Login
-            </Button>
-          </Box>
-
-          <PaletteIcon
-            fontSize="large"
-            sx={{
+              border: "1px solid #fafafa",
+              background: "#fafafa",
+              width: "63px",
+              height: "60px",
               bottom: 50,
-              color: `${!!themeColor ? themeColor : defaultColor}`,
               position: "relative",
               top: "400px",
+              padding: "10px",
+              borderTopLeftRadius: "30px",
+              borderBottomLeftRadius: "30px",
             }}
-            onClick={() => {
-              setState((prevState) => ({
-                ...prevState,
-                open: !prevState.open,
-              }));
-            }}
-          ></PaletteIcon>
+          >
+            <IconButton
+              sx={{
+                backgroundColor: `${!!themeColor ? themeColor : defaultColor}`,
+                borderRadius: "30px",
+              }}
+              onClick={() => {
+                setState((prevState) => ({
+                  ...prevState,
+                  open: !prevState.open,
+                }));
+              }}
+            >
+              <PaletteIcon
+                sx={{
+                  bottom: 50,
+                  color: "white",
+                }}
+              />
+            </IconButton>
+          </Box>
         </Box>
 
         <Drawer open={state.open} onClose={handleDrawerClose} anchor="right">

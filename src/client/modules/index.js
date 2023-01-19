@@ -34,7 +34,9 @@ import Contact from "./contact";
 import TodoFirebase from "./todo-firebase";
 import DataTable from "./dataTable";
 import ContactFireBase from "./contact-firebase";
-
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+import UndoIcon from "@mui/icons-material/Undo";
 let index = 1;
 const drawerList1 = [
   {
@@ -169,17 +171,17 @@ const drawerList3 = [
     subHeading1: {
       subHeading: "Login",
       to: "/pages/login",
-      icon: <CorporateFareIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
+      icon: <AccountBoxIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
     },
     subHeading2: {
       subHeading: "Register",
       to: "/pages/register",
-      icon: "",
+      icon: <BorderColorIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
     },
     subHeading3: {
       subHeading: "Reset Password",
       to: "/pages/resetPassword",
-      icon: "",
+      icon: <UndoIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
     },
     heading: "STATIC AUTH",
   },
@@ -404,6 +406,7 @@ const App = ({ isSideDrawerOpen = false }) => {
                 <Home
                   themeColor={state.themeColor}
                   isDrawerMargin={state.isDrawerMargin}
+                  lightColor={state.lightColor}
                 />
               }
             />
