@@ -244,7 +244,13 @@ export default function Header({
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <SearchIcon sx={{ color: "black" }} />
+                      <SearchIcon
+                        sx={{
+                          color: `${
+                            themeVariant == "dark" ? "white" : "black"
+                          }`,
+                        }}
+                      />
                     </InputAdornment>
                   ),
                 }}
@@ -252,16 +258,19 @@ export default function Header({
                 sx={{
                   width: "150px",
                   mr: "20px",
-
                   "& .MuiOutlinedInput-root": {
-                    backgroundColor: "white",
+                    backgroundColor: `${
+                      themeVariant == "dark" ? "black" : "white"
+                    }`,
                     color: "black",
-
                     //  "&:hover": {
                     //    borderColor:"1px solid red",
                     //    width:"280px",
 
                     //  },
+                  },
+                  "& .MuiInputBase-root": {
+                    color: `${themeVariant == "dark" ? "white" : "black"}`,
                   },
                 }}
               />
@@ -295,7 +304,7 @@ export default function Header({
             sx={{
               border: "1px solid #fafafa",
               background: "#fafafa",
-              width: "63px",
+              width: "80px",
               height: "60px",
               bottom: 50,
               position: "relative",
@@ -334,7 +343,7 @@ export default function Header({
               sx={{
                 border: "1px solid #fafafa",
                 background: "#fafafa",
-                width: "63px",
+                width: "72px",
                 height: "60px",
                 bottom: 50,
                 padding: "10px",
@@ -374,6 +383,7 @@ export default function Header({
             onClose={handleDrawerClose}
             variant="persistent"
             anchor="right"
+            transitionDuration={180}
           >
             <Box sx={style.drawerPaper}>
               <Box sx={{ backgroundColor: "#fafafa" }}>
@@ -390,9 +400,7 @@ export default function Header({
               </Box>
               <Box sx={{ backgroundColor: "#ffffff" }}>
                 <Box sx={{ ...style.themeColor, ml: "30px" }}>
-                  <PaletteIcon
-                    sx={{ color: "#757575", mr: "6px" }}
-                  ></PaletteIcon>
+                  <PaletteIcon sx={{ color: "#757575", mr: "6px" }} />
                   <Typography sx={{ color: "#757575" }}>
                     Theme Colour
                   </Typography>

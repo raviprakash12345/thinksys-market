@@ -36,6 +36,10 @@ import ContactFireBase from "./contact-firebase";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UndoIcon from "@mui/icons-material/Undo";
+import GridOnIcon from "@mui/icons-material/GridOn";
+import TableChartIcon from "@mui/icons-material/TableChart";
+import ViewModuleIcon from "@mui/icons-material/ViewModule";
+import Basic from "./basic";
 let index = 1;
 const drawerList1 = [
   {
@@ -233,17 +237,17 @@ const drawerList4 = [
     subHeading1: {
       subHeading: "Basic",
       to: "/tables/basic",
-      icon: <CorporateFareIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
+      icon: <GridOnIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
     },
     subHeading2: {
       subHeading: "Data Table",
       to: "/tables/dataTable",
-      icon: "",
+      icon: <TableChartIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
     },
     subHeading3: {
       subHeading: "Table Playground",
       to: "/tables/tablePlayground",
-      icon: "",
+      icon: <ViewModuleIcon sx={{ color: "#7B7E7E" }} fontSize="small" />,
     },
     heading: "COMMON TABLES",
   },
@@ -530,6 +534,16 @@ const App = ({ isSideDrawerOpen = false }) => {
               path="/tables/dataTable"
               element={
                 <DataTable
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                  lightColor={state.lightColor}
+                />
+              }
+            />
+            <Route
+              path="/tables/basic"
+              element={
+                <Basic
                   themeColor={state.themeColor}
                   isDrawerMargin={state.isDrawerMargin}
                   lightColor={state.lightColor}
