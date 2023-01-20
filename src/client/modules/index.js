@@ -40,6 +40,7 @@ import GridOnIcon from "@mui/icons-material/GridOn";
 import TableChartIcon from "@mui/icons-material/TableChart";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import Basic from "./basic";
+import EmailFirebase from "./email-firebase";
 let index = 1;
 const drawerList1 = [
   {
@@ -545,6 +546,16 @@ const App = ({ isSideDrawerOpen = false }) => {
               path="/tables/basic"
               element={
                 <Basic
+                  themeColor={state.themeColor}
+                  isDrawerMargin={state.isDrawerMargin}
+                  lightColor={state.lightColor}
+                />
+              }
+            />
+            <Route
+              path="/applications/emailFireBase"
+              element={
+                <EmailFirebase
                   themeColor={state.themeColor}
                   isDrawerMargin={state.isDrawerMargin}
                   lightColor={state.lightColor}

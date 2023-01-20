@@ -32,7 +32,7 @@ const StatusView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
             <Box sx={{ padding: "8px", marginLeft: "40%" }}>
               <Calendar
                 defaultValue="year"
-                className="react-calendar"
+                className="react-calendar react-calendar--selectRange"
                 onChange={onChange}
                 value={date}
               />

@@ -493,7 +493,9 @@ const CryptocurrencyView = ({
             </Box>
             <Box
               sx={{
-                border: "1px solid #f8e4ec",
+                border: `1px solid ${
+                  !!themeColor ? lightColor : defaultLightColor
+                }`,
                 background: `${!!themeColor ? lightColor : defaultLightColor}`,
                 marginLeft: "10px",
                 marginRight: "10px",
