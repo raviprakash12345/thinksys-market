@@ -8,7 +8,7 @@ let defaultColor = "#e35981";
 let defaultLightColor = "#f6dbe9";
 const AnalyticsView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
   const location = useLocation();
-  console.log(`location.pathname.split("/")[0]`, location.pathname.split("/")[0]);
+
   return (
     <>
       <Box sx={!isDrawerMargin && { marginLeft: "250px" }}>
@@ -20,7 +20,9 @@ const AnalyticsView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
             Analytics
           </Typography>
           <Typography sx={{ marginLeft: "16px" }} variant="body1">
-            {location.pathname.split("/")[1]+" / "+location.pathname.split("/")[2]}
+            {location.pathname.split("/")[1] +
+              " / " +
+              location.pathname.split("/")[2]}
           </Typography>
         </Box>
         <ChartArea themeColor={themeColor} isDrawerMargin={isDrawerMargin} />

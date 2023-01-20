@@ -304,7 +304,7 @@ export default function Header({
             sx={{
               border: "1px solid #fafafa",
               background: "#fafafa",
-              width: "80px",
+              width: "65px",
               height: "60px",
               bottom: 50,
               position: "relative",

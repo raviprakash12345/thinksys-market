@@ -21,7 +21,7 @@ const TodoView = ({
   isTable = false,
 }) => {
   const currentPath = useLocation();
-  console.log(`currentPath.location`, currentPath.pathname);
+ 
   return (
     <Box sx={!isDrawerMargin && { marginLeft: "250px" }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -32,12 +32,14 @@ const TodoView = ({
           Todo
         </Typography>
         <Typography sx={{ marginLeft: "16px" }} variant="body1">
-          App / Pages / Todo
+          {currentPath.pathname.split("/")[1] +
+            " / " +
+            currentPath.pathname.split("/")[2]}
         </Typography>
       </Box>
       <Box
         sx={{
-          width: "100%",
+          width: "97%",
           backgroundColor: `${!!themeColor ? lightColor : defaultLightColor}`,
           padding: 3,
           borderRadius: "12px",

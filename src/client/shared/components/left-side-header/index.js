@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Header } from "@client/shared/components";
+import { Header, Dropdown } from "@client/shared/components";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Backdrop from "@mui/material/Backdrop";
@@ -16,11 +16,17 @@ import MenuSharpIcon from "@mui/icons-material/MenuSharp";
 import { THEME_VARIANT } from "@client/shared/constants";
 import { DefaultLayout } from "../layouts";
 import { AppContext } from "@client/shared/contexts";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import { styled } from "@mui/material/styles";
+import Badge from "@mui/material/Badge";
 const defaultState = {
   isDrawerOpen: false,
   isTakeoverDialogOpen: false,
   isOpen: false,
+  colorCode: "#8bc34a",
+  status: "Online",
 };
+
 let defaultColor = "#e35981";
 let defaultLightColor = "#f6dbe9";
 const LeftSideHeader = ({
@@ -47,6 +53,20 @@ const LeftSideHeader = ({
     return isActive;
   };
   localStorage.setItem("isDrawer", state.isDrawerOpen);
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+      backgroundColor: `${state.colorCode}`,
+      color: "#44b700",
+      marginBottom: "4px",
+    },
+  }));
+  const handleClick = (color = "#8bc34a", status = "Online") => {
+    setState((prevState) => ({
+      ...prevState,
+      colorCode: color,
+      status: status,
+    }));
+  };
   return (
     <>
       <Drawer
@@ -96,9 +116,112 @@ const LeftSideHeader = ({
               alignItems: "center",
             }}
           >
-            <IconButton>
-              <AccountCircleIcon fontSize="large" />
-            </IconButton>
+            <Dropdown
+              customToggle={
+                <Box>
+                  <StyledBadge
+                    overlap="circular"
+                    anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                    variant="dot"
+                  >
+                    <IconButton>
+                      <AccountCircleIcon fontSize="large" />
+                    </IconButton>
+                  </StyledBadge>
+                </Box>
+              }
+              options={[
+                {
+                  label: (
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        width: "150px",
+                      }}
+                    >
+                      <IconButton>
+                        <AccountCircleIcon fontSize="large" />
+                      </IconButton>
+                      <Box>
+                        <Typography sx={{ fontWeight: "bold" }} variant="body1">
+                          Jonh
+                        </Typography>
+                        <Box sx={{ display: "flex", alignItems: "center" }}>
+                          <FiberManualRecordIcon
+                            sx={{
+                              fontSize: "16px",
+                              color: `${state.colorCode}`,
+                            }}
+                          />
+                          <Typography>{state.status}</Typography>
+                        </Box>
+                      </Box>
+                    </Box>
+                  ),
+                },
+                {
+                  label: (
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <FiberManualRecordIcon
+                        sx={{
+                          fontSize: "16px",
+                          color: "#8bc34a",
+                          marginRight: "12px",
+                        }}
+                      />
+                      <Typography>Online</Typography>
+                    </Box>
+                  ),
+                  onClick: () => handleClick("#8bc34a", "Online"),
+                },
+                {
+                  label: (
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <FiberManualRecordIcon
+                        sx={{
+                          fontSize: "16px",
+                          color: "#f7c00f",
+                          marginRight: "12px",
+                        }}
+                      />
+                      <Typography>Idle</Typography>
+                    </Box>
+                  ),
+                  onClick: () => handleClick("#f7c00f", "Idle"),
+                },
+                {
+                  label: (
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <FiberManualRecordIcon
+                        sx={{
+                          fontSize: "16px",
+                          color: "#e44f37",
+                          marginRight: "12px",
+                        }}
+                      />
+                      <Typography>Busy</Typography>
+                    </Box>
+                  ),
+                  onClick: () => handleClick("#e44f37", "Busy"),
+                },
+                {
+                  label: (
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <FiberManualRecordIcon
+                        sx={{
+                          fontSize: "16px",
+                          color: "#9e9e9e",
+                          marginRight: "12px",
+                        }}
+                      />
+                      <Typography>Offline</Typography>
+                    </Box>
+                  ),
+                  onClick: () => handleClick("#9e9e9e", "Offline"),
+                },
+              ]}
+            />
             {sidebarList.map((item, index) => {
               return (
                 <Box sx={{ textAlign: "center" }}>
