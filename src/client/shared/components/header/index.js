@@ -184,8 +184,8 @@ export default function Header({
                 variant="h4"
               >
                 {currentPath.pathname.split("/")[2] == "analytics"
-                  ? "App"
-                  : currentPath.pathname.split("/")[2].toUpperCase()}
+                  ? "APP"
+                  : (currentPath.pathname.split("/")[2] || "app").toUpperCase()}
               </Typography>
             </Box>
           ) : (
