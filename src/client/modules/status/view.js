@@ -43,7 +43,7 @@ const StatusView = ({ isDrawerMargin = true, themeColor = "#e35981" }) => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const apiKey = "553510530a9f65f58efb5605599987af";
+        const apiKey =process.env.WETHER_API_KEY;
         const response = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?q=Noida, Uttar Pradesh, India&appid=${apiKey}&units=metric`
         );

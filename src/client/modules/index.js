@@ -1,3 +1,4 @@
+import { useContext, useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { DefaultLayout } from "@client/shared/components";
 import Home from "./home";
@@ -22,7 +23,6 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import MailIcon from "@mui/icons-material/Mail";
-import { useEffect, useState } from "react";
 import Cryptocurrency from "./cryptocurrency";
 import Todo from "./todo";
 import Infographics from "./infographics";
@@ -41,6 +41,7 @@ import TableChartIcon from "@mui/icons-material/TableChart";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import Basic from "./basic";
 import EmailFirebase from "./email-firebase";
+import { AppContext } from "../shared/contexts/app";
 let index = 1;
 const drawerList1 = [
   {
@@ -275,6 +276,7 @@ const drawerList4 = [
   },
 ];
 const App = ({ isSideDrawerOpen = false }) => {
+  const { setAppData, appData } = useContext(AppContext);
   const [state, setState] = useState({
     themeColor: "",
     listIndex: 0,
@@ -381,9 +383,17 @@ const App = ({ isSideDrawerOpen = false }) => {
     }));
   };
 
+  const handleLanguage = () => {
+    const lang = appData.appLanguage;
+    setAppData("userData", {
+      setAppLanguage: lang === "English" ? "English" : "Hindi",
+    });
+  };
+
   useEffect(() => {
     fetchList(state.listIndex);
     // handleOpenLogin(location.pathname);
+    handleLanguage();
   }, [state.listIndex, state.isLoginPageOpen]);
 
   useEffect(() => {

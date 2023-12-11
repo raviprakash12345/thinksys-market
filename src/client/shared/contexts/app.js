@@ -8,6 +8,7 @@ const defaultState = {
   setAppData: noop,
   setTheme: noop,
   setThemeVariant: noop,
+  appLanguage: "English",
 };
 
 export const AppContext = createContext(defaultState);
@@ -39,11 +40,19 @@ export const AppContextProvider = ({ children }) => {
     }));
   };
 
+  const setLanguage = (appLanguage) => {
+    setState((prevState) => ({
+      ...prevState,
+      appLanguage,
+    }));
+  };
+
   const [state, setState] = useState({
     ...defaultState,
     setAppData,
     setTheme,
     setThemeVariant,
+    setLanguage,
   });
 
   return <AppContext.Provider value={state}>{children}</AppContext.Provider>;
