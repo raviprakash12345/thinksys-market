@@ -8,7 +8,11 @@ import FilterIcon from "@mui/icons-material/Filter";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 let defaultColor = "#e35981";
-const TopHeadingView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
+const TopHeadingView = ({
+  themeColor = "#e35981",
+  isDrawerMargin = true,
+  heading = "Icon",
+}) => {
   return (
     <>
       <Paper elevation={0}>
@@ -31,7 +35,7 @@ const TopHeadingView = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
             </IconButton>
           </Box>
           <Box sx={{ marginTop: "12px" }}>
-            <Typography variant="h6">Icon</Typography>
+            <Typography variant="h6">{heading}</Typography>
             <Typography variant="body1">
               Infographic with icon illustration to represent summary of the
               calculation

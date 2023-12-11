@@ -395,7 +395,6 @@ const App = ({ isSideDrawerOpen = false }) => {
       }));
     });
   }, []);
-  console.log(`isLoginPageOpen`, state.isLoginPageOpen);
   return (
     <>
       <Routes>

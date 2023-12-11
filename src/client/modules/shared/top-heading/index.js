@@ -1,9 +1,17 @@
 import TopHeadingView from "./view";
 
-const TopHeading = ({ themeColor = "#e35981", isDrawerMargin = true }) => {
+const TopHeading = ({
+  themeColor = "#e35981",
+  isDrawerMargin = true,
+  heading = "Icon",
+}) => {
   return (
     <>
-      <TopHeadingView themeColor={themeColor} isDrawerMargin={isDrawerMargin} />
+      <TopHeadingView
+        themeColor={themeColor}
+        isDrawerMargin={isDrawerMargin}
+        heading={heading}
+      />
     </>
   );
 };

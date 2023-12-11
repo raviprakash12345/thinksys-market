@@ -21,9 +21,17 @@ const InfographicsView = ({
             App / Dashboard / Infographics
           </Typography>
         </Box>
-        <TopHeading themeColor={themeColor} isDrawerMargin={isDrawerMargin} />
+        <TopHeading
+          themeColor={themeColor}
+          isDrawerMargin={isDrawerMargin}
+          heading="Icon"
+        />
         <Box sx={{ marginTop: "32px" }}>
-          <TopHeading themeColor={themeColor} isDrawerMargin={isDrawerMargin} />
+          <TopHeading
+            themeColor={themeColor}
+            isDrawerMargin={isDrawerMargin}
+            heading="Chart"
+          />
         </Box>
         <Box
           sx={{

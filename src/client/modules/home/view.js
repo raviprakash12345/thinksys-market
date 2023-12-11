@@ -51,12 +51,17 @@ const HomeView = ({
                 <Typography variant="body1">Subscribes</Typography>
               </Box>
               <Box sx={{ marginTop: "28px" }}>
-                <IconButton sx={{":hover":{
-                  background:"red"
-                }}}>
+                <IconButton
+                  sx={{
+                    ":hover": {
+                      background: "red",
+                    },
+                  }}
+                >
                   <OndemandVideoIcon
                     sx={{
-                      color: `${!!themeColor ? themeColor : defaultColor}`,
+                      // color: `${!!themeColor ? themeColor : defaultColor}`,
+                      color: "gray",
                       fontSize: "80px",
                     }}
                   />
